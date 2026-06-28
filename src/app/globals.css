@@ -1,26 +1,236 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ */
+/*  Design tokens — terminal / neon-green / electronics                */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #060a07;
+  --color-bg-2: #08100b;
+  --color-panel: #0a130d;
+  --color-panel-2: #0d1a11;
+  --color-line: #173d28;
+  --color-line-bright: #1f5c3a;
+
+  --color-green: #4dff91;
+  --color-green-dim: #2f9a5d;
+  --color-green-bright: #9bffc4;
+  --color-amber: #ffc857;
+  --color-cyan: #57e3ff;
+
+  --color-text: #c6f6d8;
+  --color-text-dim: #6f9a80;
+  --color-white: #eafff1;
+
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #0b1a10 0%, transparent 60%),
+    var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-green);
+  color: #04150a;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* faint PCB / engineering grid layered behind everything */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(45, 200, 110, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 200, 110, 0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(120% 100% at 50% 0%, #000 40%, transparent 90%);
+}
+
+/* subtle CRT scanlines */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+/* CRT scanline filter scoped to a single element (e.g. the hero) */
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.2) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  .glow {
+    text-shadow: 0 0 6px rgba(77, 255, 145, 0.55), 0 0 18px rgba(77, 255, 145, 0.25);
+  }
+  .glow-amber {
+    text-shadow: 0 0 6px rgba(255, 200, 87, 0.5), 0 0 18px rgba(255, 200, 87, 0.2);
+  }
+  .box-glow {
+    box-shadow: 0 0 0 1px rgba(77, 255, 145, 0.25), 0 0 22px rgba(45, 200, 110, 0.12);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* blinking terminal cursor */
+.cursor::after {
+  content: "▋";
+  margin-left: 2px;
+  color: var(--color-green);
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Terminal window chrome                                             */
+/* ------------------------------------------------------------------ */
+.term {
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--color-panel-2), var(--color-panel));
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--color-line);
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  color: var(--color-text-dim);
+}
+.term-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* link with terminal glow-on-hover */
+.tlink {
+  color: var(--color-green);
+  transition: color 0.15s, text-shadow 0.15s;
+}
+.tlink:hover {
+  color: var(--color-green-bright);
+  text-shadow: 0 0 10px rgba(77, 255, 145, 0.5);
+}
+
+/* pill / tag */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line-bright);
+  color: var(--color-green-dim);
+  background: rgba(45, 200, 110, 0.06);
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #04150a;
+  background: var(--color-green);
+  box-shadow: 0 0 20px rgba(77, 255, 145, 0.25);
+  transition: filter 0.15s, transform 0.15s;
+}
+.btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid var(--color-line-bright);
+  color: var(--color-green);
+  transition: background 0.15s, text-shadow 0.15s;
+}
+.btn-ghost:hover {
+  background: rgba(45, 200, 110, 0.08);
+  text-shadow: 0 0 10px rgba(77, 255, 145, 0.5);
+}
+
+/* page width helper */
+.wrap {
+  margin-inline: auto;
+  max-width: 84rem;
+  padding-inline: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor::after {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .term,
+  .btn,
+  [class*="hover:-translate"] {
+    transition: none !important;
+  }
 }
