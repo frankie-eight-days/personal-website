@@ -9,6 +9,9 @@ export const profile = {
     "Systems EE at Apple, ex-Tesla (Low Voltage Controllers). I design production electronics, " +
     "ship side-project software, and spend my weekends at hackathons, makeathons, and hardware meetups. " +
     "Currently finishing an M.Eng in Industrial Engineering at Oregon State.",
+  // forward-looking trajectory line (the "what's next")
+  plan:
+    "The plan: at least a year going deep on systems at Apple, then full-time on building my own company.",
   location: "Bay Area, California",
 
   email: "walshf@oregonstate.edu",

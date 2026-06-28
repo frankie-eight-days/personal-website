@@ -33,23 +33,23 @@ export default function BootSequence() {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     LINES.forEach((_, i) => {
-      timers.push(setTimeout(() => setLines(i + 1), 170 * i));
+      timers.push(setTimeout(() => setLines(i + 1), 70 * i));
     });
 
     let p = 0;
     const prog = setInterval(() => {
-      p = Math.min(100, p + 7);
+      p = Math.min(100, p + 18);
       setPct(p);
       if (p >= 100) clearInterval(prog);
-    }, 90);
+    }, 45);
 
     const end = setTimeout(() => {
       try {
         sessionStorage.setItem("booted", "1");
       } catch {}
       setState("closing");
-      timers.push(setTimeout(() => setState("done"), 500));
-    }, 1500);
+      timers.push(setTimeout(() => setState("done"), 300));
+    }, 650);
 
     timers.push(end);
     return () => {
@@ -63,7 +63,7 @@ export default function BootSequence() {
   return (
     <div
       aria-hidden
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-bg px-4 transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-bg px-4 transition-opacity duration-300 ${
         state === "closing" ? "opacity-0" : "opacity-100"
       }`}
     >

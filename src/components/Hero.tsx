@@ -16,11 +16,23 @@ export default function Hero() {
           </h1>
           <div className="mt-1 text-sm text-text-dim">{profile.roles.join("  ·  ")}</div>
 
+          {/* the line that used to live only in OG metadata — now the headline */}
+          <p className="mt-3 max-w-prose text-lg font-semibold leading-snug text-green-bright glow sm:text-xl">
+            {profile.tagline}
+          </p>
+
           <div className="mt-5 text-sm text-text-dim">
             <span className="text-green-dim">$</span> cat about.txt
           </div>
-          <p className="mt-1 max-w-prose text-sm leading-relaxed text-text sm:text-[15px]">
+          <p className="mt-1 max-w-prose font-sans text-sm leading-relaxed text-text sm:text-[15px]">
             {profile.blurb}
+          </p>
+
+          <div className="mt-4 text-sm text-text-dim">
+            <span className="text-green-dim">$</span> cat plan.txt
+          </div>
+          <p className="mt-1 max-w-prose font-sans text-sm leading-relaxed text-amber">
+            {profile.plan}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2">
@@ -48,6 +60,7 @@ export default function Hero() {
           alt={profile.name}
           dir="/images/hero/"
           className="aspect-[4/3]"
+          priority
           sizes="(max-width: 768px) 100vw, 540px"
         />
         <div className="flex flex-wrap gap-4 px-1 text-sm">
@@ -64,8 +77,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
-      <div className="crt-overlay" aria-hidden />
     </section>
   );
 }

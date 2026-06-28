@@ -10,6 +10,7 @@ export default function ImageFrame({
   bare = false,
   fit = "cover",
   mediaAspect,
+  priority = false,
   sizes = "(max-width: 768px) 100vw, 460px",
 }: {
   src?: string;
@@ -19,6 +20,7 @@ export default function ImageFrame({
   bare?: boolean;
   fit?: "cover" | "contain";
   mediaAspect?: string;
+  priority?: boolean;
   sizes?: string;
 }) {
   return (
@@ -33,6 +35,7 @@ export default function ImageFrame({
           src={src}
           alt={alt}
           fill
+          priority={priority}
           sizes={sizes}
           className={fit === "contain" ? "object-contain" : "object-cover"}
         />

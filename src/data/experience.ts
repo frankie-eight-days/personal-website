@@ -28,7 +28,7 @@ export const headline: Role = {
   location: "Palo Alto, California",
   bullets: [
     "Led design and validation of production electronics for Tesla's Low Voltage Controllers — power, motor-drive, analog, and high-speed digital — across millions of vehicles annually.",
-    "Drove the Model 3/Y low-voltage redesign, unlocking $35M in annual revenue via harness and BOM optimization.",
+    "Drove the Model 3/Y low-voltage redesign — an estimated ~$35M/yr in BOM and harness cost savings (a program-level number I contributed to).",
     "Designed Tesla's first 48V USB-C charging hub for Cybertruck and Model 3/Y.",
     "Designed and validated a 650 W multi-phase buck converter with coupled inductor.",
     "Resolved line-down crises under deadline (EMI non-compliance, IC supply).",

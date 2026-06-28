@@ -27,6 +27,7 @@ export default function Nav() {
               <Link
                 key={s.slug}
                 href={`/${s.slug}`}
+                aria-current={active ? "page" : undefined}
                 className={`rounded px-2 py-1 transition-colors ${
                   active
                     ? "bg-panel text-green glow"

@@ -26,7 +26,7 @@ export default function RolePanel({ role }: { role: Role }) {
           {role.bullets.map((b, i) => (
             <li key={i} className="flex gap-2 text-sm text-text-dim">
               <span className="shrink-0 text-green-dim">▸</span>
-              <span>{b}</span>
+              <span className="font-sans">{b}</span>
             </li>
           ))}
         </ul>

@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         <p className="text-sm text-text">{project.tagline}</p>
         {project.description && (
-          <p className="text-sm leading-relaxed text-text-dim">{project.description}</p>
+          <p className="font-sans text-sm leading-relaxed text-text-dim">{project.description}</p>
         )}
 
         <div className="mt-auto flex flex-wrap gap-1.5 pt-2">

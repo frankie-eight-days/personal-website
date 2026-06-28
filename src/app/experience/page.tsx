@@ -36,7 +36,7 @@ function RoleBlock({ role, accent }: { role: Role; accent?: boolean }) {
             {role.bullets.map((b, i) => (
               <li key={i} className="flex gap-2 text-sm text-text-dim">
                 <span className="shrink-0 text-green-dim">▸</span>
-                <span>{b}</span>
+                <span className="font-sans">{b}</span>
               </li>
             ))}
           </ul>
@@ -92,7 +92,7 @@ export default function ExperiencePage() {
                 {r.bullets.map((b, i) => (
                   <li key={i} className="flex gap-2 text-xs text-text-dim">
                     <span className="shrink-0 text-green-dim">▸</span>
-                    <span>{b}</span>
+                    <span className="font-sans">{b}</span>
                   </li>
                 ))}
               </ul>

@@ -18,7 +18,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${profile.name} — ${profile.roles[0]} · founder`,
+    default: `${profile.name} — ${profile.roles[1]} · founder`,
     template: `%s · ${profile.name}`,
   },
   description: profile.blurb,
@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     title: `${profile.name} — EE · founder`,
     description: profile.tagline,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — EE · founder`,
+    description: profile.tagline,
   },
 };
 
@@ -41,10 +46,15 @@ export default function RootLayout({
       className={`${jetbrains.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <div className="grid-bg" aria-hidden />
         <BootSequence />
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

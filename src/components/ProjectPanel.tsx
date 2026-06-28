@@ -38,7 +38,7 @@ export default function ProjectPanel({ project }: { project: Project }) {
         </div>
         <p className="mt-2 text-sm text-text">{project.tagline}</p>
         {project.description && (
-          <p className="mt-2 text-sm leading-relaxed text-text-dim">
+          <p className="mt-2 font-sans text-sm leading-relaxed text-text-dim">
             {project.description}
           </p>
         )}

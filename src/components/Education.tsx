@@ -33,7 +33,7 @@ export default function Education() {
                 <span className="tag">{e.detail}</span>
                 <span>{e.period}</span>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-text-dim">{e.note}</p>
+              <p className="mt-2 font-sans text-xs leading-relaxed text-text-dim">{e.note}</p>
             </div>
           </article>
         ))}
