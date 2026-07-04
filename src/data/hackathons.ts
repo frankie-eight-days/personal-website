@@ -11,6 +11,7 @@ export const hackathons: Achievement[] = [
     year: "2026",
     date: "2026-07",
     links: [
+      { label: "live ↗", href: "https://closing-time-attsv7yf.edgeone.cool" },
       { label: "demo ↗", href: "https://www.youtube.com/watch?v=tB7Gf_azlG0" },
       { label: "repo ↗", href: "https://github.com/frankie-eight-days/closing-time" },
       { label: "event ↗", href: "https://luma.com/agentforgesf" },

@@ -144,6 +144,7 @@ export default function OneHourHackathonPost() {
             <dd className="text-amber glow-amber">1st place — “Closing Time”</dd>
             <dt className="text-green-dim">links</dt>
             <dd className="flex flex-wrap gap-x-3">
+              <A href="https://closing-time-attsv7yf.edgeone.cool">live site ↗</A>
               <A href="https://luma.com/agentforgesf">event page ↗</A>
               <A href="https://www.youtube.com/watch?v=tB7Gf_azlG0">pitch video ↗</A>
               <A href="https://github.com/frankie-eight-days/closing-time">repo ↗</A>
