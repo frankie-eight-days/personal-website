@@ -227,9 +227,8 @@ export default function OneHourHackathonPost() {
           page I could review, links and all.
         </P>
         <P>
-          I don&apos;t consider any of this cheating. Anybody else could have
-          done the same prep beforehand. The one-hour constraint just moves the
-          competition to the week before.
+          The one-hour constraint just moves the competition to the week
+          before.
         </P>
 
         <H2>The AI gatekeeper</H2>
