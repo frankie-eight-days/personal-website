@@ -116,8 +116,8 @@ export default function OneHourHackathonPost() {
 
       <article>
         <P>
-          Last week I took first place at a hackathon with exactly one hour of
-          hacking time. The win was nice. The format is what stuck with me: a
+          This past Friday, July 3rd, I took first place at a hackathon with
+          exactly one hour of hacking time. The win was nice. The format is what stuck with me: a
           one-hour hackathon is not a smaller version of a normal one.
           It&apos;s a different game.
         </P>
