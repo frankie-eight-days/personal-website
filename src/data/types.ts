@@ -38,7 +38,7 @@ export type Achievement = {
   detail: string;
   year: string;
   date?: string;
-  link?: Link;
+  links?: Link[];
   cover?: string;
   imageDir: string;
 };

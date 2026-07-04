@@ -5,12 +5,18 @@ import { byDateDesc, type Achievement } from "./types";
 export const hackathons: Achievement[] = [
   {
     tag: "1ST",
-    title: "July 2026 Hackathon",
+    title: "Agent Forge (Tencent EdgeOne)",
     detail:
-      "1st place — write-up and photos coming soon. (Placeholder — fill in the event name and what we built.)",
+      "1st place — built \"Closing Time\", an AI data analyst for small businesses that writes and runs live Python on Tencent EdgeOne Makers.",
     year: "2026",
     date: "2026-07",
-    imageDir: "/images/hackathons/july-2026/",
+    links: [
+      { label: "demo ↗", href: "https://www.youtube.com/watch?v=tB7Gf_azlG0" },
+      { label: "repo ↗", href: "https://github.com/frankie-eight-days/closing-time" },
+      { label: "event ↗", href: "https://luma.com/agentforgesf" },
+    ],
+    imageDir: "/images/hackathons/agentforge-2026/",
+    cover: "/images/hackathons/agentforge-2026/DSC06332.JPG",
   },
   {
     tag: "WIN",
@@ -27,7 +33,7 @@ export const hackathons: Achievement[] = [
     detail: "First place (+ Best Use of DJI & IBM Watson) — my first hackathon win.",
     year: "2018",
     date: "2018-03",
-    link: { label: "PaulieBlart ↗", href: "https://github.com/megalphian/PaulieBlart" },
+    links: [{ label: "PaulieBlart ↗", href: "https://github.com/megalphian/PaulieBlart" }],
     imageDir: "/images/hackathons/sf-hacks-2018/",
     cover: "/images/hackathons/sf-hacks-2018/IMG_20180318_1621467.jpg",
   },

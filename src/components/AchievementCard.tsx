@@ -18,15 +18,20 @@ export default function AchievementCard({ a }: { a: Achievement }) {
         </div>
         <h3 className="mt-2 text-sm font-semibold text-green">{a.title}</h3>
         <p className="mt-1 text-xs leading-relaxed text-text-dim">{a.detail}</p>
-        {a.link && (
-          <a
-            href={a.link.href}
-            className="tlink mt-2 inline-block text-xs"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {a.link.label}
-          </a>
+        {a.links && a.links.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+            {a.links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="tlink text-xs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
         )}
       </div>
     </article>
