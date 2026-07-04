@@ -1,17 +1,8 @@
 import { byDateDesc, type Achievement } from "./types";
 
-// The "most proud of" wall on the landing page — off-resume highlights.
-export const achievements: Achievement[] = [
-  {
-    tag: "WIN",
-    title: "Tesla LV-Org Hackathon",
-    detail: "1st place — Tesla's 2026 Low Voltage Org hackathon (\"Supreme Debuggery\").",
-    year: "2026",
-    date: "2026-03",
-    imageDir: "/images/achievements/tesla-hackathon-2026/",
-    cover: "/images/achievements/tesla-hackathon-2026/IMG_5790.jpeg",
-  },
-
+// Hands-on highlights shown under the hardware section on the landing page.
+// (Hackathon wins live in hackathons.ts.)
+export const highlights: Achievement[] = [
   {
     tag: "PWR",
     title: "Ray Ridley Power Seminar",
@@ -38,15 +29,5 @@ export const achievements: Achievement[] = [
     date: "2019-07",
     imageDir: "/images/achievements/hyperloop/",
     cover: "/images/achievements/hyperloop/IMG_0268.JPG",
-  },
-  {
-    tag: "1ST",
-    title: "SF Hacks 2018",
-    detail: "First place (+ Best Use of DJI & IBM Watson) — my first hackathon win.",
-    year: "2018",
-    date: "2018-03",
-    link: { label: "PaulieBlart ↗", href: "https://github.com/megalphian/PaulieBlart" },
-    imageDir: "/images/achievements/sf-hacks-2018/",
-    cover: "/images/achievements/sf-hacks-2018/IMG_20180318_1621467.jpg",
   },
 ].sort(byDateDesc);

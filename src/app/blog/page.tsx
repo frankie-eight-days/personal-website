@@ -21,7 +21,7 @@ const planned = [
 export default function BlogPage() {
   return (
     <div className="wrap py-10 sm:py-14">
-      <SectionHeader path="~/blog" command="tail -f posts.log">
+      <SectionHeader path="~/blog" command="tail -f posts.log" title="blog">
         Notes, teardowns, and opinions. Nothing published yet — here&apos;s what&apos;s
         queued up.
       </SectionHeader>

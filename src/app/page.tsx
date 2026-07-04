@@ -6,8 +6,9 @@ import AchievementCard from "@/components/AchievementCard";
 import Education from "@/components/Education";
 import { software } from "@/data/software";
 import { hardware } from "@/data/hardware";
+import { hackathons } from "@/data/hackathons";
 import { current, headline, internships } from "@/data/experience";
-import { achievements } from "@/data/achievements";
+import { highlights } from "@/data/achievements";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
 
       <LsTabs
         command="ls"
+        title="software/"
         labels={software.map((p) => p.tab ?? p.title)}
         viewAllHref="/software"
       >
@@ -24,18 +26,54 @@ export default function Home() {
         ))}
       </LsTabs>
 
-      <LsTabs
-        command="cd /hardware; ls"
-        labels={hardware.map((p) => p.tab ?? p.title)}
-        viewAllHref="/hardware"
-      >
-        {hardware.map((p) => (
-          <ProjectPanel key={p.slug} project={p} />
-        ))}
-      </LsTabs>
+      <section>
+        <div className="mb-4">
+          <div className="text-sm">
+            <span className="text-green-dim">frank@walsh</span>
+            <span className="text-text-dim">:</span>
+            <span className="text-cyan">~</span>
+            <span className="text-text-dim">$ </span>
+            <span className="text-green glow">grep -i &quot;1st&quot; hackathons.log</span>
+            <span className="cursor" />
+          </div>
+          <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-green glow sm:text-3xl">
+            hackathon_wins
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {hackathons.map((a) => (
+            <AchievementCard key={a.title} a={a} />
+          ))}
+        </div>
+      </section>
+
+      <div className="space-y-6">
+        <LsTabs
+          command="cd /hardware; ls"
+          title="hardware/"
+          labels={hardware.map((p) => p.tab ?? p.title)}
+          viewAllHref="/hardware"
+        >
+          {hardware.map((p) => (
+            <ProjectPanel key={p.slug} project={p} />
+          ))}
+        </LsTabs>
+
+        <div>
+          <div className="mb-3 text-xs uppercase tracking-wider text-cyan">
+            // highlights — the hands-on stuff
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {highlights.map((a) => (
+              <AchievementCard key={a.title} a={a} />
+            ))}
+          </div>
+        </div>
+      </div>
 
       <LsTabs
         command="cd /experience; ls"
+        title="experience/"
         labels={[current.tab ?? current.company, headline.tab ?? headline.company, "Internships"]}
         viewAllHref="/experience"
       >
@@ -67,21 +105,6 @@ export default function Home() {
       </LsTabs>
 
       <Education />
-
-      {/* most proud of — now below the listings */}
-      <section>
-        <div className="mb-6 flex items-end justify-between gap-3">
-          <h2 className="text-lg font-semibold text-green glow">
-            <span className="text-green-dim">$</span> ./most_proud_of
-          </h2>
-          <span className="text-xs text-text-dim">// off-resume highlights</span>
-        </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {achievements.map((a) => (
-            <AchievementCard key={a.title} a={a} />
-          ))}
-        </div>
-      </section>
     </div>
   );
 }

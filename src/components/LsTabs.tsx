@@ -8,11 +8,13 @@ import Link from "next/link";
 // are passed in as children (one child per tab/label).
 export default function LsTabs({
   command,
+  title,
   labels,
   viewAllHref,
   children,
 }: {
   command: string;
+  title?: string;
   labels: string[];
   viewAllHref?: string;
   children: ReactNode;
@@ -22,14 +24,21 @@ export default function LsTabs({
 
   return (
     <section>
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="text-sm">
-          <span className="text-green-dim">frank@walsh</span>
-          <span className="text-text-dim">:</span>
-          <span className="text-cyan">~</span>
-          <span className="text-text-dim">$ </span>
-          <span className="text-green glow">{command}</span>
-          <span className="cursor" />
+      <div className="mb-4 flex items-end justify-between gap-3">
+        <div className="min-w-0">
+          <div className="text-sm">
+            <span className="text-green-dim">frank@walsh</span>
+            <span className="text-text-dim">:</span>
+            <span className="text-cyan">~</span>
+            <span className="text-text-dim">$ </span>
+            <span className="text-green glow">{command}</span>
+            <span className="cursor" />
+          </div>
+          {title && (
+            <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-green glow sm:text-3xl">
+              {title}
+            </h2>
+          )}
         </div>
         {viewAllHref && (
           <Link href={viewAllHref} className="tlink shrink-0 text-xs">

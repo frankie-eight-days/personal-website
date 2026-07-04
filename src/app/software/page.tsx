@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "software" };
 export default function SoftwarePage() {
   return (
     <div className="wrap py-10 sm:py-14">
-      <SectionHeader path="~/software" command="ls -la --apps">
+      <SectionHeader path="~/software" command="ls -la --apps" title="software/">
         Apps and tools I&apos;ve shipped — side projects, hackathon builds, and the
         occasional thing that made it all the way to an app store.
       </SectionHeader>

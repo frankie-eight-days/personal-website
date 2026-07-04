@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "hardware" };
 export default function HardwarePage() {
   return (
     <div className="wrap py-10 sm:py-14">
-      <SectionHeader path="~/hardware" command="ls -la --boards">
+      <SectionHeader path="~/hardware" command="ls -la --boards" title="hardware/">
         PCBs, power electronics, and embedded systems — from 800V powertrains to
         Tesla&apos;s first 48V USB-C hub. Photos and teardowns incoming.
       </SectionHeader>

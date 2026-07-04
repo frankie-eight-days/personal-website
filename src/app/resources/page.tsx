@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "resources" };
 export default function ResourcesPage() {
   return (
     <div className="wrap space-y-12 py-10 sm:py-14">
-      <SectionHeader path="~/resources" command="ls library/ tools/">
+      <SectionHeader path="~/resources" command="ls library/ tools/" title="resources/">
         The textbooks I actually reach for, and the EDA / bench tools I build with.
         A living shelf — edit freely.
       </SectionHeader>

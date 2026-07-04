@@ -58,7 +58,7 @@ function RoleBlock({ role, accent }: { role: Role; accent?: boolean }) {
 export default function ExperiencePage() {
   return (
     <div className="wrap space-y-12 py-10 sm:py-14">
-      <SectionHeader path="~/experience" command="cat work_history.log">
+      <SectionHeader path="~/experience" command="cat work_history.log" title="experience">
         Currently doing systems EE at Apple. Before that, the headline work was at
         Tesla. Everything earlier is bucketed below.
       </SectionHeader>

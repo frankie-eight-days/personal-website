@@ -4,8 +4,12 @@ import { profile } from "@/data/profile";
 export default function Education() {
   return (
     <section>
-      <h2 className="mb-3 text-lg font-semibold text-green glow">
-        <span className="text-green-dim">$</span> cat education.txt
+      <div className="text-sm">
+        <span className="text-green-dim">$</span>{" "}
+        <span className="text-green glow">cat education.txt</span>
+      </div>
+      <h2 className="mt-1.5 mb-3 text-2xl font-bold tracking-tight text-green glow sm:text-3xl">
+        education
       </h2>
       <p className="mb-6 max-w-2xl text-sm text-text-dim">{profile.educationBlurb}</p>
 
