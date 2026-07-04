@@ -180,7 +180,8 @@ export default function OneHourHackathonPost() {
 
         <H2>The one-hour format is a bet, not a gimmick</H2>
         <P>
-          The event was built around Tencent&apos;s new EdgeOne Makers platform:
+          The event was built around Tencent&apos;s new{" "}
+          <A href="https://pages.edgeone.ai/">EdgeOne Makers</A> platform:
           frontend, backend, and agent runtime in one place, deployment
           collapsed to a click. The one-hour cap was the pitch. Tencent bet that
           idea-to-deployed-agent now fits in sixty minutes, and let a room full
