@@ -116,10 +116,8 @@ export default function OneHourHackathonPost() {
 
       <article>
         <P>
-          This past Friday, July 3rd, I took first place at a hackathon with
-          exactly one hour of hacking time. The win was nice. The format is what stuck with me: a
-          one-hour hackathon is not a smaller version of a normal one.
-          It&apos;s a different game.
+          This past Friday, July 3rd: my first hackathon back in a long while.
+          Somehow it ended with a first-place finish.
         </P>
 
         {/* event info screen — details preserved here in case the event page disappears */}
@@ -155,20 +153,20 @@ export default function OneHourHackathonPost() {
 
         <H2>Blame Ali</H2>
         <P>
-          Credit where it&apos;s due. I&apos;d stopped going to hackathons for
-          years, and the person who pulled me back in is my friend{" "}
+          Credit where it&apos;s due: I only started going to hackathons again
+          because of my friend{" "}
           <A href="https://www.linkedin.com/in/ali-amjad-a80732137/">
             Ali Amjad
           </A>
           . He dropped everything to move to the Bay Area for three months to
-          chase his dream of being a founder, and he&apos;s documented every day
-          of it in{" "}
+          chase his dream of being a founder, and he&apos;s been documenting the
+          whole thing in{" "}
           <A href="https://www.linkedin.com/in/ali-amjad-a80732137/recent-activity/all/">
             daily posts
           </A>
-          . I made my first appearance in the series on day 67. Ali is an
-          absolute gem, the rare person whose ambition makes everyone around him
-          more ambitious. Follow him. He&apos;s going to do great things.
+          . Spoiler: I finally made it into one on day 67. He&apos;s an absolute
+          gem, and if you&apos;re not already following him, I&apos;d really
+          recommend it. He&apos;s going to do great things.
         </P>
 
         <Shot
@@ -178,74 +176,98 @@ export default function OneHourHackathonPost() {
           aspect="4 / 3"
         />
 
-        <H2>The one-hour format is a bet, not a gimmick</H2>
+        <H2>The format: one hour. That&apos;s it.</H2>
         <P>
-          The event was built around Tencent&apos;s new{" "}
-          <A href="https://pages.edgeone.ai/">EdgeOne Makers</A> platform:
-          frontend, backend, and agent runtime in one place, deployment
-          collapsed to a click. The one-hour cap was the pitch. Tencent bet that
-          idea-to-deployed-agent now fits in sixty minutes, and let a room full
-          of strangers test it live.
+          The hackathon itself was a little strange: one hour of hacking. Not
+          one day. One hour.
         </P>
         <P>
-          It held. Clean HTML docs my agents could read, CLI and MCP tooling
-          that worked first try. People shipped real demos: an inbox agent that
-          turns review comments into PRs, a radiologist&apos;s assistant, an
-          in-browser accessibility agent.
-        </P>
-
-        <H2>The competition moved to the week before</H2>
-        <P>
-          Compressing execution doesn&apos;t remove the competition. It
-          relocates it to preparation. When everyone gets the same sixty
-          minutes, the edge is what you carry in the door.
+          It fit the theme, though. The event was built around Tencent&apos;s
+          new <A href="https://pages.edgeone.ai/">EdgeOne Makers</A> platform,
+          basically a one-stop shop for frontend, backend, and (most
+          importantly) putting agents in the cloud. The whole point was to show
+          how fast you could get a working demo running on it. One hour to build
+          something real is a pretty bold way to advertise your platform, and
+          honestly, it worked.
         </P>
         <P>
-          My prep, a couple of evenings after my kiddo went to bed: reps on the
-          platform, accounts and console ready, an idea chosen for the judges
-          and sponsors actually in the room. I ran deep research on those people
-          and turned it into a briefing page. I built a local knowledge base of
-          the platform docs so my agents could grep disk instead of fetching
-          docs live.
-        </P>
-        <P>
-          None of that is cheating. It was available to everyone. A hard clock
-          just makes preparation most of the job.
+          And the platform held up. Great HTML docs that Claude could peruse,
+          solid CLI and MCP tooling. I was genuinely impressed with what people
+          shipped in sixty minutes: an agent that scans your email inbox for git
+          comments and generates PRs (or something like that, I&apos;m not a
+          SWE), a radiologist&apos;s agent (I&apos;ll be honest, I kind of
+          blacked out for that one since it was the demo right after mine), and
+          an in-browser agent that helps with accessibility.
         </P>
 
-        <H2>Write for the reader you actually have</H2>
+        <H2>The real hack happened before the hackathon</H2>
         <P>
-          Only the top five teams pitched, and the screening pass was done by an
-          AI agent reading the submissions. So my repo&apos;s first reader was a
-          model, not a person. I structured it accordingly: a README table
-          mapping each feature to the EdgeOne primitive it uses, claims stated
-          where a grep lands on them. When machines do the first pass, machine
-          legibility is table stakes. That&apos;s true well beyond hackathons
-          now.
+          With only an hour on the clock, I knew the actual work had to happen
+          ahead of time. So a couple of evenings that week, after my kiddo went
+          to bed, I prepped:
+        </P>
+        <ul className="mb-4 space-y-2">
+          <LI>
+            Toyed around with the platform and got my accounts and console set
+            up (the hackathon really did its job of advertising the platform,
+            LOL)
+          </LI>
+          <LI>Settled on an idea I knew would appeal to the judges and sponsors</LI>
+          <LI>Planned how I&apos;d divide the work and prompts among my agents</LI>
+          <LI>
+            Built a local knowledge base of the platform docs, so during the
+            hour Claude could grep over files I already had instead of fetching
+            docs live
+          </LI>
+        </ul>
+        <P>
+          Claude was really, really good for this. I ran /deep-research on the
+          judges, sponsors, and founders, then turned the results into an HTML
+          page I could review, links and all.
+        </P>
+        <P>
+          I don&apos;t consider any of this cheating. Anybody else could have
+          done the same prep beforehand. The one-hour constraint just moves the
+          competition to the week before.
         </P>
 
-        <H2>Notes from the hour</H2>
+        <H2>The AI gatekeeper</H2>
+        <P>
+          Another quirk: only the top five teams got to pitch, and the five were
+          screened and ranked by an AI agent. That was a bit daunting. How could
+          I make sure the agent saw everything I wanted it to see?
+        </P>
+        <P>
+          My answer was to write for the reader I actually had. I asked Claude
+          to put things in the GitHub repo that I knew would appeal to the
+          judges, like a README table mapping every feature directly to the
+          EdgeOne primitives it used. If an agent is doing the first pass, make
+          your repo greppable.
+        </P>
+
+        <H2>The hour itself</H2>
+        <P>Some things I learned in the sixty minutes:</P>
         <div className="sm:flex sm:items-start sm:gap-5">
           <ul className="mb-4 min-w-0 flex-1 space-y-2">
             <LI>
-              Orchestration wins. Three tmux sessions of multi-agent teams,
-              Claude in fast mode, Opus agents pinned to medium reasoning.
-              Latency compounds; a good answer now beats a great one in ninety
-              seconds.
+              Claude&apos;s /fast mode was a godsend, and I ran Opus agents on
+              medium reasoning to keep the speed up. I had three Ghostty tmux
+              sessions going with multi-agent orchestration teams dividing the
+              work, and I still barely had time.
             </LI>
             <LI>
-              Solo, on purpose. Team coordination has a fixed cost that one hour
-              never pays back.
+              I had to make a diving catch on the submission video: 10MB upload
+              limit, so I installed FFmpeg and compressed it with about three
+              minutes to spare.
             </LI>
             <LI>
-              Leave margin for submission logistics. I hit a 10MB video cap
-              late, installed FFmpeg, and compressed the demo with three minutes
-              left.
+              I went solo on purpose. In one hour you&apos;d barely have time to
+              divide up the work, let alone conquer it.
             </LI>
             <LI>
-              Respect the hardware floor. My laptop ran the whole hour with a
-              swap warning in the status line. The tooling has outgrown the
-              machine.
+              My laptop almost didn&apos;t make it. My git status line showed
+              SWAP/MEM:Warning for the entire hackathon. Might be time to
+              upgrade the personal machine, LOL.
             </LI>
           </ul>
           <Shot
@@ -258,10 +280,12 @@ export default function OneHourHackathonPost() {
           />
         </div>
 
-        <H2>Pitch short</H2>
+        <H2>The pitch</H2>
         <P>
-          I used half my allotted pitch time and would do it again. A pitch is
-          conviction per second, not coverage.
+          My pitch only took half the time allotted, and honestly, I think that
+          was fine. Short, succinct, and punchy lands harder than a pitch drawn
+          out for no reason other than filling time. The whole thing is on
+          YouTube if you want to see what a half-length pitch looks like:
         </P>
 
         {/* pitch photo + video, one row on desktop */}
@@ -290,21 +314,30 @@ export default function OneHourHackathonPost() {
           </div>
         </div>
 
-        <H2>What I built</H2>
+        <H2>What going back reminded me</H2>
+        <P>The basics still apply:</P>
+        <ul className="mb-4 space-y-2">
+          <LI>
+            Dive hard into the sponsor stuff. The event exists because of them,
+            and they&apos;re the ones judging.
+          </LI>
+          <LI>
+            It&apos;s all about the demo. Get to a working demo first, polish
+            later.
+          </LI>
+          <LI>
+            The founder-pitch framing works: solve an acute problem, ideally for
+            a niche.
+          </LI>
+        </ul>
         <P>
+          I built{" "}
           <A href="https://github.com/frankie-eight-days/closing-time">
             Closing Time
           </A>
-          : an AI data analyst for small businesses. Payments live in one
-          system, books in another, and the questions that keep an owner up at
-          night sit in the join. A real analyst costs more than many small
-          operators clear in a month. Acute problem, underserved niche, and a
-          demo that writes and executes live Python on EdgeOne&apos;s sandbox.
-        </P>
-        <P>
-          The fundamentals held: go deep on the sponsors, demo first and polish
-          later, pick a problem that actually hurts. Day one back. See you at
-          the next one.
+          , an AI data analyst for small businesses that writes and runs live
+          Python on EdgeOne. It took first. Day one back. See you at the next
+          one.
         </P>
 
         <Shot
