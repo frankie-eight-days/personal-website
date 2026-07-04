@@ -28,11 +28,8 @@ const _hardware: Project[] = [
     pinned: true,
     status: "validated",
     imageDir: "/images/hardware/buck-converter-650w/",
-    cover: "/images/hardware/buck-converter-650w/IMG_3265.jpeg",
-    images: [
-      "/images/hardware/buck-converter-650w/IMG_3265.jpeg",
-      "/images/hardware/buck-converter-650w/IMG_3266.jpeg",
-    ],
+    cover: "/images/hardware/buck-converter-650w/redacted.png",
+    images: ["/images/hardware/buck-converter-650w/redacted.png"],
   },
   {
     slug: "usb-c-hub-48v",
