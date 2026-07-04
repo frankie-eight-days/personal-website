@@ -3,15 +3,12 @@ export const profile = {
   handle: "frankie-eight-days",
   // shown as a rotating / stacked set of roles in the hero
   roles: ["Electrical Engineer", "Systems EE @ Apple", "aspiring founder"],
-  tagline: "EE who ships hardware and software — and wins hackathons.",
+  tagline: "EE who ships hardware and software — from production boards to hackathon weekends.",
   // one or two sentences for the hero / about blurb
   blurb:
     "Systems EE at Apple, ex-Tesla (Low Voltage Controllers). I design production electronics, " +
     "ship side-project software, and spend my weekends at hackathons, makeathons, and hardware meetups. " +
     "Currently finishing an M.Eng in Industrial Engineering at Oregon State.",
-  // forward-looking trajectory line (the "what's next")
-  plan:
-    "The plan: at least a year going deep on systems at Apple, then full-time on building my own company.",
   location: "Bay Area, California",
 
   email: "walshf@oregonstate.edu",

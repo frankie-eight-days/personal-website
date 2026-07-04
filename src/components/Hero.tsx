@@ -28,13 +28,6 @@ export default function Hero() {
             {profile.blurb}
           </p>
 
-          <div className="mt-4 text-sm text-text-dim">
-            <span className="text-green-dim">$</span> cat plan.txt
-          </div>
-          <p className="mt-1 max-w-prose font-sans text-sm leading-relaxed text-amber">
-            {profile.plan}
-          </p>
-
           <div className="mt-6 flex flex-wrap gap-2">
             <Link href="/software" className="btn">
               view projects →
