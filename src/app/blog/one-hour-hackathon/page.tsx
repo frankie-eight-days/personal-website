@@ -2,10 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import Gallery from "@/components/Gallery";
-import ImageFrame from "@/components/ImageFrame";
 
 export const metadata: Metadata = {
   title: "one hour on the clock",
@@ -15,14 +15,17 @@ export const metadata: Metadata = {
 
 const IMAGE_DIR = "/images/blog/one-hour-hackathon/";
 
-// Photos dropped into public/images/blog/one-hour-hackathon/ show up
-// automatically on the next build — no code change needed.
-function postImages(): string[] {
+// Photos placed by hand in the article below. Anything else dropped into
+// public/images/blog/one-hour-hackathon/ collects in the gallery at the end
+// on the next build — no code change needed.
+const PLACED = new Set(["venue.jpg", "pitch.jpg", "DSC06332.JPG", "IMG_6794.jpeg"]);
+
+function extraImages(): string[] {
   const dir = path.join(process.cwd(), "public", IMAGE_DIR);
   try {
     return fs
       .readdirSync(dir)
-      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
+      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f) && !PLACED.has(f))
       .sort()
       .map((f) => IMAGE_DIR + f);
   } catch {
@@ -59,8 +62,46 @@ function A({ href, children }: { href: string; children: ReactNode }) {
   );
 }
 
+// A photo framed as a little terminal window, with a title bar and a
+// comment-style caption.
+function Shot({
+  file,
+  alt,
+  caption,
+  aspect = "3 / 2",
+  className = "",
+  sizes = "(max-width: 768px) 100vw, 672px",
+}: {
+  file: string;
+  alt: string;
+  caption: string;
+  aspect?: string;
+  className?: string;
+  sizes?: string;
+}) {
+  return (
+    <figure className={`term my-6 overflow-hidden ${className}`}>
+      <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
+        ▸ view {file}
+      </div>
+      <div className="relative w-full" style={{ aspectRatio: aspect }}>
+        <Image
+          src={IMAGE_DIR + file}
+          alt={alt}
+          fill
+          sizes={sizes}
+          className="object-cover"
+        />
+      </div>
+      <figcaption className="px-3 py-2 text-xs text-text-dim">
+        <span className="text-green-dim">//</span> {caption}
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function OneHourHackathonPost() {
-  const images = postImages();
+  const extras = extraImages();
 
   return (
     <div className="wrap py-10 sm:py-14">
@@ -116,16 +157,15 @@ export default function OneHourHackathonPost() {
           <A href="https://www.linkedin.com/in/ali-amjad-a80732137/">
             Ali Amjad
           </A>
-          . He dropped everything to move to the
-          Bay Area for three months to chase his dream of being a founder, and
-          he&apos;s been documenting the whole thing in{" "}
+          . He dropped everything to move to the Bay Area for three months to
+          chase his dream of being a founder, and he&apos;s been documenting the
+          whole thing in{" "}
           <A href="https://www.linkedin.com/in/ali-amjad-a80732137/recent-activity/all/">
             daily posts
           </A>
-          . Spoiler: I
-          finally made it into one on day 67. He&apos;s an absolute gem, and if
-          you&apos;re not already following him, I&apos;d really recommend it.
-          He&apos;s going to do great things.
+          . Spoiler: I finally made it into one on day 67. He&apos;s an absolute
+          gem, and if you&apos;re not already following him, I&apos;d really
+          recommend it. He&apos;s going to do great things.
         </P>
 
         <H2>The format: one hour. That&apos;s it.</H2>
@@ -133,6 +173,14 @@ export default function OneHourHackathonPost() {
           The hackathon itself was a little strange: one hour of hacking. Not
           one day. One hour.
         </P>
+
+        <Shot
+          file="venue.jpg"
+          alt="Two attendees in front of the Agent Forge Hackathon kickoff screen at Digital Jungle SF"
+          caption="kickoff at Digital Jungle — sixty minutes on the clock"
+          aspect="4 / 3"
+        />
+
         <P>
           It fit the theme, though. The event was built around Tencent&apos;s
           new EdgeOne Makers platform, basically a one-stop shop for frontend,
@@ -197,35 +245,61 @@ export default function OneHourHackathonPost() {
         </P>
 
         <H2>The hour itself</H2>
-        <ul className="mb-4 space-y-2">
-          <LI>
-            Claude&apos;s /fast mode was a godsend, and I ran Opus agents on
-            medium reasoning to keep the speed up. I had three Ghostty tmux
-            sessions going with multi-agent orchestration teams dividing the
-            work, and I still barely had time.
-          </LI>
-          <LI>
-            I had to make a diving catch on the submission video: 10MB upload
-            limit, so I installed FFmpeg and compressed it with about three
-            minutes to spare.
-          </LI>
-          <LI>
-            I went solo on purpose. In one hour you&apos;d barely have time to
-            divide up the work, let alone conquer it.
-          </LI>
-          <LI>
-            My laptop almost didn&apos;t make it. My git status line showed
-            SWAP/MEM:Warning for the entire hackathon. I think it&apos;s time to
-            upgrade the personal machine, LOL.
-          </LI>
-        </ul>
+        <div className="sm:flex sm:items-start sm:gap-5">
+          <ul className="mb-4 min-w-0 flex-1 space-y-2">
+            <LI>
+              Claude&apos;s /fast mode was a godsend, and I ran Opus agents on
+              medium reasoning to keep the speed up. I had three Ghostty tmux
+              sessions going with multi-agent orchestration teams dividing the
+              work, and I still barely had time.
+            </LI>
+            <LI>
+              I had to make a diving catch on the submission video: 10MB upload
+              limit, so I installed FFmpeg and compressed it with about three
+              minutes to spare.
+            </LI>
+            <LI>
+              I went solo on purpose. In one hour you&apos;d barely have time to
+              divide up the work, let alone conquer it.
+            </LI>
+            <LI>
+              My laptop almost didn&apos;t make it. My git status line showed
+              SWAP/MEM:Warning for the entire hackathon. I think it&apos;s time
+              to upgrade the personal machine, LOL.
+            </LI>
+          </ul>
+          <Shot
+            file="IMG_6794.jpeg"
+            alt="Laptop running multiple terminal agent sessions on a hackathon table, Diet Coke alongside"
+            caption="the battle station — agents running, swap warning not pictured"
+            aspect="3 / 4"
+            className="my-2 sm:w-56 sm:shrink-0"
+            sizes="(max-width: 768px) 100vw, 224px"
+          />
+        </div>
 
         <H2>The pitch</H2>
-        <P>
-          My pitch only took half the time allotted, and honestly, I think that
-          was fine. Short, succinct, and punchy lands harder than a pitch drawn
-          out for no reason other than filling time.
-        </P>
+        <div className="sm:flex sm:flex-row-reverse sm:items-start sm:gap-5">
+          <div className="min-w-0 flex-1">
+            <P>
+              My pitch only took half the time allotted, and honestly, I think
+              that was fine. Short, succinct, and punchy lands harder than a
+              pitch drawn out for no reason other than filling time.
+            </P>
+            <P>
+              The whole thing is on YouTube if you want to see what a
+              half-length pitch looks like:
+            </P>
+          </div>
+          <Shot
+            file="pitch.jpg"
+            alt="Pitching Closing Time on stage with the dashboard projected behind"
+            caption="demoing Closing Time live"
+            aspect="3 / 4"
+            className="my-2 sm:w-56 sm:shrink-0"
+            sizes="(max-width: 768px) 100vw, 224px"
+          />
+        </div>
 
         {/* pitch video */}
         <div className="term my-6 overflow-hidden">
@@ -269,12 +343,19 @@ export default function OneHourHackathonPost() {
           one.
         </P>
 
-        {/* photos — drop files into public/images/blog/one-hour-hackathon/ */}
-        <H2>Photos</H2>
-        {images.length > 0 ? (
-          <Gallery images={images} alt="Agent Forge hackathon photos" />
-        ) : (
-          <ImageFrame alt="Agent Forge hackathon photos" dir={IMAGE_DIR} />
+        <Shot
+          file="DSC06332.JPG"
+          alt="First place announcement slide for Closing Time at the Agent Forge Mini Hackathon"
+          caption="1st place — Closing Time"
+          aspect="3 / 2"
+        />
+
+        {/* anything else dropped into the folder lands here on next build */}
+        {extras.length > 0 && (
+          <>
+            <H2>More photos</H2>
+            <Gallery images={extras} alt="Agent Forge hackathon photos" />
+          </>
         )}
 
         <div className="mt-10 text-sm">
