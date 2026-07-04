@@ -265,7 +265,7 @@ export default function OneHourHackathonPost() {
               divide up the work, let alone conquer it.
             </LI>
             <LI>
-              My laptop almost didn&apos;t make it. My git status line showed
+              My laptop almost didn&apos;t make it. My Claude status line showed
               SWAP/MEM:Warning for the entire hackathon. Might be time to
               upgrade the personal machine, LOL.
             </LI>
