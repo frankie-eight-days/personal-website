@@ -425,13 +425,6 @@ export default function ResearchAgencyHackathonPost() {
           viral, and it pulled 600-plus views on TikTok during the event. Wild.
         </P>
 
-        <Shot
-          file="venue-wide.jpg"
-          alt="Wide shot of the buildathon venue floor with builders at their tables"
-          caption="the floor. fifty builders, eight hours"
-          aspect="3 / 4"
-        />
-
         <P>
           But the one that really got me: somebody took r/AmIOverreacting, that
           subreddit where people post a screenshot of a fight and ask strangers
