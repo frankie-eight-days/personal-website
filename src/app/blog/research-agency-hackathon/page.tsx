@@ -1,11 +1,8 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
-import Gallery from "@/components/Gallery";
 
 export const metadata: Metadata = {
   title: "the wrong strategy",
@@ -14,31 +11,6 @@ export const metadata: Metadata = {
 };
 
 const IMAGE_DIR = "/images/blog/research-agency-hackathon/";
-
-// Photos placed by hand in the article below. Anything else dropped into
-// public/images/blog/research-agency-hackathon/ collects in the gallery at the
-// end on the next build — no code change needed.
-const PLACED = new Set([
-  "organizer-announcement.png",
-  "hermes-agent-screen.jpg",
-  "prizes-whats-at-stake.png",
-  "pizza-and-terminal.jpg",
-  "workspace-universe-book.jpg",
-  "venue-wide.jpg",
-]);
-
-function extraImages(): string[] {
-  const dir = path.join(process.cwd(), "public", IMAGE_DIR);
-  try {
-    return fs
-      .readdirSync(dir)
-      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f) && !PLACED.has(f))
-      .sort()
-      .map((f) => IMAGE_DIR + f);
-  } catch {
-    return [];
-  }
-}
 
 function H2({ children }: { children: ReactNode }) {
   return (
@@ -50,15 +22,6 @@ function H2({ children }: { children: ReactNode }) {
 
 function P({ children }: { children: ReactNode }) {
   return <p className="mb-4 text-sm leading-relaxed text-text">{children}</p>;
-}
-
-function LI({ children }: { children: ReactNode }) {
-  return (
-    <li className="flex gap-2 text-sm leading-relaxed text-text">
-      <span className="shrink-0 text-green-dim">▸</span>
-      <span>{children}</span>
-    </li>
-  );
 }
 
 function A({ href, children }: { href: string; children: ReactNode }) {
@@ -109,9 +72,112 @@ function Shot({
   );
 }
 
-export default function ResearchAgencyHackathonPost() {
-  const extras = extraImages();
+// The tweet we frame on the lab-bench marketing site, rebuilt in the terminal
+// palette. Links out to the original post.
+function Tweet() {
+  return (
+    <a
+      href="https://x.com/Star_Knight12/status/2026925661689114813"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Post by Prasenjit on X: to keep up with AI, you need to be unemployed"
+      className="term my-6 block p-4 no-underline transition hover:border-green-dim"
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-panel text-base font-bold text-green">
+          P
+        </div>
+        <div className="min-w-0 leading-tight">
+          <span className="flex items-center gap-1 font-bold text-text">
+            Prasenjit
+            <svg
+              viewBox="0 0 22 22"
+              className="h-[18px] w-[18px] flex-none"
+              aria-label="Verified account"
+              role="img"
+            >
+              <path
+                fill="#1d9bf0"
+                d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.749 1.688.878.633.13 1.29.08 1.896-.144.274.586.705 1.086 1.245 1.44.54.355 1.17.554 1.816.572.647-.018 1.276-.217 1.817-.572.54-.354.972-.854 1.245-1.44.604.239 1.266.303 1.906.184.64-.12 1.231-.417 1.705-.859.442-.474.739-1.066.858-1.706.12-.64.055-1.301-.184-1.906.586-.274 1.086-.705 1.44-1.245.356-.54.555-1.17.574-1.817zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"
+              />
+            </svg>
+          </span>
+          <span className="text-xs text-text-dim">@Star_Knight12</span>
+        </div>
+        <svg
+          viewBox="0 0 24 24"
+          className="ml-auto h-5 w-5 flex-none text-text"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+          />
+        </svg>
+      </div>
+      <p className="mt-3 text-base leading-snug text-text">
+        to keep up with AI, you need to be unemployed
+      </p>
+      <p className="mt-3 text-xs text-text-dim">
+        <span className="text-text">499.7K</span> views · Feb 26, 2026
+      </p>
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-dim">
+        <span>
+          <b className="text-text">11,251</b> Likes
+        </span>
+        <span>
+          <b className="text-text">1,364</b> Reposts
+        </span>
+        <span>
+          <b className="text-text">780</b> Replies
+        </span>
+      </div>
+    </a>
+  );
+}
 
+// "Pulling focus" — how I explained the product to the judges: open on the
+// abstract shape, then zoom into the stack.
+function FocusPull() {
+  const box =
+    "rounded border border-line bg-black/20 px-2.5 py-1 text-text whitespace-nowrap";
+  return (
+    <figure className="term my-6 overflow-hidden">
+      <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
+        ▸ how I explained it
+      </div>
+      <div className="space-y-3 p-4 text-xs">
+        <div className="text-green-dim">// start abstract</div>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
+          <span className={box}>your repo</span>
+          <span className="text-green-dim">→</span>
+          <span className={box}>agents do the work</span>
+          <span className="text-green-dim">→</span>
+          <span className={box}>PRs with measured gains</span>
+        </div>
+
+        <div className="pl-1 text-green-dim">⤵ then zoom into the stack</div>
+
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
+          <span className={box}>read the repo</span>
+          <span className="text-green-dim">→</span>
+          <span className={box}>pull &amp; rank papers</span>
+          <span className="text-green-dim">→</span>
+          <span className={box}>run experiments in the cloud</span>
+          <span className="text-green-dim">→</span>
+          <span className={box}>open the PR</span>
+        </div>
+
+        <div className="pt-1 text-text-dim">
+          <span className="text-green-dim">//</span> orchestrated by Hermes,
+          running on Cloudflare
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+export default function ResearchAgencyHackathonPost() {
   return (
     <div className="wrap py-10 sm:py-14">
       <div className="mx-auto max-w-2xl">
@@ -178,12 +244,12 @@ export default function ResearchAgencyHackathonPost() {
           read that on my couch after my kid went down and thought, pretty
           clearly, that I did not belong in that room. I&apos;m a hardware guy. I
           design electronics. I don&apos;t ship software for a living, I&apos;ve
-          never been a founder, and I&apos;ve never raised a dollar. The next
-          morning I met someone doing over a million in ARR who, when I asked him
-          about it, was so relaxed and humble about the whole thing that it kind
-          of reset my idea of what confident looks like. He wasn&apos;t there to
-          win anything. He just wanted to build something fun and meet some
-          people.
+          never broken four figures in MRR, and I&apos;ve never raised a dollar.
+          The next morning I met someone doing over a million in ARR who, when I
+          asked him about it, was so relaxed and humble about the whole thing
+          that it kind of reset my idea of what confident looks like. He
+          wasn&apos;t there to win anything. He just wanted to build something
+          fun and meet some people.
         </P>
 
         <Shot
@@ -220,6 +286,9 @@ export default function ResearchAgencyHackathonPost() {
           cloud, and open pull requests with measured performance gains
           attached.
         </P>
+
+        <Tweet />
+
         <P>
           I was on the &ldquo;AI as an Agency&rdquo; track, one of three. The
           other two were Virality and Revenue. The track is what it sounds like:
@@ -234,21 +303,28 @@ export default function ResearchAgencyHackathonPost() {
           against a real benchmark.
         </P>
 
+        <Shot
+          file="tool-lab.png"
+          alt="The Lab view of the tool showing total assets baseline versus candidate runs, with the winning run at plus fifty percent"
+          caption="the Lab view: baseline vs candidates, live. the winner cleared +50% on this recorded run"
+          aspect="2670 / 1488"
+        />
+
         <H2>They literally gave us the answer key</H2>
         <P>
           Here&apos;s the thing that still gets me. GrowthX{" "}
           <A href="https://growthx.club/docs/hermes-buildathon-builder-handbook">
             published the entire scoring rubric
           </A>{" "}
-          ahead of time. Not vibes, an actual formula. Points equal (level minus
-          one) times a weight, every parameter scored one to five. The root
-          parameter, &ldquo;a working product shipping real output,&rdquo; was
-          worth up to 80 and kept paying past the ceiling. Observability was 28
-          points, and the handbook flat out said most teams skip it, so, free
-          points. Then the partner power-ups: wire up each of the six sponsors
-          for real, 25 apiece, all six worth 150. A hundred and fifty. That&apos;s
-          almost the entire technical base of the rubric, sitting there for
-          anyone willing to integrate some tools and screenshot the dashboards.
+          ahead of time. Points equal (level minus one) times a weight, every
+          parameter scored one to five. The root parameter, &ldquo;a working
+          product shipping real output,&rdquo; was worth up to 80 and kept
+          paying past the ceiling. Observability was 28 points, and the handbook
+          flat out said most teams skip it, so, free points. Then the partner
+          power-ups: wire up each of the six sponsors for real, 25 apiece, all
+          six worth 150. A hundred and fifty. That&apos;s almost the entire
+          technical base of the rubric, sitting there for anyone willing to
+          integrate some tools and screenshot the dashboards.
         </P>
 
         <Shot
@@ -299,13 +375,6 @@ export default function ResearchAgencyHackathonPost() {
           I think about anything that runs on its own.
         </P>
 
-        <Shot
-          file="workspace-universe-book.jpg"
-          alt="The workspace battle station with a laptop and a book about the universe"
-          caption="the battle station"
-          aspect="3 / 4"
-        />
-
         <P>
           On top of that I got a lot better at pitching something technical.{" "}
           <Link href="/blog/one-hour-hackathon" className="tlink">
@@ -317,6 +386,8 @@ export default function ResearchAgencyHackathonPost() {
           founder framing still carried it. Here&apos;s a specific pain,
           here&apos;s how I take it away.
         </P>
+
+        <FocusPull />
 
         <H2>Where I got it wrong</H2>
         <P>
@@ -417,6 +488,13 @@ export default function ResearchAgencyHackathonPost() {
           a room that was grading the container.
         </P>
 
+        <Shot
+          file="library-view.png"
+          alt="The Library view of the tool, a kanban board of research papers moving from discovered to screened to cited"
+          caption="the kanban I'm talking about: papers moving discovered → screened → cited. pretty, but probably the wrong form factor"
+          aspect="2816 / 1762"
+        />
+
         <H2>The small, human stuff</H2>
         <P>
           For the record, and because I do actually replay these days: carry
@@ -438,14 +516,6 @@ export default function ResearchAgencyHackathonPost() {
           That&apos;s worth more to me than the trophy would&apos;ve been.
         </P>
         <P>See you at the next one.</P>
-
-        {/* anything else dropped into the folder lands here on next build */}
-        {extras.length > 0 && (
-          <>
-            <H2>More photos</H2>
-            <Gallery images={extras} alt="Hermes Buildathon photos" />
-          </>
-        )}
 
         <div className="mt-10 text-sm">
           <Link href="/blog" className="tlink">
