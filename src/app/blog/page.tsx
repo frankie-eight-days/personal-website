@@ -6,6 +6,12 @@ export const metadata: Metadata = { title: "blog" };
 
 const posts = [
   {
+    slug: "research-agency-hackathon",
+    title: "1,247 applied, 50 of us got in, and I brought the wrong strategy",
+    date: "2026-07-11",
+    note: "Reflections from the Hermes Buildathon — I built a real AI research agency in the cloud, and learned more from losing.",
+  },
+  {
     slug: "one-hour-hackathon",
     title: "One hour on the clock: winning the Agent Forge hackathon",
     date: "2026-07-04",

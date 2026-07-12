@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/experience",
     "/blog",
     "/blog/one-hour-hackathon",
+    "/blog/research-agency-hackathon",
   ].map((path) => ({
     url: `${BASE}${path}`,
     changeFrequency: "monthly",
