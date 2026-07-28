@@ -6,6 +6,12 @@ export const metadata: Metadata = { title: "blog" };
 
 const posts = [
   {
+    slug: "jachacks-sf",
+    title: "Twelve hours, a language I couldn't stand, and a graph I couldn't defend",
+    date: "2026-07-26",
+    note: "JacHacks SF — I learned graph theory, built OrgMem, and got taken apart in Q&A.",
+  },
+  {
     slug: "research-agency-hackathon",
     title: "1,247 applied, 50 of us got in, and I brought the wrong strategy",
     date: "2026-07-11",
