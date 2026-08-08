@@ -5,7 +5,7 @@ import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 
 export const metadata: Metadata = {
-  title: "the proof point I didn't have",
+  title: "YC F26: the proof point I didn't have",
   description:
     "My Y Combinator interview for sev10 — twenty-four hours' notice, ten minutes with two partners, rejected by 9 PM, and the proof point I didn't have.",
 };
@@ -156,7 +156,7 @@ export default function YcInterviewPost() {
         <SectionHeader
           path="~/blog"
           command="cat yc-interview.md"
-          title="Twenty-four hours' notice, ten minutes in the room, and the proof point I didn't have"
+          title="YC F26: twenty-four hours' notice, ten minutes in the room, and the proof point I didn't have"
         >
           Y Combinator interview, Fall 2026 batch — 2026-08-07
         </SectionHeader>
