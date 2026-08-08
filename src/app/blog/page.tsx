@@ -6,6 +6,13 @@ export const metadata: Metadata = { title: "blog" };
 
 const posts = [
   {
+    slug: "yc-interview",
+    title:
+      "Twenty-four hours' notice, ten minutes in the room, and the proof point I didn't have",
+    date: "2026-08-07",
+    note: "My YC interview for sev10 — solo, pre-product, rejected by 9 PM with the best free advice I've ever gotten.",
+  },
+  {
     slug: "jachacks-sf",
     title: "Twelve hours, a language I couldn't stand, and a graph I couldn't defend",
     date: "2026-07-26",

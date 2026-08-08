@@ -9,6 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/hardware",
     "/experience",
     "/blog",
+    "/blog/yc-interview",
+    "/blog/jachacks-sf",
     "/blog/one-hour-hackathon",
     "/blog/research-agency-hackathon",
   ].map((path) => ({
