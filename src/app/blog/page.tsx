@@ -10,7 +10,7 @@ const posts = [
     title:
       "YC F26: twenty-four hours' notice, ten minutes in the room, and the proof point I didn't have",
     date: "2026-08-07",
-    note: "My YC interview for sev10 — solo, pre-product, rejected by 9 PM with the best free advice I've ever gotten.",
+    note: "My YC interview for sev10: solo, pre-product, rejected by 9 PM with the best free advice I've ever gotten.",
   },
   {
     slug: "jachacks-sf",
