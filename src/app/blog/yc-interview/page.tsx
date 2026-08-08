@@ -97,6 +97,136 @@ function YouTubeEmbed() {
   );
 }
 
+// The application itself, collapsed by default. Founder profile omitted.
+const APPLICATION: { section: string; qa: { q: string; a: string }[] }[] = [
+  {
+    section: "Team",
+    qa: [
+      {
+        q: "Who writes code, or does other technical work on your product? Was any of it done by a non-founder?",
+        a: "All of it, me. Hardware and software. No contractors, no agency, no non-founder help.",
+      },
+      {
+        q: "Are you looking for a cofounder?",
+        a: "Yes. Not another builder - I ship the whole stack myself, hardware through web app. I want my opposite: someone who loves sales and people the way I love building.\n\nSev10 is direct sales, $150-250k contracts into safety teams. I'm doing that work myself right now, but, I know where my ceiling is. My last product made ~$1,000, hit bad unit economics, and instead of finding customers who'd pay more, I made it free. A sales cofounder would have gotten on the phone. That's the mistake I'm not repeating.",
+      },
+    ],
+  },
+  {
+    section: "Company",
+    qa: [
+      {
+        q: "Describe what your company does in 50 characters or less.",
+        a: "AI analysis for ISO 26262, DO-254, IEC 60601",
+      },
+      {
+        q: "What is your company going to make? Please describe your product and what it does or will do.",
+        a: "Every car, jet, and pacemaker has to prove it won't kill you before it ships. Creating that proof takes senior engineers weeks in Excel, and it dies the moment the design changes.\n\nSev10 is an agent harness for systems engineers. Point it at your PLM, your specs, the internal communications where the decision actually got made. Ask for the analysis. Every claim cited, ready to sign.\n\nDFMEA, FMEDA and HARA first. Safety is the way in - the only job that's both legally mandatory and requires reading your entire system. Once the harness is in, the rest of engineering is downstream: design acceleration, every other compliance artifact.",
+      },
+      {
+        q: "Explain your decision regarding location.",
+        a: "My customers are here. The companies carrying an ISO 26262 or DO-254 requirement without a big safety org are concentrated in the Bay: the EV, autonomy, drone, and new defense hardware companies. This product gets sold by sitting next to safety engineers and watching them work. My network is here. The agent talent is here. I already live here.",
+      },
+    ],
+  },
+  {
+    section: "Progress",
+    qa: [
+      {
+        q: "How far along are you?",
+        a: "Pre-product. First usable version ships within a month. What I bring today: six years living this exact workflow.",
+      },
+      {
+        q: "What tech stack are you using, or planning to use, to build this product?",
+        a: "Jac programming language for agent orchestration - every panel run checkpointed and replayable, which is the audit trail an assessor reads. Claude via API. Component failure-rate libraries (SN 29500, IEC 62380, FIDES) for the FMEDA math - the part that has to be defensible to a TUV or DER assessor, not just plausible. OCR for datasheet extraction. Postgres + pgvector for the citation corpus. FastAPI backend, Next.js front end, Excel export, because Excel is how the incumbents interchange.\n\nDefense inference runs in AWS GovCloud via Bedrock: FedRAMP High, DoD IL5, the sanctioned path for ITAR data.\n\nNo benchmark measures which model has the best systems-engineering worldview, so I'll build one. I've built an agent benchmark before.",
+      },
+      { q: "Are people using your product?", a: "No" },
+      { q: "Do you have revenue?", a: "No" },
+    ],
+  },
+  {
+    section: "Idea",
+    qa: [
+      {
+        q: "Why did you pick this idea to work on? Do you have domain expertise in this area? How do you know people need what you're making?",
+        a: "I've been the engineer in that room: seven years of safety-critical electronics.\n\nTwo things you can't see from outside. Design is not the bottleneck - proving the design is safe is, and nobody enjoys it, so it gets done to the minimum that passes. And the quantitative half is worse than the qualitative half: an FMEDA means apportioning failure rates and diagnostic coverage across every component until the metrics close against an ASIL target, by hand, in Excel, and again after every design change. That's the work I'm automating.\n\nHardware engineering is also embarrassingly late to AI. The work is structured text and reasoning, models eat it for breakfast, and most EEs have never touched an agent harness. Software got its Cursor moment two years ago. Hardware's is sitting there unclaimed.\n\nNobody needs convincing the work is worth paying for. It's the law.",
+      },
+      {
+        q: "Who are your competitors? What do you understand about your business that they don't?",
+        a: "Ansys medini analyze is the incumbent, with APIS IQ-FMEA and PLATO SCIO below it. They're structured editors - somewhere to type the analysis and check it for completeness. They don't do the analysis, and they interchange by Excel.\n\nOn the AI side: Saphira (YC S24) generates FMEA and HARA, now aimed at autonomous machines. Ketryx raised $39M for agentic ISO 26262 traceability. LLM-generated FMEA is already a real academic literature.\n\nWhat none of them do is the quantitative side. FMEDA - diagnostic coverage, SPFM, LFM, PMHF computed against a hardware failure-rate budget - is the artifact that actually gates an ASIL-D or DO-254 DAL-A sign-off, and it's absent from all of them. So is DO-254 avionics and IEC 60601 medical, entirely.\n\nEveryone else is automating the document. I'm automating the analysis.",
+      },
+      {
+        q: "How do or will you make money? How much could you make?",
+        a: "Compliance eats 25-40% of certified hardware development cost. $1.4B a year goes to the tools, growing 10%. Another $3.4B a year goes to consultants doing the analysis by hand. Sev10 sells the analysis, so the consultant line is the real market - these teams spend an order of magnitude more on labor than on software.\n\n$150-250k per team per year, deployed in the customer's own cloud, GovCloud for defense, so design data never leaves their environment. Forty beachhead customers is $6-10M ARR: US EV, defense, drone, and robotics companies with the requirement and no big safety org.\n\nThat's the wedge, not the market. Every certified hardware program on earth runs this workflow - ISO 26262, DO-254, IEC 60601, IEC 61508. Same model, different acronym.",
+      },
+      {
+        q: "If you had any other ideas you considered applying with, please list them.",
+        a: "Machine-readable datasheets. Every hardware engineer on earth parses PDFs by hand to get part parameters. A clean structured API over the world's component datasheets is infrastructure everything in agentic hardware design will need, including my main idea.",
+      },
+    ],
+  },
+  {
+    section: "Equity",
+    qa: [
+      { q: "Have you formed ANY legal entity yet?", a: "No" },
+      {
+        q: "Describe the planned equity ownership breakdown.",
+        a: "100% Frank Walsh, CEO. When I find the right GTM cofounder, I expect to give up meaningful equity - a true partner, not an early hire.",
+      },
+    ],
+  },
+  {
+    section: "Curious",
+    qa: [
+      {
+        q: "What convinced you to apply to Y Combinator?",
+        a: "It's been the plan since college. The last seven years were deliberate training for it. Why now: I got tired of waiting for someone else to build this. The models got good two years ago, hardware still has no agent tooling, and every month I watch safety teams burn weeks in Excel on work a harness could do in hours. Nobody encouraged me to apply. No events yet.",
+      },
+      {
+        q: "How did you hear about Y Combinator?",
+        a: "It's very well known in my home province of Newfoundland, Canada. Co-lab is one of the biggest success stories. People from home interview for batches and it makes the news. I don't live there anymore, but I still follow it.",
+      },
+    ],
+  },
+];
+
+// The full application, collapsed behind a terminal-style disclosure.
+function ApplicationDump() {
+  return (
+    <details className="term my-6 overflow-hidden">
+      <summary className="cursor-pointer list-none border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim transition hover:text-text [&::-webkit-details-marker]:hidden">
+        ▸ cat application.md · the full application, click to expand (founder
+        profile omitted)
+      </summary>
+      <div className="space-y-6 p-4 text-xs leading-relaxed">
+        {APPLICATION.map((s) => (
+          <div key={s.section}>
+            <div className="mb-2 font-bold text-green glow">
+              <span className="text-green-dim">##</span> {s.section}
+            </div>
+            <div className="space-y-4">
+              {s.qa.map((item) => (
+                <div key={item.q}>
+                  <div className="mb-1 text-green-dim">{item.q}</div>
+                  {item.a.split("\n\n").map((para, i) => (
+                    <p key={i} className="mb-2 text-text">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-line px-3 py-2 text-xs text-text-dim">
+        <span className="text-green-dim">//</span> verbatim, minus the founder
+        profile and legal sections. this is what got the interview.
+      </div>
+    </details>
+  );
+}
+
 // An excerpt of the voice-mode mock interview, replayed as a log file.
 function PracticeLog() {
   const lines: { who: "claude" | "me"; text: string }[] = [
@@ -241,6 +371,14 @@ export default function YcInterviewPost() {
             product. I am not yet that founder, and the form knew it before I
             did.
           </P>
+
+          <P>
+            For context, here&apos;s the application itself. If you&apos;re
+            thinking about applying, this is what a
+            got-an-interview-as-a-solo-founder application looks like:
+          </P>
+
+          <ApplicationDump />
 
           <P>
             The other thing that ate my time was the founder video. One minute,
