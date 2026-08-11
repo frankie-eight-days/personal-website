@@ -33,7 +33,7 @@ export default function BootSequence() {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     LINES.forEach((_, i) => {
-      timers.push(setTimeout(() => setLines(i + 1), 105 * i));
+      timers.push(setTimeout(() => setLines(i + 1), 158 * i));
     });
 
     let p = 0;
@@ -41,7 +41,7 @@ export default function BootSequence() {
       p = Math.min(100, p + 18);
       setPct(p);
       if (p >= 100) clearInterval(prog);
-    }, 68);
+    }, 102);
 
     const end = setTimeout(() => {
       try {
@@ -49,7 +49,7 @@ export default function BootSequence() {
       } catch {}
       setState("closing");
       timers.push(setTimeout(() => setState("done"), 300));
-    }, 975);
+    }, 1463);
 
     timers.push(end);
     return () => {
