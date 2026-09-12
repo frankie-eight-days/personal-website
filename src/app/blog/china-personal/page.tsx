@@ -400,8 +400,10 @@ export default function ChinaPersonalPost() {
               episode 437 with Chrissy Meyer
             </A>
             , who said something about glue machines being the bane of her
-            existence, and who, I found out years later, used to be on my
-            team. That absolutely blew my mind. This trip was me finally
+            existence, and who, I found out years later, had been an
+            engineering program manager on the first few generations of Apple
+            Watch. Not my team, exactly, but close enough to my corner of the
+            company that it absolutely blew my mind. This trip was me finally
             getting to be one of those engineers, and walking onto a factory
             floor on the other side of the world with a problem to solve felt
             like a level-up I&apos;d been waiting a decade for. The specifics
