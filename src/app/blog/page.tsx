@@ -6,6 +6,12 @@ export const metadata: Metadata = { title: "blog" };
 
 const posts = [
   {
+    slug: "china-personal",
+    title: "Personal growth, my first trip to China",
+    date: "2026-09-12",
+    note: "Something like agoraphobia, a river tunnel every day, a Zeekr 009, and American dynamism versus Chinese central planning.",
+  },
+  {
     slug: "yc-interview",
     title:
       "YC F26: twenty-four hours' notice, ten minutes in the room, and the proof point I didn't have",
