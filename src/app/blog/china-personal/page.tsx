@@ -508,8 +508,9 @@ export default function ChinaPersonalPost() {
           <P>
             The bigger embarrassment is how little I knew going in. I
             didn&apos;t know the People&apos;s Republic was only founded in
-            1949, which makes the country in its current form younger than my
-            parents. I didn&apos;t know mainland China writes in simplified
+            1949, a year that turns out to matter to me for a different
+            reason, which I&apos;ll get to. I didn&apos;t know mainland China
+            writes in simplified
             characters, which I&apos;d have known if I&apos;d known any of the
             history. I assumed people would speak English, and almost nobody
             did. For Japan I&apos;d absorbed the customs from years of anime
@@ -529,6 +530,25 @@ export default function ChinaPersonalPost() {
             even a rival, so there&apos;s nothing to be curious about. It also
             made me realize I was the odd one out in that conversation: not
             American, not Chinese, and looking at both from the outside.
+          </P>
+
+          <P>
+            Here&apos;s the coincidence I can&apos;t get over. Newfoundland
+            joined Canada on March 31, 1949. The People&apos;s Republic of
+            China was proclaimed on October 1, 1949. The country I was born in
+            and the country I&apos;d just landed in started the same year, six
+            months apart, and both are inside living memory. Both sets of my
+            grandparents remember Newfoundland before confederation, when it
+            was its own dominion. And a couple of my coworkers told me they had
+            family, not that distant, who were on the Long March. Two peoples
+            who answered the same question in the same year, how much
+            government do you want in your life, and answered it differently.
+            Newfoundland traded its independence for confederation, the
+            promised social programs, and a government that would start
+            emptying its outports within five years. China got a one-party
+            state that would go on to build the tunnels I was sitting in.
+            I&apos;ve now lived under both answers, sort of, and I still
+            don&apos;t know which one I&apos;d pick.
           </P>
 
           <P>
