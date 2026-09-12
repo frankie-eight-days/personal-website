@@ -163,12 +163,12 @@ const CAROUSEL: CarouselPhoto[] = [
     file: "c919-safety-card.jpg",
     alt: "The safety card of a China Eastern COMAC C919, held up in the cabin",
     caption:
-      "the safety card on a china eastern comac c919. a chinese-built airliner. i photographed it twice.",
+      "the safety card on a china eastern comac c919, a chinese-built airliner. my wife flew it on a 36-hour side trip to beijing and photographed it twice, because she knows me.",
   },
   {
     file: "c919-window.jpg",
     alt: "View out the window of the C919 at Beijing Daxing at night, another jet at the next gate",
-    caption: "out the window at daxing, from the c919.",
+    caption: "out the window at daxing, from her c919.",
   },
   {
     file: "su7-showroom.jpg",
@@ -229,20 +229,26 @@ export default function ChinaPersonalPost() {
 
         <article>
           <P>
-            Bumper to bumper, the whole length of a tunnel under the Huangpu
-            River, in the back of a van. Brand new tunnel. Millions of tons of
-            water overhead. My brain, helpfully: <em>did they really know what
-            they were doing when they built this?</em> Full fight or flight,
-            and I am a flight guy. Every part of me wanted to open the door of
-            the van and run. You can&apos;t do that. So you sit there and you
-            say, all right, this is it, I&apos;m doing it, and you console
-            yourself with the fact that a tunnel has two openings.
+            Bumper to bumper, the entire length of a tunnel under the Huangpu
+            River, in the back of a van. Brand new tunnel overhead, millions of
+            tons of water on top of that, and my brain, helpfully:{" "}
+            <em>did they really know what they were doing when they built
+            this?</em> Full fight or flight, and I am very much a flight guy,
+            so every part of me wanted to open the door of the van and run.
+            You obviously can&apos;t do that. So you sit there and you say,
+            all right, this is it, I&apos;m doing it, and you console yourself
+            with the fact that a tunnel has two openings and you only need the
+            other one.
           </P>
 
           <P>
-            I did some version of that every working day for two weeks. This
-            post is about how I got into the van, and about what I saw out the
-            window once I was in it.
+            I did some version of that every working day for two weeks, and
+            three things happened in that seat. Getting into it was the
+            hardest thing I&apos;ve done in years. Looking out the window of it
+            was, for a transportation nerd, paradise. And what I saw out that
+            window left me with a question about China and America that I
+            still can&apos;t answer. So that&apos;s the post: the fear, the
+            window, and the question.
           </P>
 
           <div className="term my-6 p-4 text-xs leading-relaxed">
@@ -262,7 +268,8 @@ export default function ChinaPersonalPost() {
               <dt className="text-green-dim">where</dt>
               <dd className="text-text">
                 Shanghai, Pudong side · the factory out past the city limits ·
-                a day in Hangzhou · one hop through Beijing
+                a day in Hangzhou · my wife did a 36-hour side trip to Beijing
+                while I worked
               </dd>
               <dt className="text-green-dim">who</dt>
               <dd className="text-text">
@@ -285,65 +292,61 @@ export default function ChinaPersonalPost() {
             fit="contain"
           />
 
-          <H2>The bubble, named</H2>
+          <H2>1. Getting in the van</H2>
           <P>
-            Before any of the opinions: I saw a very specific slice of China.
-            United Polaris out, a Park Hyatt on the Pudong side, team dinners
-            at places with tasting menus, a whisky lounge in the French
-            Concession. That was Apple&apos;s money, not mine, and I&apos;m
-            saving the details for the professional post, but I&apos;m not
-            going to pretend I was backpacking. I didn&apos;t see the politics,
-            the censorship, or what life is like for the people who drove me
-            around. I didn&apos;t have a single real conversation with a local
-            outside of work. Keep that in mind for everything below.
+            First, the bubble, because it shapes everything after it. I saw a
+            very specific slice of China: United Polaris on the way over, a
+            Park Hyatt on the Pudong side, team dinners at places with tasting
+            menus, a whisky lounge in the French Concession. That was
+            Apple&apos;s money, not mine (details in the professional post),
+            but I&apos;m not going to pretend I was backpacking. I didn&apos;t
+            see the politics or the censorship, I have no idea what life is
+            like for the people who drove me around, and I didn&apos;t have a
+            single real conversation with a local outside of work.
           </P>
 
           <P>
-            One more thing about the hotel. My room was on the 84th floor,
-            check-in was on the 87th, and breakfast was on the 91st. For
-            someone with what I&apos;m about to describe, that is a minute-long
-            express elevator to the top of one of the tallest buildings in the
-            city, twice a day, every day. It was hilarious. It did not help.
-          </P>
-
-          <H2>Something like agoraphobia</H2>
-          <P>
-            I&apos;ve never had it formally named, but it&apos;s something like
-            agoraphobia and it comes with a fear of flying. Before this trip a
-            bad day looked like this: there is one bridge in the Bay Area I
-            will drive, because I know it. I couldn&apos;t do the BART tunnel
-            under the bay. Going under water was just too much.
+            I&apos;ve never had it formally named, but I have something like
+            agoraphobia, and it comes bundled with a fear of flying. Before
+            this trip a bad day looked like this: there is exactly one bridge
+            in the Bay Area I will drive, because I know it, and I
+            couldn&apos;t do the BART tunnel under the bay at all. Going under
+            water was just too much.
           </P>
 
           <P>
-            So there was a lot of bargaining with myself. I had real thoughts
-            about saying no. Give up on the dream of being a great Apple
-            engineer, ride out the year until the golden handcuffs come off,
-            tell my manager I can&apos;t travel, ask for reasonable
-            accommodations, which is a thing you can do in California, and
-            just never get on the plane. I knew that if I did that I&apos;d be
-            upset with myself for the rest of my life.
+            So there was a lot of bargaining with myself in the weeks before.
+            I had real, serious thoughts about saying no: give up on the dream
+            of being a great Apple engineer, ride out the year until the golden
+            handcuffs come off, tell my manager I can&apos;t travel and ask for
+            reasonable accommodations (which is a thing you can do in
+            California), and just never get on the plane. What stopped me was
+            knowing that if I did that, I&apos;d be upset with myself for the
+            rest of my life.
           </P>
 
           <P>
-            How I actually did it, as honestly as I can: lorazepam for the
-            flight, and my wife in the seat next to me. That&apos;s the how.
-            The why is simpler. There are two mouths to feed at home. They were
-            counting on me to go to work, do the job, and bring the dough
-            home. The plan for Eve, our daughter, was my parents, which was
-            also the first real break my wife has had from parenting, so she
-            came with me. I got very lucky in the wife department.
+            How I actually did it, as honestly as I can put it: lorazepam for
+            the flight, and my wife in the seat next to me. That&apos;s the
+            how. The why is simpler. There are two mouths to feed at home, and
+            they were counting on me to go to work, do the job, and bring the
+            dough home. The plan for Eve, our daughter, was my parents, which
+            also happened to be the first real break my wife has had from
+            parenting since Eve arrived, so she came with me. I got very lucky
+            in the wife department, and I want that on the record.
           </P>
 
           <P>
             Then the trip itself turned out to be a daily exposure exercise I
-            hadn&apos;t signed up for. We stayed on the Pudong side. The factory
-            was on the other side of the river and a long way out. Every single
-            morning and every single evening: flyovers, expressways, and a
-            tunnel under the Huangpu, often at a crawl. The method I landed
-            on is not sophisticated. Notice that you&apos;re afraid. Do the
-            thing anyway. Notice that the fear doesn&apos;t last. Deep breaths.
-            It&apos;s going to be okay.
+            hadn&apos;t signed up for. We stayed on the Pudong side and the
+            factory was on the other side of the river and a long way out, so
+            every single morning and every single evening it was flyovers,
+            expressways, and a tunnel under the Huangpu, often at a crawl. The
+            hotel didn&apos;t help either: my room was on the 84th floor,
+            check-in was on the 87th, and breakfast was on the 91st, which
+            means a minute-long express elevator to the top of one of the
+            tallest buildings in the city, twice a day, every day. Hilarious,
+            in hindsight.
           </P>
 
           <Shot
@@ -353,58 +356,59 @@ export default function ChinaPersonalPost() {
           />
 
           <P>
-            Here&apos;s the part I didn&apos;t expect. Exposure therapy is
-            supposed to make it better. It got worse. The first few days I
-            could do anything; I&apos;d just landed and the adrenaline covered
-            it. Then each day the dread got a little bigger, and by the end of
-            the trip the tunnel was harder than it had been at the start. I
-            don&apos;t have a clean explanation. What I have is that I got in
-            the van every day anyway, and that turned out to be the whole
-            point. The growth wasn&apos;t that the fear shrank. It&apos;s that
-            it stopped being the thing that decided what I did.
+            The method I landed on is not sophisticated: notice that
+            you&apos;re afraid, do the thing anyway, and notice afterward that
+            the fear didn&apos;t last. Deep breaths. It&apos;s going to be
+            okay. And here&apos;s the part I didn&apos;t expect. Exposure
+            therapy is supposed to make it better, and it got worse. The first
+            few days I could do anything (I&apos;d just landed and the
+            adrenaline covered it), and then each day the dread got a little
+            bigger, until by the end of the trip the tunnel was harder than it
+            had been at the start. I don&apos;t have a clean explanation for
+            that. What I have is that I got in the van every day anyway, and
+            that turned out to be the whole point. The growth wasn&apos;t that
+            the fear shrank. It&apos;s that it stopped being the thing that
+            decided what I did.
           </P>
 
-          <H2>The Amp Hour, ten years later</H2>
           <P>
-            I listened to{" "}
-            <A href="https://theamphour.com/">The Amp Hour</A> all through
-            college, almost ten years ago now. Countless engineers on that show
-            flying to China, dealing with high-volume manufacturing, DFM
-            problems, process problems. The one that stuck was{" "}
+            Why it was worth it: I listened to{" "}
+            <A href="https://theamphour.com/">The Amp Hour</A> all the way
+            through college, almost ten years ago now, and a huge fraction of
+            those episodes were engineers flying to China to deal with
+            high-volume manufacturing, DFM problems, process problems, the
+            whole grind. The one that stuck was{" "}
             <A href="https://theamphour.com/437-an-interview-with-chrissy-meyer/">
               episode 437 with Chrissy Meyer
             </A>
             , who said something about glue machines being the bane of her
-            existence. Years later I found out she used to be on my team.
-            That absolutely blew my mind.
+            existence, and who, I found out years later, used to be on my
+            team. That absolutely blew my mind. This trip was me finally
+            getting to be one of those engineers, and walking onto a factory
+            floor on the other side of the world with a problem to solve felt
+            like a level-up I&apos;d been waiting a decade for. The specifics
+            belong in the other post; the feeling belongs here.
           </P>
 
+          <H2>2. Out the window</H2>
           <P>
-            This trip was me getting to be one of those engineers. Walking
-            onto a factory floor on the other side of the world with a
-            problem to solve felt like a level-up I&apos;d been waiting a
-            decade for. The specifics belong in the other post. The feeling
-            belongs here. I&apos;m going back in October.
-          </P>
-
-          <H2>Transportation nerd paradise</H2>
-          <P>
-            I am a huge transportation nerd, and despite the fear of flying,
-            being on a Boeing 777 for thirteen hours is still cool to me. My
+            Now the part of me that was having the time of its life in that
+            same seat. I am a huge transportation nerd, and despite the fear of
+            flying, thirteen hours on a Boeing 777 is still cool to me. My
             wife got upgraded to business on the way over while I sat in
-            Premium Plus, which was too, too funny. Then we landed, and it
-            was paradise.
+            Premium Plus, which was too, too funny. Then we landed, and for the
+            entire two weeks it was paradise.
           </P>
 
           <P>
-            I used to work at Tesla. We&apos;d all heard that Chinese EVs were
-            exceptional, that BYD was the real competitor, that if the 100
+            I used to work at Tesla, and we&apos;d all heard the lore: Chinese
+            EVs were exceptional, BYD was the real competitor, and if the 100
             percent tariff ever came down Chinese auto would destroy the US
             market. Our very first DiDi from the airport was a{" "}
-            <A href="https://en.wikipedia.org/wiki/Zeekr_009">Zeekr 009</A>.
-            Two captain&apos;s chairs in the back with massage, ventilation,
-            and recline, and a TV you could AirPlay to. The most nuts thing I
-            had ever sat in. That was the cheap tier.
+            <A href="https://en.wikipedia.org/wiki/Zeekr_009">Zeekr 009</A>{" "}
+            with two captain&apos;s chairs in the back (massage, ventilation,
+            recline) and a TV you could AirPlay to. It was the most nuts thing
+            I had ever sat in. That was the cheap tier.
           </P>
 
           <Shot
@@ -416,19 +420,19 @@ export default function ChinaPersonalPost() {
 
           <P>
             We tried ordering the luxury tier a few times and all you get for
-            the money is a European badge. The cheaper premium tier puts you
-            in a sixty or eighty thousand dollar Chinese EV that matches a
-            Bentley on materials and beats it on features. And the economy
-            tier, the ten and fifteen thousand dollar cars, older BYDs
-            probably, were fine. Everything in Shanghai is electric. The
-            streets were quiet in a way I&apos;ve never experienced in a city
-            that size, and they didn&apos;t smell, apart from the occasional
+            the money is a European badge. The cheaper premium tier puts you in
+            a sixty or eighty thousand dollar Chinese EV that matches a Bentley
+            on materials and beats it on features, and even the economy tier
+            (ten and fifteen thousand dollar cars, older BYDs probably) was
+            perfectly fine. Everything in Shanghai is electric. The streets
+            were quiet in a way I&apos;ve never experienced in a city that
+            size, and they didn&apos;t smell, apart from the occasional
             sewage. Honking is{" "}
             <A href="https://www.nzherald.co.nz/world/no-more-honking-in-downtown-shanghai/RVJDINBEJC33X33JCDVRWEAUHQ/">
               banned downtown
             </A>
             , with fines, which would never fly in America and which I now
-            miss.
+            actively miss.
           </P>
 
           <P>
@@ -436,30 +440,30 @@ export default function ChinaPersonalPost() {
             <A href="https://en.wikipedia.org/wiki/Xiaomi_SU7">Xiaomi SU7</A>{" "}
             ever cleared US safety regs, a forty thousand dollar car would sell
             here for eighty, because it is as good as a Model S or better. I
-            saw one in a showroom in olive green and it was very hard to leave.
-            Why they&apos;re that good and that cheap is a longer argument than
-            I&apos;m qualified to make. Scale, a domestic battery supply chain,
-            a decade of subsidies, dozens of makers at each other&apos;s
-            throats, and yes, less red tape around building a car. What I can
-            tell you is what I sat in.
+            saw one in a showroom in olive green and found it very hard to
+            leave. Why they&apos;re that good and that cheap is a longer
+            argument than I&apos;m qualified to make: scale, a domestic battery
+            supply chain, a decade of subsidies, dozens of makers at each
+            other&apos;s throats, and yes, less red tape around building a
+            car. What I can tell you is what I sat in.
           </P>
 
-          <H2>Bored, not cut and cover</H2>
           <P>
-            The thing that got me, sitting in traffic under the river, was
-            that the tunnels are bored. Not cut and cover. Bored, with tunnel
-            boring machines, for the metro and for the expressways, and there
-            are a lot of them. I went and looked it up afterward because I
-            wanted to know if the machines were European. The arc is
-            incredible: China{" "}
+            And this is where the fear and the nerd collide. The thing that
+            got me, sitting in traffic under the river, was that the tunnels
+            are bored: not cut and cover, bored, with tunnel boring machines,
+            for the metro and the expressways both, and there are a lot of
+            them. I looked it up afterward because I wanted to know whether
+            the machines were European, and the arc is incredible. China{" "}
             <A href="https://decodingthedragon.substack.com/p/59-why-does-china-build-70-of-the">
               bought two TBMs from Herrenknecht in 1997
             </A>
             , launched its first domestic machine in 2008, and now builds
             roughly seventy percent of the world&apos;s tunnel borers. The last
-            part they still had to import, the main bearing, went domestic
-            in 2023. So the thing I was afraid of was the thing I would have
-            been most excited about, if I&apos;d had the presence of mind.
+            part they still had to import, the main bearing, went domestic in
+            2023. So the thing I was afraid of was the exact thing I would
+            have been most excited about, if my brain had let me think about
+            it. Same tunnel, same seat.
           </P>
 
           <Shot
@@ -473,83 +477,88 @@ export default function ChinaPersonalPost() {
             The high-speed train to Hangzhou read 301 km/h on the cabin
             display and felt like nothing. The airports are very big, very
             grand, easy to get around, and efficient in a way that is hard to
-            photograph. I flew a{" "}
+            photograph. I didn&apos;t get to fly the{" "}
             <A href="https://en.wikipedia.org/wiki/Comac_C919">COMAC C919</A>,
-            a Chinese-built airliner, out of Beijing Daxing, and I took a
-            picture of the safety card twice. And honestly, the thing I&apos;d
-            tell someone with my exact fears and a China trip on the calendar:
-            China is a surprisingly easy place to travel. The visa on arrival
-            was fine. The metro was easy. The high-speed rail was easy. Getting
-            out of the big cities was easy. The hard part was in my head, and
-            it would have been there anywhere.
-          </P>
-
-          <H2>It wasn&apos;t Japan</H2>
-          <P>
-            What surprised me most is embarrassing to admit. I&apos;d been to
-            Japan, and I&apos;d assumed China would be more like it than it is.
-            The metro is great, the old part of Shanghai is dense and built up,
-            but it isn&apos;t orderly. Nobody queues. Scooters use the sidewalk
-            and seem to be aiming for you. Left and right on the escalator
-            don&apos;t exist. It&apos;s loud in public, and tour groups walk
-            around with speakers. The metro cars were quiet, but I got the
-            feeling that was a rule rather than a custom. Outside the old
-            areas, especially on the Pudong side where we stayed, it starts to
-            look like Texas: enormous roads, everything spread out, nothing
-            walkable. I understand now why people call it the Texas of Asia.
+            the Chinese-built airliner, but my wife did, on a 36-hour side trip
+            to Beijing while I was at the factory, and she photographed the
+            safety card twice because she knows exactly who she married. If
+            someone with my exact fears and a China trip on the calendar asked
+            me, I&apos;d tell them China is a surprisingly easy place to
+            travel: the visa on arrival was fine, the metro was easy, the
+            high-speed rail was easy, getting out of the big cities was easy.
+            The hard part was in my head, and it would have been there
+            anywhere.
           </P>
 
           <P>
-            The bigger embarrassment is how little I knew. I didn&apos;t know
-            the People&apos;s Republic was only founded in 1949, which makes
-            the country in its current form younger than my parents. I
-            didn&apos;t know mainland China writes in simplified characters,
-            which I&apos;d have known if I&apos;d known any of the history. I
-            assumed people would speak English, and almost nobody did. For
-            Japan I&apos;d absorbed the customs from years of anime and travel
-            videos. I&apos;d watched plenty of China travel videos too. They
-            just don&apos;t talk about the customs, or the government, much at
-            all.
+            What surprised me most is a little embarrassing to admit: I&apos;d
+            been to Japan, and I&apos;d assumed China would be more like it
+            than it is. The metro is great and the old part of Shanghai is
+            dense and built up, but it isn&apos;t orderly. Nobody queues,
+            scooters use the sidewalk and seem to be aiming for you, left and
+            right on the escalator don&apos;t exist, it&apos;s loud in public,
+            and tour groups walk around with speakers. The metro cars were
+            quiet, but I got the feeling that was a rule rather than a custom.
+            Once you leave the old areas, especially on the Pudong side where
+            we stayed, it starts to look like Texas (enormous roads,
+            everything spread out, nothing walkable), which is why people call
+            it the Texas of Asia, and now I get it.
           </P>
 
           <P>
-            And one interaction, over and over. Everyone was curious. Where did
-            you grow up? Not always that directly, but that&apos;s the
-            question. The moment I said Canada, they lost interest completely.
-            I think that&apos;s hilarious, because where I grew up is
-            genuinely novel. My read is that Canada isn&apos;t a threat, and
-            under Carney it isn&apos;t even a rival, so there&apos;s nothing to
-            be curious about. But it got me thinking about something else.
+            The bigger embarrassment is how little I knew going in. I
+            didn&apos;t know the People&apos;s Republic was only founded in
+            1949, which makes the country in its current form younger than my
+            parents. I didn&apos;t know mainland China writes in simplified
+            characters, which I&apos;d have known if I&apos;d known any of the
+            history. I assumed people would speak English, and almost nobody
+            did. For Japan I&apos;d absorbed the customs from years of anime
+            and travel videos, and I&apos;d watched plenty of China travel
+            videos too; they just don&apos;t talk about the customs, or the
+            government, much at all.
           </P>
 
-          <H2>Dynamism versus central planning</H2>
+          <H2>3. Who built this</H2>
+          <P>
+            One interaction, over and over, is what turned the sightseeing
+            into a question. Everyone was curious, and the question, asked
+            more or less directly, was always: where did you grow up? The
+            moment I said Canada they lost interest completely, which I think
+            is hilarious, because where I grew up is genuinely novel. My read
+            is that Canada isn&apos;t a threat, and under Carney it isn&apos;t
+            even a rival, so there&apos;s nothing to be curious about. It also
+            made me realize I was the odd one out in that conversation: not
+            American, not Chinese, and looking at both from the outside.
+          </P>
+
           <P>
             The way I understand it, the United States was built on the idea
-            that the government is the thing to be afraid of. Three branches
-            designed to fight each other. A Bill of Rights that is a list of
-            things the government may not do. It took me years of living here,
-            a lot of{" "}
+            that the government is the thing to be afraid of: three branches
+            designed to fight each other, and a Bill of Rights that is
+            literally a list of things the government may not do. It took me
+            years of living here, a lot of{" "}
             <A href="https://www.dancarlin.com/common-sense/">Dan Carlin</A>,
             and actually reading the founding documents to understand that at
-            a first-principles level. Distrust is the operating system.
+            a first-principles level. Distrust is the operating system, and
+            the country got very rich running it.
           </P>
 
           <P>
             Canada is not like that, and I hadn&apos;t fully noticed until I
             was in China. A majority government in Canada controls the
-            legislature and the executive at the same time. The Senate is
-            appointed and rarely blocks anything. There is a clause in the
+            legislature and the executive at the same time, the Senate is
+            appointed and rarely blocks anything, and there is a clause in the
             constitution, the{" "}
             <A href="https://en.wikipedia.org/wiki/Section_33_of_the_Canadian_Charter_of_Rights_and_Freedoms">
               notwithstanding clause
             </A>
-            , that lets a legislature override Charter rights outright. And
-            people are fine with it, because it delivers. Healthcare, EI,
-            equalization. In Newfoundland, EI is built around the fishing
-            seasons and it decides elections; people love their handouts and
-            vote accordingly. The government is one of the biggest employers
-            in the province. It is in your life every day and most people
-            like it there.
+            , that lets a legislature override Charter rights outright. People
+            are fine with it because it delivers: healthcare, EI, equalization.
+            In Newfoundland, EI is built around the fishing seasons and it
+            decides elections (people love their handouts and vote
+            accordingly). The government is one of the biggest employers in
+            the province, it is in your life every day, and most people like
+            it there.
           </P>
 
           <P>
@@ -559,27 +568,42 @@ export default function ChinaPersonalPost() {
               resettled around three hundred communities
             </A>
             , thirty thousand people, for the good of the many. My nan, my
-            dad&apos;s mother, was from Merasheen Island in Placentia Bay. She
-            left before the end, but{" "}
+            dad&apos;s mother, was from Merasheen Island in Placentia Bay, and
+            while she left before the end,{" "}
             <A href="https://www.cbc.ca/news/canada/newfoundland-labrador/merasheen-resettlement-fiftieth-1.4762565">
               the last family left Merasheen on October 10, 1968
             </A>
             . So when I say the Chinese approach is Star Trek, the needs of the
             many outweigh the needs of the few, and if your family&apos;s house
-            is in the path of the high-speed line you are out of luck, I
-            don&apos;t say it from a great height. My own province did it to
+            is in the path of the high-speed line you are simply out of luck,
+            I don&apos;t say it from a great height. My own province did it to
             my own family.
           </P>
 
           <P>
-            Which leaves China. One party, no separation of powers, by design.
-            People seem to tolerate a state that is present in every part of
-            daily life, and I can only guess why. Maybe because the results are
-            visible from the back seat of a Zeekr: the metro, the trains, the
-            cars, the hundreds of millions of people lifted out of poverty in
-            my parents&apos; lifetime. Maybe because of the surveillance,
-            whatever form it really takes. Probably both. I don&apos;t know,
-            and after sixteen days I&apos;m not going to pretend.
+            Which is the thing I most want to know and can&apos;t. When a
+            family gets uprooted for a new high-speed line, do they feel like
+            they&apos;re doing a service for the country, or do they feel the
+            way Newfoundlanders felt when they were resettled? These days the
+            province pays a household hundreds of thousands of dollars to
+            leave (it was a fraction of that in my nan&apos;s day), and
+            it doesn&apos;t make up for leaving the place your family toiled
+            over for generations. <em>Where once they stood, we stand</em>, as
+            the Ode goes. I&apos;d bet the feeling is the same in a village
+            outside Hangzhou. I can&apos;t know that. It&apos;s a guess from a
+            guy in a Zeekr.
+          </P>
+
+          <P>
+            Which leaves China itself: one party, no separation of powers, by
+            design, and people who seem to tolerate a state that is present in
+            every part of daily life, for reasons I can only guess at. Maybe
+            it&apos;s because the results are visible from the back seat (the
+            metro, the trains, the cars, the hundreds of millions of people
+            lifted out of poverty in my parents&apos; lifetime). Maybe
+            it&apos;s the surveillance, whatever form that really takes. Most
+            likely both. I don&apos;t know, and after sixteen days I&apos;m
+            not going to pretend I do.
           </P>
 
           <P>
@@ -588,28 +612,28 @@ export default function ChinaPersonalPost() {
             in, concentrate power and their people tolerate it because it
             delivers. The difference between Canada and China is what happens
             when you stop tolerating it. In Canada you vote the party out and
-            it leaves. In China you can&apos;t. That is the whole gap, and it
-            is not small. But everything else, the size of the state, its
+            it leaves; in China you can&apos;t. That is the whole gap, and it
+            is not small. But everything else (the size of the state, its
             presence in your day, the public&apos;s willingness to let it
-            build, was more familiar to me than it would be to an American.
+            build) was more familiar to me than it would be to an American.
           </P>
 
-          <H2>Figuring it out</H2>
           <P>
             I want to be careful here, because the thing I actually want to
             know, what the spirit of the Chinese people is, I did not find. I
-            lived in the United States for years before I understood Americans,
-            and it took history, podcasts, and the founding documents to get
-            there. I&apos;ve had sixteen days in an ancient country whose
-            language I don&apos;t speak, inside a bubble I&apos;ve already
-            described. So I&apos;m at the very start of that project, and I
-            know what it will take: the history, some of the language, more
-            trips, and real conversations with people who aren&apos;t being
-            paid to be nice to me. Anything I told you about the Chinese
-            character today would be a guess, and probably a wrong one.
+            lived in the United States for years before I understood
+            Americans, and it took history, podcasts, and the founding
+            documents to get there. I&apos;ve had sixteen days in an ancient
+            country whose language I don&apos;t speak, inside a bubble
+            I&apos;ve already described. So I&apos;m at the very start of that
+            project, and I know what it will take: the history, some of the
+            language, more trips, and real conversations with people who
+            aren&apos;t being paid to be nice to me. Anything I told you about
+            the Chinese character today would be a guess, and probably a wrong
+            one.
           </P>
 
-          <H2>What I brought home</H2>
+          <H2>Getting back in</H2>
           <P>
             The flight home was almost the worst part. I hadn&apos;t thought
             about it once the entire trip, so I wasn&apos;t ready for it, and
@@ -619,26 +643,25 @@ export default function ChinaPersonalPost() {
           </P>
 
           <P>
-            And yet: I&apos;m looking forward to October. Shanghai was fun. It
-            felt like a vacation. Nerd out at the factory all day, nerd out
-            reading about infrastructure in the shuttle, long team dinners at
-            fancy restaurants at night. A dream come true, honestly. I&apos;m
-            a little nervous about the flight. But I&apos;ve done it now, so
-            there&apos;s no reason I can&apos;t do it again. That sentence is
-            the whole post.
+            And yet I&apos;m looking forward to October, because Shanghai was
+            fun and honestly felt like a vacation: nerd out at the factory all
+            day, nerd out reading about infrastructure in the shuttle, long
+            team dinners at fancy restaurants at night. A dream come true.
+            I&apos;m a little nervous about the flight, but I&apos;ve done it
+            now, so there&apos;s no reason I can&apos;t do it again. That
+            sentence is the whole post.
           </P>
 
           <P>
-            The bigger question I brought home I can&apos;t answer either. I
-            saw a country that builds like the future is a decision it already
-            made. I live in a country that treats its own government as the
-            enemy and got very rich doing it. I honestly don&apos;t know who
-            wins the great power struggle. Is America in the last gasps of a
-            great empire, or is it just getting started? Does dynamism, liberty,
-            and the individual stand up against people who love their
-            government, plan centrally, and believe in the greatness of their
-            nation? I don&apos;t know. I got in the van every day, and I&apos;m
-            going back to look some more.
+            The question I brought home I can&apos;t answer, and it would be
+            great if I could. I saw a country that builds like the future is a
+            decision it already made, and I live in a country that treats its
+            own government as the enemy and got very rich doing it. Is America
+            in the last gasps of a great empire, or is it just getting started?
+            Does dynamism, liberty, and the individual stand up against people
+            who love their government, plan centrally, and believe in the
+            greatness of their nation? I don&apos;t know. I got in the van
+            every day, and I&apos;m going back to look some more.
           </P>
 
           <div className="mt-10 text-sm">
