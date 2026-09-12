@@ -7,9 +7,9 @@ export const metadata: Metadata = { title: "blog" };
 const posts = [
   {
     slug: "china-personal",
-    title: "Personal growth, my first trip to China",
+    title: "A tunnel has two openings",
     date: "2026-09-12",
-    note: "Something like agoraphobia, a river tunnel every day, a Zeekr 009, and American dynamism versus Chinese central planning.",
+    note: "Personal growth, my first trip to China: something like agoraphobia, a river tunnel every day, a Zeekr 009, and a question about dynamism versus central planning that sixteen days can't answer.",
   },
   {
     slug: "yc-interview",
