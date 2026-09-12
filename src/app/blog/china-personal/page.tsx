@@ -306,9 +306,16 @@ export default function ChinaPersonalPost() {
           </P>
 
           <P>
-            I&apos;ve never had it formally named, but I have something like
-            agoraphobia, and it comes bundled with a fear of flying. Before
-            this trip a bad day looked like this: there is exactly one bridge
+            I&apos;ve never had it formally named, but I have something like{" "}
+            <A href="https://en.wikipedia.org/wiki/Agoraphobia">agoraphobia</A>
+            , and it comes bundled with a fear of flying. The name is
+            misleading. It isn&apos;t a fear of open spaces; it&apos;s a fear
+            of being somewhere you can&apos;t get out of, or get help in, if
+            the panic starts. The textbook list is tunnels, bridges,
+            elevators, airplanes, and traffic you can&apos;t leave, which is
+            also, as you&apos;ll see, a fairly complete list of my commute in
+            Shanghai. Before this trip a bad day looked like this: there is
+            exactly one bridge
             in the Bay Area I will drive, because I know it, and I
             couldn&apos;t do the BART tunnel under the bay at all. Going under
             water was too much. I&apos;m an electrical engineer. I know what a
