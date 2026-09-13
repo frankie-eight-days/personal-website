@@ -92,18 +92,17 @@ export default function ChinaProfessionalPost() {
           title="A million actions a day"
         >
           Professional growth, my first trip to China · what a good Systems EE
-          actually does, learned in a bunny suit · late summer 2026
+          actually does, learned in a bunny suit · 2026-08-21 to 2026-09-06
         </SectionHeader>
 
         <article>
           <div className="term my-6 px-4 py-3 text-xs leading-relaxed text-text-dim">
             <span className="text-amber glow-amber">[ note ]</span> names have
             been changed. Nobody in this post appears under their real name,
-            the factory and the product aren&apos;t identified, the build
-            stage and schedule are deliberately vague, and nothing here should
-            be read as a description of what was being built. Written in a
-            personal capacity; nothing here is my employer&apos;s view. The
-            lessons are mine. The rest belongs to other people.
+            the factory and the product aren&apos;t named, and nothing here
+            should be read as a description of what was being built. Written
+            in a personal capacity; nothing here is my employer&apos;s view.
+            The lessons are mine. The rest belongs to other people.
           </div>
 
           <P>
@@ -119,13 +118,14 @@ export default function ChinaProfessionalPost() {
 
           <P>
             I came home with three lessons and one line. The lessons: a
-            Systems EE&apos;s real job (EE is electrical engineer) happens on
-            the line, not on the schematic; you have to know exactly what you
+            Systems EE&apos;s real job happens on the line, not on the
+            schematic; you have to know exactly what you
             want and then be a pain about getting it; and nothing, at this
-            company, gets done on a hunch. The line is the title. There is
-            also a coda about the email I wrote every night, which is where I
-            found out what I actually think about the place. First, the boring
-            facts, and a note on what isn&apos;t here.
+            company, gets done on a hunch. The line is the title. After the
+            three lessons there is a section about the email I wrote every
+            night, which is where I found out what I actually think about the
+            place. First, the boring facts, and a note on what isn&apos;t
+            here.
           </P>
 
           <div className="term my-6 p-4 text-xs leading-relaxed">
@@ -136,15 +136,18 @@ export default function ChinaProfessionalPost() {
             <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
               <dt className="text-green-dim">what</dt>
               <dd className="text-text">
-                a build at a contract manufacturer&apos;s factory, two weeks
-                on the floor
+                an early build at a contract manufacturer&apos;s factory,
+                two weeks on the floor
               </dd>
               <dt className="text-green-dim">when</dt>
               <dd className="text-text">
-                late summer 2026 · four months into the job
+                August 21 to September 6, 2026 · four months into the job
               </dd>
               <dt className="text-green-dim">where</dt>
-              <dd className="text-text">a factory in China</dd>
+              <dd className="text-text">
+                a factory outside Shanghai · the hotel and the shuttle are in
+                the other post
+              </dd>
               <dt className="text-green-dim">who</dt>
               <dd className="text-text">
                 my team, our in-region engineers, and the factory&apos;s
@@ -171,8 +174,8 @@ export default function ChinaProfessionalPost() {
             Tesla with a nicer badge. Design the board. Own the schematic,
             argue about parts, get it working on the bench, hand it off. I now
             think the schematic is the easiest thing we do. The job is taking
-            everything the people upstream of me have figured out, putting it
-            on a page, and then making that page <em>buildable</em>, which
+            everything the research teams at Apple have figured out, putting
+            it on a page, and then making that page <em>buildable</em>, which
             means making sure that a few hundred people you&apos;ve never met,
             working in a language you don&apos;t speak, can make ten thousand
             of it without any one of them having a bad Tuesday. The first part
@@ -180,9 +183,9 @@ export default function ChinaProfessionalPost() {
           </P>
 
           <P>
-            I learned this by spending my first week following Wen around. A
-            long time at Apple, fluent in Mandarin, knew the game inside and
-            out, and for reasons I still consider luck he let me shadow him,
+            I learned this by spending my first week following Wen around.
+            Sixteen years at Apple, fluent in Mandarin, knew the game inside
+            and out, and for reasons I still consider luck he let me shadow him,
             take notes, and write the nightly build report. Here&apos;s what
             he did all week: he ignored the electronics. The functional
             testers, the machines that decide whether a unit works and the
@@ -191,25 +194,27 @@ export default function ChinaProfessionalPost() {
             operators&apos; hands, pointing at things. When he really needed a
             point made he&apos;d bark it in Mandarin, and with enough context
             I could follow: <em>that carrier, that flip, why is she touching
-            that twice.</em> The factory&apos;s engineers did not always love
-            him for it.
+            that twice.</em> The factory staff, who were new to each other
+            and barely keeping the place running, did not always love him for
+            it.
           </P>
 
           <Shot
             file="bunny-suit.jpg"
             alt="Frank in a pale green cleanroom coverall, hood, mask and gloves, giving two thumbs up against a plain grey wall"
-            caption="gowned up. every trip onto the line meant this."
-            aspect="1 / 1"
+            caption="gowned up. every trip onto the line meant this, and the mop got in anyway."
+            aspect="3 / 4"
             fit="contain"
           />
 
           <P>
             Then the mop. Wen found an operator in the cleanroom with a mop
-            that had, visibly, been somewhere else first. He raised it that
-            day, and then he followed up every single day until the factory
-            had two things: a written procedure for how cleaning materials
-            come in and out of the room, and a way to match the next
-            unexplained speck of{" "}
+            that had, visibly, been somewhere else first. He took a picture.
+            He brought it to the biggest cross-functional meeting of the day,
+            in front of everyone, and then he followed up every single day
+            until two things existed that hadn&apos;t: a written procedure for
+            how cleaning materials come in and out of the room, and a way to
+            match the next unexplained speck of{" "}
             <A href="https://en.wikipedia.org/wiki/Foreign_object_damage">
               foreign debris
             </A>{" "}
@@ -243,7 +248,7 @@ export default function ChinaProfessionalPost() {
             that glue machines were the bane of her existence. Ours were tapes
             and carriers: how many different carriers one small thing could
             ride in, how many times a human hand touched it, how many flips it
-            took to get it through the machines. We spent whole afternoons on
+            took to get both sides through the machines. We spent whole afternoons on
             that. It was the best part of the day.
           </P>
 
@@ -280,9 +285,10 @@ export default function ChinaProfessionalPost() {
             The second thing about Wen was that he could see the factory he
             wanted. Not roughly. Exactly: where the unit should be at nine in
             the morning, which station should have caught which failure, what
-            the operator&apos;s hands should be doing. He had been there weeks
-            before I arrived and was still following up on things he&apos;d
-            asked for in his first days, and he expected an answer. He hounded
+            the operator&apos;s hands should be doing. He had spent two and a
+            half weeks there before I arrived, and he was still following up
+            on things he&apos;d asked for in week one, and he expected an
+            answer. He hounded
             people. The internet keeps trying to name this trait, high agency,
             conviction, founder mode, and none of the names are as good as
             watching it. What it looked like from behind him was simple and
@@ -293,17 +299,27 @@ export default function ChinaProfessionalPost() {
           <P>
             Part of how he did it was volume, and this is the part I&apos;m
             still working out. Our in-region engineers and the factory&apos;s
-            engineers would push each other harder, and louder, than I had
-            ever seen at work, and a minute later be laughing together about
-            something else. I grew up in a house where I can count on one hand
+            engineers would go at each other in a way I&apos;d never seen at
+            work. <em>We asked for this by today and it isn&apos;t done, what
+            is wrong with you</em>, at full volume, and then, in the next
+            breath, laughing together about something else. I grew up in a house where I can count on one hand
             the times anyone raised their voice. I am conflict-averse to the
             bone. So I watched this with something close to alarm until one of
-            the in-region engineers, a parent, gave me the frame: she was
-            tiger-parenting the factory. Be hard on it now, while there are a
-            handful of units on the line, so that nobody has to be in agony
-            later when there are thousands and the same mistake is holding up
-            a batch.
+            the in-region engineers, who is a mother, gave me the frame: they
+            were tiger-parenting the factory. Be hard on it now, while there
+            are ten units on the line, so that nobody has to be in agony later
+            when there are ten thousand and the same mistake is holding up a
+            batch. And the factory, as far as I could tell, took it as care.
           </P>
+
+          <Shot
+            file="friday-lunch.jpg"
+            alt="A round restaurant table covered in emptied dishes, shrimp shells and wine glasses, with green fields through the window"
+            caption="friday team lunch by the lake, after. this is the laughing-together part."
+            aspect="3 / 4"
+            fit="contain"
+            narrow
+          />
 
           <P>
             Here is my honest problem with that. I don&apos;t think I get to
@@ -312,7 +328,7 @@ export default function ChinaProfessionalPost() {
             same words out of my mouth wouldn&apos;t land as tiger-parenting,
             they&apos;d land as a foreigner shouting. And I also don&apos;t
             get to go easy, because going easy on a factory is how you end up
-            with a dirty mop in a cleanroom. The best I&apos;ve come up with
+            with a dirty mop in a 1k cleanroom. The best I&apos;ve come up with
             is a middle: cold, blunt, specific, written down, and relentless
             about the follow-up. Wen without the volume. I tested it once on
             this trip, in a lab, on one supervisor, and it worked. October is
@@ -321,27 +337,31 @@ export default function ChinaProfessionalPost() {
 
           <P>
             The lab was where I got to try the other half, the vision half.
-            My part of this is test: the testers on the line, and what happens
-            to a unit after it fails one and gets pulled off. The
-            factory&apos;s failure-analysis lab was where those units went,
-            and I spent my first afternoons just sitting in it. Gemba, if you
-            like. What I saw was this: to get any data out of a failed unit
-            they were hand-soldering onto it, hanging bench equipment off it,
-            and poking registers, the chips&apos; internal settings, one at a
-            time through a third-party probe. Hours per unit. There was a
-            debug board that should have plugged straight in. Why weren&apos;t
+            Technically I&apos;m the test lead for this module, which means I
+            own the testers on the line and the procedures for what happens to
+            a unit after it fails one and gets pulled off. The failure-analysis
+            lab was a room full of new-grad EEs and three supervisors, all
+            hired by the factory, and I spent my first afternoons just sitting
+            in it. Gemba, if you like. What I saw was this: to get any data
+            out of a failed unit they were hand-reworking a connector with a
+            pitch measured in microns, hanging bench equipment off it, and
+            poking registers, the chips&apos; internal settings, one at a time
+            through a third-party probe. Hours per unit. We had shipped them a
+            proper debug board that should have plugged straight in. Why weren&apos;t
             they using it?
           </P>
 
           <P>
-            Software. The debug board talked to the unit through a bridge
-            chip with an enormous register map, and the software that came
-            with it let you read and write that chip&apos;s registers and
-            nothing else. Twenty reads and writes to get one number you cared
-            about. The lab engineers agreed with me: it was unusable. So I
-            said I could make this one click. Plug in the unit, pick a test,
-            click, get the data back. One of the in-region engineers rolled
-            her eyes. <em>Have you seen the register map?</em>
+            Software. The debug board talked to the chips on the module
+            through a bridge chip with a thousand-page datasheet, and the
+            software that came with it let you read and write that
+            chip&apos;s registers and nothing else. Twenty reads and writes to
+            get one number you cared about, if you&apos;d configured it right,
+            which took most of a morning. The lab EEs agreed with me: the
+            software was ass. So I said I could make this one click. Hook up
+            the flex, pick a test, click, get the data back. One of the
+            in-region engineers, the same one with the tiger-parent frame,
+            rolled her eyes. <em>Have you seen the register map?</em>
           </P>
 
           <P>
@@ -350,15 +370,26 @@ export default function ChinaProfessionalPost() {
             obvious thing and asked the team that built it. By the morning the
             next batch of failed units came back from the line, the test
             they&apos;d failed was reproducible in one click, with the
-            numbers. I went to the lab and sat next to a supervisor who was
-            elbow-deep in a rework, tapped him on the shoulder, and showed him
-            the data coming back, clean, at the precision the bench gear had
-            been fighting for. He lit up. For a week I had been the foreigner
+            numbers. I told her at triage. Eye-roll again. Then I went to the
+            lab, which had no Wi-Fi, so I&apos;m sitting there on my
+            phone&apos;s hotspot next to a supervisor who is elbow-deep in a
+            rework, and I tapped him on the shoulder and showed him the data
+            coming back, clean, at the precision the bench gear had been
+            fighting for. He lit up. For a week I had been the foreigner
             typing in the corner of their lab, and that was the moment I
-            stopped being one. He wanted it running in the lab, and he got it
-            there himself, which taught me a separate and painful lesson about
-            software portability.
+            stopped being one. He wanted it on his own laptop, and he fixed
+            the Python environment himself to get it there, which taught me a
+            separate and painful lesson about software portability.
           </P>
+
+          <Shot
+            file="red-bull.jpg"
+            alt="A hand holding a small gold can of Chinese Red Bull on a tree-lined road outside the factory"
+            caption="chinese red bull is a different drink. it got me through the one-click days."
+            aspect="3 / 4"
+            fit="contain"
+            narrow
+          />
 
           <P>
             I want to be careful about the moral, because the easy one is
@@ -383,7 +414,7 @@ export default function ChinaProfessionalPost() {
             When a test starts failing on a line, everybody says the same
             sentence: <em>I think we should calibrate the fixture.</em> It is
             the manufacturing equivalent of turning it off and on again. On
-            this build one of our tests drifted, the whole distribution
+            this build one of our impedance tests drifted, the whole distribution
             shifted up, and the answer was not the fixture. Someone had added
             grounded metal near the probe head, and it was enough to move
             every reading. We found that out by walking onto the line, pulling
@@ -435,7 +466,11 @@ export default function ChinaProfessionalPost() {
             same test across builds and across testers at different points in
             the process before you believe it. I start a graduate statistics
             course for engineering managers in two weeks, and for the first
-            time I know exactly what I want out of it.
+            time I know exactly what I want out of it. One more note for the
+            nerds: a language model (an internal one, before anyone panics)
+            turned out to be very good at the data farming, the Cpk, the
+            charts, the outlier and multimodality hunts, and I recommend it
+            without reservation.
           </P>
 
           <div className="term my-6 p-4 text-xs leading-relaxed">
@@ -477,12 +512,12 @@ export default function ChinaProfessionalPost() {
                 as they can get away with.
               </li>
               <li>
-                A hotter solder needs a{" "}
+                Hot-bar temperature has to match the{" "}
                 <A href="https://www.protoexpress.com/blog/how-to-pick-the-right-flex-pcb-materials/">
                   flex laminate
-                </A>{" "}
-                that survives it; the common materials differ by over a
-                hundred degrees.
+                </A>
+                : a higher-temperature solder wants a polyimide flex, and LCP
+                only gets you so far.
               </li>
               <li>
                 Failure analysis is a catalogue, and knowing which tool to
@@ -521,13 +556,21 @@ export default function ChinaProfessionalPost() {
 
           <P>
             The second is what goes at the top. Material flow. Senior people
-            want to see that units are moving and nothing is stuck: which
-            units are where and what they&apos;re going through. Then the
+            want to see that units are moving and nothing is stuck: the batch
+            names, where each one is, what it&apos;s going through. Then the
             day&apos;s failures, which scale directly into parts per million.
             Then the notes. I put a fun photo at the bottom every day and
             people mentioned it when I got home, which I choose to take as
             praise.
           </P>
+
+          <Shot
+            file="canteen-lunch.jpg"
+            alt="A factory canteen lunch tray: stir-fried vegetables, purple rice, egg-drop soup, a croissant with fruit, a Yakult and a bottle of oolong tea"
+            caption="lunch at the factory canteen. the croissant and the yakult are the fun photo at the bottom, most days."
+            aspect="4 / 3"
+            fit="contain"
+          />
 
           <Shot
             file="asleep-in-the-shuttle.jpg"
@@ -541,9 +584,10 @@ export default function ChinaProfessionalPost() {
           <P>
             The culture thing: they asked me to stop putting emojis in it. It
             was a tell for something I noticed everywhere on the trip,
-            including shuttle rides with no small talk in them. The place
-            takes itself extremely seriously, and I am not built that way. I
-            also can&apos;t argue with the hardware it ships. And I can&apos;t
+            including shuttle rides with no small talk in them. Apple takes
+            itself extremely seriously. Earnestness reads as weakness;
+            goofiness reads as not understanding the stakes. I don&apos;t love
+            it. I also can&apos;t argue with the hardware it ships. And I can&apos;t
             rule out that some of what I read as culture is class. Everyone on
             that trip had a master&apos;s or a PhD from a school you&apos;ve
             heard of. I have a bachelor&apos;s from a Canadian school you
@@ -560,7 +604,7 @@ export default function ChinaProfessionalPost() {
             pride that minds that, and then it cost me a day in the lab. But I
             want to learn more than I want to look smart, and what surprised
             me is how often the dumb question paid out for someone else. In
-            our breakouts I&apos;d ask one and someone five years in would go,
+            our Systems EE breakouts I&apos;d ask one and someone five years in would go,
             &quot;huh, yeah, why do we do it that way?&quot; or &quot;huh,
             what does that acronym actually stand for?&quot; The dumb question
             is a service. It is also the only version of Wen&apos;s barking
@@ -569,11 +613,12 @@ export default function ChinaProfessionalPost() {
 
           <H2>October</H2>
           <P>
-            I go back in October, to a line that has more of this figured
-            out, and I plan to spend it doing what Wen did: ignoring the
-            electronics, watching hands, and taking notes on what a line looks
-            like when it&apos;s dialed in. Then back to one that isn&apos;t,
-            with a better picture of what I&apos;m trying to make it into.
+            I go back in October, to a different, much more mature factory
+            where a lot less goes wrong, and I plan to spend it doing what Wen
+            did: ignoring the electronics, watching hands, and taking notes on
+            what a line looks like when it&apos;s dialed in. Then, on the
+            next build, back to a line that isn&apos;t, with a better picture
+            of what I&apos;m trying to make it into.
           </P>
 
           <P>

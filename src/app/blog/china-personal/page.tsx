@@ -277,8 +277,10 @@ export default function ChinaPersonalPost() {
               </dd>
               <dt className="text-green-dim">the other post</dt>
               <dd className="text-text">
-                the professional half, glue machines and all, is coming
-                separately
+                the professional half, glue machines and all, is{" "}
+                <Link href="/blog/china-professional" className="tlink">
+                  here
+                </Link>
               </dd>
             </dl>
           </div>
