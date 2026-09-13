@@ -311,15 +311,6 @@ export default function ChinaProfessionalPost() {
             batch. And the factory, as far as I could tell, took it as care.
           </P>
 
-          <Shot
-            file="friday-lunch.jpg"
-            alt="A round restaurant table covered in emptied dishes, shrimp shells and wine glasses, with green fields through the window"
-            caption="friday team lunch by the lake, after. this is the laughing-together part."
-            aspect="3 / 4"
-            fit="contain"
-            narrow
-          />
-
           <P>
             Here is my honest problem with that. I don&apos;t think I get to
             do it. Not because it&apos;s wrong, but because I&apos;m a white
@@ -562,7 +553,7 @@ export default function ChinaProfessionalPost() {
           <Shot
             file="canteen-lunch.jpg"
             alt="A factory canteen lunch tray: stir-fried vegetables, purple rice, egg-drop soup, a croissant with fruit, a Yakult and a bottle of oolong tea"
-            caption="lunch at the factory canteen. the croissant and the yakult are the fun photo at the bottom, most days."
+            caption="lunch at the factory canteen. croissant, yakult, oolong tea. this one never made the build report."
             aspect="4 / 3"
             fit="contain"
           />
