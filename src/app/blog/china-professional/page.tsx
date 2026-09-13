@@ -110,8 +110,8 @@ export default function ChinaProfessionalPost() {
             China, and I thought I knew what I was going for. Electronics.
             Pick-and-place machines. Testers. The drama, I assumed, would be
             electrical. The drama turned out to be a mop. Specifically: whether
-            an operator could bring a mop into a cleanroom, a room where
-            nothing is allowed to shed, how the mop got in, where it had been
+            an operator could bring a mop into a cleanroom, how the mop got
+            in, where it had been
             before it got in, and who had written any of that down. Nobody
             had. That was the trip.
           </P>
@@ -172,7 +172,7 @@ export default function ChinaProfessionalPost() {
           <P>
             Here is what I thought a Systems EE was, four months in: my job at
             Tesla with a nicer badge. Design the board. Own the schematic,
-            argue about parts, get it working on the bench, hand it off. I now
+            argue about parts, get it through bring-up, hand it off. I now
             think the schematic is the easiest thing we do. The job is taking
             everything the research teams at Apple have figured out, putting
             it on a page, and then making that page <em>buildable</em>, which
@@ -188,9 +188,8 @@ export default function ChinaProfessionalPost() {
             and out, and for reasons I still consider luck he let me shadow him,
             take notes, and write the nightly build report. Here&apos;s what
             he did all week: he ignored the electronics. The functional
-            testers, the machines that decide whether a unit works and the
-            thing I had flown there to care about, got maybe an hour of his
-            time. The rest of it he spent walking the line, watching
+            testers, the thing I had flown there to care about, got maybe an
+            hour of his time. The rest of it he spent walking the line, watching
             operators&apos; hands, pointing at things. When he really needed a
             point made he&apos;d bark it in Mandarin, and with enough context
             I could follow: <em>that carrier, that flip, why is she touching
@@ -345,8 +344,7 @@ export default function ChinaProfessionalPost() {
             in it. Gemba, if you like. What I saw was this: to get any data
             out of a failed unit they were hand-reworking a connector with a
             pitch measured in microns, hanging bench equipment off it, and
-            poking registers, the chips&apos; internal settings, one at a time
-            through a third-party probe. Hours per unit. We had shipped them a
+            poking registers one at a time through a third-party probe. Hours per unit. We had shipped them a
             proper debug board that should have plugged straight in. Why weren&apos;t
             they using it?
           </P>
@@ -418,8 +416,7 @@ export default function ChinaProfessionalPost() {
             shifted up, and the answer was not the fixture. Someone had added
             grounded metal near the probe head, and it was enough to move
             every reading. We found that out by walking onto the line, pulling
-            off the pogo pins, the spring-loaded pins the tester presses
-            against the unit, and measuring. Not by reasoning about it in a
+            the pogo pins off, and measuring. Not by reasoning about it in a
             conference room. The data was sitting there the whole time; it
             just wasn&apos;t in the room.
           </P>
@@ -430,8 +427,7 @@ export default function ChinaProfessionalPost() {
             risk, on a hunch, on the strength of a senior engineer being
             pretty sure, and it worked out almost every time. Apple does not
             do that. Any change to the process needs testing, and not a
-            little: enough samples that a coincidence can&apos;t pass for a
-            cause. I think there are two unglamorous reasons Apple can afford
+            little: enough samples to be sure you aren&apos;t aliasing. I think there are two unglamorous reasons Apple can afford
             this and Tesla mostly couldn&apos;t. The boards are cheap, so a
             hundred samples is nothing. And the teams are deep, so handing
             someone a new recipe and saying &quot;chase this for a week&quot;
@@ -457,8 +453,7 @@ export default function ChinaProfessionalPost() {
             <A href="https://en.wikipedia.org/wiki/Statistical_process_control">
               Statistical process control
             </A>
-            , deciding how many standard deviations out a test limit should
-            sit,{" "}
+            , setting test limits at six or nine sigma,{" "}
             <A href="https://en.wikipedia.org/wiki/Process_capability_index">
               Cpk
             </A>
@@ -481,16 +476,16 @@ export default function ChinaProfessionalPost() {
             <ul className="list-disc space-y-1 pl-5 text-text">
               <li>
                 Everything in the flow is &quot;at risk&quot; until it passes
-                a tester. You place testers and{" "}
+                a tester. You place testers,{" "}
                 <A href="https://en.wikipedia.org/wiki/Automated_optical_inspection">
-                  camera
+                  AOI
                 </A>{" "}
                 and{" "}
                 <A href="https://en.wikipedia.org/wiki/Automated_X-ray_inspection">
-                  X-ray
+                  AXI
                 </A>{" "}
-                inspection through the process so that when something goes
-                wrong you can tell <em>where</em>, not just that.
+                through the process so that when something goes wrong you can
+                tell <em>where</em>, not just that.
               </li>
               <li>
                 Package strain moves a bandgap reference. It&apos;s the{" "}
@@ -522,8 +517,8 @@ export default function ChinaProfessionalPost() {
               <li>
                 Failure analysis is a catalogue, and knowing which tool to
                 reach for is the craft: cross-section (done by hand, which
-                shocked me), CT, FTIR, EDS, and the inspection images you
-                already paid for.{" "}
+                shocked me), CT, FTIR, EDS, and the AOI/AXI images you already
+                paid for.{" "}
                 <A href="https://www.eag.com/techniques/">
                   EAG&apos;s technique index
                 </A>{" "}
