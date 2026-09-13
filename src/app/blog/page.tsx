@@ -6,6 +6,12 @@ export const metadata: Metadata = { title: "blog" };
 
 const posts = [
   {
+    slug: "china-professional",
+    title: "A million actions a day",
+    date: "2026-09-13",
+    note: "Professional growth, my first trip to China: two weeks on a factory floor, a dirty mop, a thousand-page datasheet, and why nothing gets done on a hunch.",
+  },
+  {
     slug: "china-personal",
     title: "A tunnel has two openings",
     date: "2026-09-12",

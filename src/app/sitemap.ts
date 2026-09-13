@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/hardware",
     "/experience",
     "/blog",
+    "/blog/china-professional",
     "/blog/china-personal",
     "/blog/yc-interview",
     "/blog/jachacks-sf",
