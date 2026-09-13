@@ -48,15 +48,21 @@ function Shot({
   caption,
   aspect = "3 / 2",
   fit = "cover",
+  narrow = false,
 }: {
   file: string;
   alt: string;
   caption: string;
   aspect?: string;
   fit?: "cover" | "contain";
+  narrow?: boolean;
 }) {
   return (
-    <figure className="term my-6 overflow-hidden">
+    <figure
+      className={
+        "term my-6 overflow-hidden" + (narrow ? " mx-auto max-w-xs" : "")
+      }
+    >
       <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
         ▸ view {file}
       </div>
@@ -523,6 +529,7 @@ export default function ChinaProfessionalPost() {
             caption="the shuttle home. the build report got written after this, most nights."
             aspect="3 / 4"
             fit="contain"
+            narrow
           />
 
           <P>
