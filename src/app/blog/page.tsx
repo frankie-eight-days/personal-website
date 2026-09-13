@@ -9,7 +9,7 @@ const posts = [
     slug: "china-professional",
     title: "A million actions a day",
     date: "2026-09-13",
-    note: "Professional growth, my first trip to China: two weeks on a factory floor, a dirty mop, a thousand-page datasheet, and why nothing gets done on a hunch.",
+    note: "Professional growth, my first trip to China: two weeks on a factory floor, a dirty mop, an unusable debug tool, and why nothing gets done on a hunch.",
   },
   {
     slug: "china-personal",
