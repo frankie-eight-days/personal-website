@@ -90,6 +90,14 @@ export default function ChinaProfessionalPost() {
         </SectionHeader>
 
         <article>
+          <div className="term my-6 px-4 py-3 text-xs leading-relaxed text-text-dim">
+            <span className="text-amber glow-amber">[ note ]</span> names have
+            been changed. Nobody in this post appears under their real name,
+            the factory and the product aren&apos;t identified, and nothing
+            here should be read as a description of what was being built. The
+            lessons are mine. The rest belongs to other people.
+          </div>
+
           <P>
             I had been at Apple four months when they sent me to a factory in
             China, and I thought I knew what I was going for. Electronics.
@@ -132,8 +140,7 @@ export default function ChinaProfessionalPost() {
               <dt className="text-green-dim">who</dt>
               <dd className="text-text">
                 my team, our in-region engineers, and the factory&apos;s own
-                engineers · one senior engineer I&apos;ll call Wen (not his
-                name)
+                engineers · one senior engineer I&apos;ll call Wen
               </dd>
               <dt className="text-green-dim">what&apos;s not here</dt>
               <dd className="text-text">
