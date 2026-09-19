@@ -578,9 +578,8 @@ export default function ChinaProfessionalPost() {
             that trip had a master&apos;s or a PhD from a school you&apos;ve
             heard of. I have a bachelor&apos;s from a Canadian school you
             haven&apos;t, from a half Irish Catholic, half Anglican working
-            family that shaped how I talk and how hard I work. I am not going
-            to change the first, and the second is the only thing that has
-            ever gotten me hired.
+            family in Newfoundland that shaped how hard I work, and that is
+            the only thing that has ever gotten me hired.
           </P>
 
           <P>
