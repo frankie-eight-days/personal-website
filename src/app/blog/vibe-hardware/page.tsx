@@ -869,18 +869,13 @@ export default function VibeHardwarePost() {
           </div>
 
           <P>
-            On September 3rd OpenAI launched GPT-6 Astra. One of the launch
-            demos was fifteen seconds of the model doing PCB layout in KiCad.
-            Within a week my feed was wall to wall circuit boards, and the name
-            for all of it is vibe hardware.
+            On September 3rd OpenAI launched GPT-6 Astra, and one of the launch demos was fifteen seconds of the model doing PCB layout in KiCad: placing parts, routing copper, &ldquo;turning an electronic schematic into a manufacturable PCB.&rdquo; Within a week my feed was wall to wall circuit boards, from flight controllers to a star tracker the model ordered from JLCPCB itself, and the name everyone settled on was vibe hardware.
           </P>
 
           <TweetCarousel dir={IMAGE_DIR} tweets={TWEETS} title="vibe-hardware" />
 
           <P>
-            I design production hardware at a big company, and I use AI to do
-            it every working day. I have an opinion on this, and it isn&apos;t
-            the one the feed suggests.
+            I design production hardware at a big company, and I use AI to do it every working day, so I have an opinion on all this. It isn&apos;t the one the feed suggests. The demos point the model at the one part of the job it&apos;s worst at, and the real gains are hiding in the less photogenic work around the board.
           </P>
 
           <TLDR />
@@ -909,19 +904,11 @@ export default function VibeHardwarePost() {
           </UL>
 
           <P>
-            Everyone gets the same model. The harness and the context are
-            yours, and they account for nearly all of the difference between a
-            great result and a frustrating one.
+            Everyone gets the same model, more or less on the same day. The harness and the context are yours, though, and in my experience they account for nearly all of the difference between a result that saves you an afternoon and one that sends you back to the datasheet angry.
           </P>
 
           <P>
-            The best thing I&apos;ve read on this is{" "}
-            <A href="https://www.anthropic.com/research/claude-shaped-science">
-              Claude-shaped science
-            </A>
-            , by Matthew Schwartz, a Harvard physicist who spent months trying
-            to make Claude do physics his way. It didn&apos;t work. What worked
-            was turning it around:
+            The best thing I&apos;ve read on this is{" "}<A href="https://www.anthropic.com/research/claude-shaped-science">Claude-shaped science</A>, by Matthew Schwartz, a Harvard physicist who spent months trying to get Claude to do physics the way he does physics. It didn&apos;t work, and the interesting part of the essay is what he did next:
           </P>
 
           <Pull>
@@ -930,19 +917,13 @@ export default function VibeHardwarePost() {
           </Pull>
 
           <P>
-            He found the problems that suited it, built a harness called{" "}
-            <A href="https://github.com/BootLoops-ai/bootloops">BootLoops</A>{" "}
-            to steer it there, and got thirty-six manuscripts out. That&apos;s
-            the whole skill in EE too: know where the model is superhuman and
-            where it&apos;s worse than an intern, and keep it on the right side
-            of that line. The line moves every few months.
+            He went looking for the problems that suited it, built a harness called{" "}<A href="https://github.com/BootLoops-ai/bootloops">BootLoops</A>{" "}to steer it toward them, and came out the other side with thirty-six manuscripts. That is the whole skill in electrical engineering too. A model in 2026 is superhuman at some parts of board design and worse than an intern at others, and the job is knowing where that line sits and keeping the model on the right side of it. The catch is that the line moves every few months, so whatever you learn about it has a short shelf life.
           </P>
 
           <H2>2. Harness: get the model close to the files</H2>
 
           <P>
-            Models are best at text. Everything else is a translation layer
-            that costs accuracy and tokens. Three rules follow:
+            Models are best at text. Every other format is a translation layer, and every translation costs you some accuracy and a lot of tokens. Three rules fall out of that, and they&apos;re the ones I&apos;d give anyone setting up a harness for hardware work:
           </P>
 
           <Table
@@ -983,74 +964,44 @@ export default function VibeHardwarePost() {
           />
 
           <P>
-            If I were starting a hardware company tomorrow, I wouldn&apos;t pick
-            an ECAD tool that stores designs as binaries. The counterexample is{" "}
-            <A href="https://podcast.altium.com/e/altium-file-parsing-ai-design-reviews-pcb-viz-tools/">
-              Eli Hughes
-            </A>
-            , who wrote open-source parsers to crack Altium files open for
-            Claude and Codex. So binary isn&apos;t impossible. Someone just has
-            to build the bridge first, and in KiCad it&apos;s already built.
+            If I were starting a hardware company tomorrow, I wouldn&apos;t pick an ECAD tool that stores designs as binaries, because every binary file is a wall between the model and your design. The honest counterexample is{" "}<A href="https://podcast.altium.com/e/altium-file-parsing-ai-design-reviews-pcb-viz-tools/">Eli Hughes</A>, who wrote open-source parsers to crack Altium files open and feed the netlists to Claude and Codex for design reviews. So binary isn&apos;t a dead end. Someone just has to build the bridge before the model can cross it, and with KiCad the bridge is already there.
           </P>
 
           <P>
-            The other extreme is{" "}
-            <A href="https://github.com/atopile/atopile">atopile</A>, which
-            describes the whole circuit as code. At Tesla there was a real push
-            to use it. My problem with it then and now: there&apos;s no
-            schematic. Models love that. Electronics engineers want a
-            schematic.
+            At the other extreme is{" "}<A href="https://github.com/atopile/atopile">atopile</A>, which describes the whole circuit as code. When I was at Tesla there was a real push to use it, because we wanted to move as fast as humanly possible, and I understood the appeal. My problem with it was, and still is, that there&apos;s no schematic: you read code to find out how a buffer is hooked up. Models love that. Electronics engineers want a schematic, and I don&apos;t think that changes because the machine would prefer otherwise.
           </P>
 
           <P>
-            On CLIs: at work, a lot of my harness is small command-line tools
-            the agent wrote for our internal web tools. The parts database, the
-            issue tracker, the place suppliers post DFM comments. I describe
-            what I want; it builds the command. Anthropic&apos;s{" "}
-            <A href="https://code.claude.com/docs/en/best-practices">own docs</A>{" "}
-            agree: &ldquo;CLI tools are the most context-efficient way to
-            interact with external services.&rdquo;
+            On CLIs: at work, a lot of my harness is small command-line tools the agent wrote for our internal web tools, things like the parts database, the issue tracker, and the place suppliers post their DFM comments. I describe what I want out of the tool, the agent builds the command, and I&apos;ve stopped caring much how they work inside. Anthropic&apos;s{" "}<A href="https://code.claude.com/docs/en/best-practices">own docs</A>{" "}back the approach: &ldquo;CLI tools are the most context-efficient way to interact with external services.&rdquo;
           </P>
 
-          <P>And here&apos;s the header file. Mine looks roughly like this:</P>
+          <P>
+            And here&apos;s the header file. In embedded C, a header declares what exists and where it lives, and the definitions only get pulled in when something calls them. A CLAUDE.md should work the same way, and mine looks roughly like this:
+          </P>
 
           <HeaderFile />
 
           <P>
-            One gotcha: Claude Code&apos;s{" "}
-            <span className="text-cyan">@path</span>{" "}import{" "}
-            <A href="https://code.claude.com/docs/en/memory">loads the whole file at launch</A>
-            . That&apos;s an #include, not a pointer. A plain sentence saying
-            where the file lives works better.
+            One gotcha worth knowing: Claude Code&apos;s <span className="text-cyan">@path</span> import{" "}<A href="https://code.claude.com/docs/en/memory">loads the whole file at launch</A>, which makes it an #include, not a pointer. A plain sentence saying where the file lives, and when to open it, does the job better and costs one line.
           </P>
 
           <H2>3. Context: the model is an expert in a box</H2>
 
           <P>
-            The mistake I see most, from good engineers: paste a circuit
-            question into a chat window, get a wrong answer, decide the model
-            is dumb.
+            The mistake I see most often, and I see it from good engineers, goes like this: paste a circuit question into a chat window, get a wrong answer, and decide the model is dumb.
           </P>
 
           <P>
-            Try this instead. You&apos;re a very good EE. Someone locks you in a
-            box, slides a schematic you&apos;ve never seen under the door, and
-            asks if the current-sense amp is hooked up right. No datasheet, no
-            system diagram. You&apos;d guess, you&apos;d mostly be right, and
-            sometimes you&apos;d be confidently wrong. That&apos;s the model,
-            every time you ask it something cold.
+            Try this instead. You&apos;re a very good EE, and someone locks you in a box, slides a schematic you&apos;ve never seen under the door, and asks whether the current-sense amp is hooked up right. There&apos;s no datasheet and no system diagram, and you have no idea what the board plugs into. You&apos;d guess, you&apos;d mostly be right because you&apos;re good, and some fraction of the time you&apos;d be confidently wrong. That&apos;s the model, every time you ask it something cold. Anthropic&apos;s{" "}<A href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">prompting guide</A>{" "}has a politer version, &ldquo;a brilliant but new employee who lacks context,&rdquo; but the box is closer to how it looks from the model&apos;s side of the door.
           </P>
 
           <P>
-            I did exactly this to myself this week. I was designing a
-            current-sense amplifier circuit without the part&apos;s datasheet
-            in my knowledge base, and the model told me, with total confidence,
-            that the ground pin could go to a negative rail. It can&apos;t. The
-            model didn&apos;t change between that answer and the right one. The
-            datasheet did.
+            I did exactly this to myself this week. I was designing a current-sense amplifier circuit and hadn&apos;t put the part&apos;s datasheet in my knowledge base yet, and the model told me, with total confidence, that the ground pin could go to a negative rail. It can&apos;t. The model didn&apos;t get any smarter between that answer and the right one; the only thing that changed was the datasheet.
           </P>
 
-          <P>For a board, &ldquo;context&rdquo; means:</P>
+          <P>
+            So what does &ldquo;context&rdquo; actually mean for a board? In my experience it&apos;s four things, roughly in order of how often people forget them:
+          </P>
 
           <UL>
             <LI>
@@ -1076,8 +1027,7 @@ export default function VibeHardwarePost() {
           </UL>
 
           <P>
-            My biggest pet peeve is the raw datasheet PDF dropped into a chat.
-            Three things go wrong:
+            My biggest pet peeve is the raw datasheet PDF dropped into a chat with &ldquo;design me a circuit around this.&rdquo; It feels like you&apos;ve handed the model everything it needs, which is exactly what makes it a trap. Three things go wrong:
           </P>
 
           <UL>
@@ -1102,23 +1052,13 @@ export default function VibeHardwarePost() {
           </UL>
 
           <P>
-            So I pre-digest every datasheet, with Baidu&apos;s{" "}
-            <A href="https://github.com/baidu/Unlimited-OCR">Unlimited-OCR</A>{" "}
-            running locally through{" "}
-            <A href="https://huggingface.co/mlx-community/Unlimited-OCR-4bit">MLX</A>{" "}
-            and Claude for the hard parts. Ari Mahpour at Altium{" "}
-            <A href="https://resources.altium.com/p/building-local-llm-datasheet-extractor-ic-driver-development">
-              built something similar
-            </A>
-            .
+            So I pre-digest every datasheet before the model ever sees it. Baidu&apos;s{" "}<A href="https://github.com/baidu/Unlimited-OCR">Unlimited-OCR</A>{" "}runs locally on my laptop through{" "}<A href="https://huggingface.co/mlx-community/Unlimited-OCR-4bit">MLX</A>{" "}and handles the bulk of the text for free, and anything it isn&apos;t confident about goes to Claude, which is slower and costs money but can actually read a table. Ari Mahpour at Altium{" "}<A href="https://resources.altium.com/p/building-local-llm-datasheet-extractor-ic-driver-development">built something similar</A>, which made me feel a little less crazy for doing it.
           </P>
 
           <VisionPipeline />
 
           <P>
-            This won&apos;t be necessary forever. Datasheets are written for
-            people, and their main reader is becoming a model. Where the
-            vendors are, as of this fall:
+            None of this should be necessary forever. Datasheets are written for people, their main reader is quickly becoming a model, and somebody is going to fix the format. Here&apos;s where the vendors stand as of this fall:
           </P>
 
           <Table
@@ -1149,38 +1089,21 @@ export default function VibeHardwarePost() {
           />
 
           <P>
-            I&apos;d bet heavily on that last row changing. Machine-readable
-            datasheets were the backup idea on my{" "}
-            <Link href="/blog/yc-interview" className="tlink">
-              YC application
-            </Link>
-            .
+            I&apos;d bet heavily on that last row changing within a couple of years. Machine-readable datasheets were the backup idea on my{" "}<Link href="/blog/yc-interview" className="tlink">YC application</Link>, and I still think every agent that touches hardware is going to need them.
           </P>
 
           <H2>4. What it&apos;s actually good at: translation</H2>
 
           <P>
-            With the harness and context in place, the surprise isn&apos;t any
-            one task. It&apos;s that the model is a universal adapter. Hardware
-            is full of files that were never meant to talk to each other, and I
-            used to spend a lot of my day carrying information between them by
-            hand.
+            With the harness and the context in place, the thing that surprised me most isn&apos;t any single task. It&apos;s that the model is a universal adapter. Hardware engineering is full of files that were never designed to talk to each other (the schematic, the board, the mechanical model, the flex outline, the supplier&apos;s DFM report), and a big part of my day used to be carrying information between them by hand. The model can carry it, and it doesn&apos;t get bored.
           </P>
 
           <P>
-            The best example is a test flex I designed recently. A board has a
-            36-signal board-to-board connector, and we wanted every signal
-            broken out to 2.54 mm headers for bench probing. The reference flex
-            has a bend; this one had to come out straight. I gave the agent the
-            reference pinout and the four-layer FCCL stackup.
+            The best example is a test flex I designed recently. One of our boards has a 36-signal board-to-board connector, and we wanted every signal broken out to 2.54 mm headers so we could probe them on the bench. The complication was that the reference flex has a bend and this one had to come out straight, so the pinout couldn&apos;t just be copied across. I gave the agent the reference pinout and the four-layer FCCL stackup and let it go.
           </P>
 
           <P>
-            It assigned every net, planned the fanout, drew the outline in
-            Matplotlib, and exported IDX for the mechanical side. (A board
-            outline is the same problem as an SVG, which these models are
-            great at.) I checked every pin by hand and changed nothing. It
-            isn&apos;t fabbed yet, but an afternoon became a prompt.
+            It assigned every net, planned the fanout, drew the outline in Matplotlib, and exported it as IDX for the mechanical side. (Drawing a board outline turns out to be the same problem as drawing an SVG, which these models are extremely good at.) I checked every pin by hand afterwards and changed nothing. It isn&apos;t fabbed yet, so the bench gets the last word, but an afternoon of careful, boring work became one prompt and a review.
           </P>
 
           <Table
@@ -1197,10 +1120,7 @@ export default function VibeHardwarePost() {
           />
 
           <P>
-            The gap is simulation. Even with text netlists, I haven&apos;t had
-            good results getting it to build and run LTspice models, though I
-            haven&apos;t put real harness work into it. Here&apos;s everything
-            else, sorted by where it sits in the job:
+            The honest gap is simulation. Even with text netlists, I haven&apos;t had good results getting it to build and run LTspice models, though I also haven&apos;t put real harness work into that, so some of the blame is mine. Everything else I use it for is below, sorted by where it sits in the job. Steal whatever&apos;s useful.
           </P>
 
           <UseTable />
@@ -1208,25 +1128,17 @@ export default function VibeHardwarePost() {
           <H2>5. It can rotate a shape. It can&apos;t route a board.</H2>
 
           <P>
-            Back to the feed. Everyone is excited about layout, and layout is
-            where the models are weakest.
+            Which brings us back to the feed. The thing everyone is excited about is layout, and layout is exactly where the models are weakest.
           </P>
 
           <P>
-            &ldquo;LLMs aren&apos;t shape rotators&rdquo; turns out to be too
-            blunt. They&apos;ve gotten very good at flat, discrete spatial
-            problems. What they still can&apos;t do is continuous geometry in
-            3D, or hundreds of constraints over a large area at once. That is a
-            description of a circuit board.
+            I used to say LLMs aren&apos;t shape rotators, and it turns out that&apos;s too blunt. They&apos;ve gotten very good at flat, discrete spatial problems, the kind of puzzle you can write down as a grid. What they still can&apos;t do is continuous geometry in three dimensions, or hundreds of interacting constraints spread over a large area at once, and that happens to be a pretty good description of a circuit board.
           </P>
 
           <SpatialBars />
 
           <P>
-            The board-specific numbers are worse.{" "}
-            <A href="https://arxiv.org/abs/2608.04434">OmniRouting</A>{" "}gave
-            routers 1,681 real industrial boards with placements engineers had
-            already proven routable:
+            The board-specific numbers are worse.{" "}<A href="https://arxiv.org/abs/2608.04434">OmniRouting</A>{" "}took 1,681 real industrial boards, each with a placement that engineers had already proven routable, and asked models to finish the job:
           </P>
 
           <Table
@@ -1245,10 +1157,12 @@ export default function VibeHardwarePost() {
             <A href="https://arxiv.org/abs/2607.05915">PCBWorld</A>{" "}found the
             same shape: a GPT-5.4 agent cleanly routed 65% of small real boards
             and none of the medium ones. A tiny RL policy trained only against
-            a DRC checker beat it on both.
+            a DRC checker beat it on both. That last part matters, and I&apos;ll come back to it: the small model won because something was grading it.
           </P>
 
-          <P>Two reasons, as far as I can tell:</P>
+          <P>
+            As far as I can tell there are two reasons, one about how the model sees the board and one about how it remembers it:
+          </P>
 
           <UL>
             <LI>
@@ -1268,7 +1182,9 @@ export default function VibeHardwarePost() {
 
           <PatchMath />
 
-          <P>Here&apos;s what experienced EEs piled on in the feed:</P>
+          <P>
+            And here&apos;s what experienced EEs piled on in the feed, mostly about the Microduck board:
+          </P>
 
           <UL>
             <LI>connectors you can&apos;t physically reach (i2cjak)</LI>
@@ -1279,16 +1195,11 @@ export default function VibeHardwarePost() {
           </UL>
 
           <P>
-            And that&apos;s only what shows up in a screenshot. Most of these
-            boards would work on a bench. Think about ESD, EMC, SI and PI, or
-            building ten thousand, and they fall apart. The bucks are the worst:
-            sprawling hot loops, giant switch nodes, inductors on the far side
-            of the board.
+            That&apos;s only what shows up in a screenshot, too. Most of these boards would probably work on a bench, which is all a demo needs. Start thinking about ESD, EMC, SI and PI, or about building ten thousand of them, and they fall apart. The buck converters are the worst offenders: sprawling hot loops, giant switch nodes, and inductors on the far side of the board from the IC. I&apos;m surprised some of them turn on.
           </P>
 
           <P>
-            What I&apos;d do instead is let the model drive the tool that was
-            built for geometry:
+            What I&apos;d do instead is let the model drive the tool that was actually built for geometry, and keep it on the parts of the job it&apos;s good at:
           </P>
 
           <OL
@@ -1305,48 +1216,33 @@ export default function VibeHardwarePost() {
             <A href="https://jlcpcb.com/blog/gpt-6-astra-pcb-design-in-kicad">review of an Astra board</A>{" "}
             suggests the model already does a version of this: it hand-routed
             the power and switching nets and gave the rest to Freerouting. I
-            haven&apos;t run the loop end to end myself yet. It&apos;s next.
+            haven&apos;t run this loop end to end myself yet, and it&apos;s the next thing I want to try.
           </P>
 
           <H2>6. Taste is scar tissue</H2>
 
           <P>
-            The usual answer to all this is that models lack taste. That&apos;s
-            half right, so start with the half that is.
+            The usual answer to all of this is that the models lack taste. I think that&apos;s half right, so let me start with the half that is.
           </P>
 
           <P>
-            Taste comes from doing it wrong once. A board fails EMC, you spend
-            days in the chamber learning about orientation, loop area, and
-            field geometry, and after that you check every board for that
-            extreme. A fab explains what an unbalanced stackup does in reflow,
-            and now you can glance at a layout and tell whether the designer
-            thought about how much copper the acid takes off each layer.
+            Taste comes from doing it wrong once. A board fails EMC, and you go to the chamber, and you spend days learning about component orientation, loop area, and the geometry of fields until you find the thing. After that you look for that extreme on every board you see. A fab explains what an unbalanced stackup does in reflow, and from then on you can glance at a layout and tell whether the designer was thinking about how much copper the acid would take off each layer. None of it came from school.
           </P>
 
           <P>
-            Here&apos;s the same board both ways, and the six places I look in
-            the first thirty seconds. Flip the toggle.
+            Here&apos;s the same board laid out both ways, with the six places I look in the first thirty seconds. Flip the toggle and watch the same six spots change.
           </P>
 
           <BoardTaste />
 
           <P>
-            A newbie can look at a board from a top-tier company and see that
-            it&apos;s good, but can&apos;t say why. The model is the opposite.
-            It has the words: the loop-area rules, the EMC textbooks, every buck
-            layout app note. It doesn&apos;t have the analogies, the reflex
-            that says this looks like the board that failed in the chamber. It
-            designs from first principles every time, because it&apos;s still
-            in the box.
+            A newbie can look at a board from a top-tier company and see that it&apos;s good, but can&apos;t tell you why. The model is in the opposite position. It has the words: the loop-area rules, the EMC textbooks, and every app note on buck layout ever written are almost certainly in the weights. What it doesn&apos;t have is the analogies, the reflex that says this looks like the board that failed in the chamber last spring. It designs from first principles every time, because it&apos;s still in the box.
           </P>
 
           <H2>7. Half of taste is physics nobody grades</H2>
 
           <P>
-            Now the half I don&apos;t buy. Look at those six callouts again.
-            Most of them aren&apos;t taste. They&apos;re physics with a number
-            attached:
+            Now the half I don&apos;t buy. Look at those six callouts again, and notice that most of them aren&apos;t really taste at all. They&apos;re physics with a number attached:
           </P>
 
           <Table
@@ -1364,9 +1260,7 @@ export default function VibeHardwarePost() {
           />
 
           <P>
-            Models get good at whatever can be checked automatically. That&apos;s
-            why they got good at code first: you can run the tests. Here&apos;s
-            what gets checked in EE today:
+            Models get good at whatever can be checked automatically, which is why they got good at code first: you can run the tests, and the tests don&apos;t care how confident the model sounded. So it&apos;s worth asking what actually gets checked in EE today:
           </P>
 
           <VerifyLadder />
@@ -1382,19 +1276,11 @@ export default function VibeHardwarePost() {
           </P>
 
           <P>
-            I couldn&apos;t find one published example of a language model doing
-            layout against a PDN or field-solver reward. So the Astra demo was
-            optimized for what it showed, a board that connects, because
-            that&apos;s all anyone grades.
+            I couldn&apos;t find a single published example of a language model laying out a board against a PDN or field-solver reward. Which means the Astra demo was optimized for exactly what it showed, a board that connects, because that&apos;s the only thing anyone is grading. Remember the PCBWorld result: the small model beat the big one because something was checking its work.
           </P>
 
           <P>
-            I can&apos;t see the labs building this on their own. Solvers are
-            slow, the commercial ones are license-gated, and EE is a small
-            market next to code. Models also need to get better at physics
-            first:{" "}
-            <A href="https://arxiv.org/abs/2603.18102">HWE-Bench</A>, which
-            checks from-scratch schematics in simulation, tops out at 8%.
+            I can&apos;t see the labs building this on their own. Field solvers are slow, the good commercial ones are license-gated, and EE is a small market next to code. The models would also need to get much better at physics before the scores meant anything:{" "}<A href="https://arxiv.org/abs/2603.18102">HWE-Bench</A>, which asks for board-level schematics from scratch and checks them in simulation, tops out at 8%.
           </P>
 
           <P>
@@ -1414,30 +1300,15 @@ export default function VibeHardwarePost() {
           <H2>Two boxes</H2>
 
           <P>
-            Vibe hardware is real, and it&apos;s going to be huge for people
-            next to EE: firmware, software, and mechanical engineers who need a
-            bench tool and no longer have to ask someone like me. The serious
-            end will look like software did. Anyone can build an app; few can
-            run a platform, and the ones who do use AI to go faster, not to go
-            away.
+            Here&apos;s where I land, for now. Vibe hardware is real, and it&apos;s going to be huge, mostly for people next to electrical engineering: firmware, software, and mechanical engineers who need a bench tool and no longer have to ask someone like me for one. That&apos;s great. The serious end will look more like software did. Anyone can build an app now, but very few people can run a platform for millions of users, and the ones who do use AI to go faster, not to go away.
           </P>
 
           <P>
-            Maybe I&apos;m biased. I&apos;ve spent my adult life getting good at
-            this. But code fails in seconds, and a board fails in the chamber
-            six weeks after you sent it out. Until a model can run that loop, it
-            learns the parts of the job that can be checked, and those
-            aren&apos;t the hard ones.
+            Maybe I&apos;m biased; I&apos;ve spent my whole adult life getting good at this. But the difference from software is the verify loop. Code fails in seconds. A board fails in the chamber, six weeks after you sent it out. Until that loop is something a model can run, it will keep learning the parts of the job that can be checked, and those aren&apos;t the hard ones.
           </P>
 
           <P>
-            There are two boxes in this post. The first is the one we put the
-            model in when we ask it something cold, and it&apos;s easy to open:
-            hand it the datasheet, the system, the pointers. The second is the
-            one it was trained in, where the only thing graded is whether the
-            board connects. That one has to be opened from the outside, with a
-            field solver. Until then, I&apos;ll do the layout and let it do
-            everything else.
+            There are two boxes in this post. The first is the one we put the model in every time we ask it something cold, and that one&apos;s easy to open: hand it the datasheet, the system, the pointers. The second is the one it was trained in, where the only thing anyone grades is whether the board connects. That box has to be opened from the outside, with a field solver. Until someone does, I&apos;ll keep doing the layout, and let it do everything else.
           </P>
 
           <Sources />
