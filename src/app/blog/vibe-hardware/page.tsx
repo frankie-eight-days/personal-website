@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import TweetCarousel, { type CarouselTweet } from "@/components/TweetCarousel";
@@ -115,6 +116,40 @@ function Table({
           <span className="text-green-dim">{"//"}</span> {note}
         </figcaption>
       )}
+    </figure>
+  );
+}
+
+// A post's image, framed like the site's photos, linking back to the post.
+function PostShot({
+  file,
+  href,
+  alt,
+  caption,
+  aspect = "5 / 4",
+}: {
+  file: string;
+  href: string;
+  alt: string;
+  caption: ReactNode;
+  aspect?: string;
+}) {
+  return (
+    <figure className="term my-6 overflow-hidden">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim transition hover:text-text"
+      >
+        ▸ view {file} · open the post on X ↗
+      </a>
+      <a href={href} target="_blank" rel="noopener noreferrer" className="relative block w-full bg-black" style={{ aspectRatio: aspect }}>
+        <Image src={IMAGE_DIR + file} alt={alt} fill sizes="(max-width: 768px) 100vw, 672px" className="object-contain" />
+      </a>
+      <figcaption className="px-3 py-2 text-xs text-text-dim">
+        <span className="text-green-dim">{"//"}</span> {caption}
+      </figcaption>
     </figure>
   );
 }
@@ -1183,16 +1218,32 @@ export default function VibeHardwarePost() {
           <PatchMath />
 
           <P>
-            And here&apos;s what experienced EEs piled on in the feed, mostly about the Microduck board:
+            The board everyone piled on was Microduck, a four-layer robot
+            board that Astra &ldquo;one-shotted.&rdquo; Here&apos;s the layout
+            from the original post, so you can play spot-the-problem before
+            reading the replies:
           </P>
 
-          <UL>
-            <LI>connectors you can&apos;t physically reach (i2cjak)</LI>
-            <LI>screw terminals you can&apos;t get a wire into (blind_via)</LI>
-            <LI>USB and camera differential pairs wandering across the board (Luke Weston, Michael W.)</LI>
-            <LI>9 of 32 vias in pads, and five track widths under one empty net class, so DRC had nothing to check them against (DeepPCB)</LI>
-            <LI>&ldquo;the most awful buck converter layout I have ever seen&rdquo; (Michael W.)</LI>
-          </UL>
+          <PostShot
+            file="x-microduck.jpg"
+            href="https://x.com/ChihYang04/status/2096088141220479214"
+            alt="KiCad layout of the Microduck robot board, routed by GPT-6 Astra"
+            caption="the Microduck board, routed by GPT-6 Astra in KiCad. look at the screw terminals along both edges and the connectors along the top."
+          />
+
+          <Table
+            title="what experienced EEs said, with links"
+            head={["who", "what they called out", "about"]}
+            rows={[
+              [<A href="https://x.com/i2cjak/status/2096762827948048824">i2cjak</A>, "connectors you can't physically reach; watch the model \"like a hawk\" so it doesn't paint itself into a corner", "Microduck"],
+              [<A href="https://x.com/blind_via/status/2096250330900279480">BlindVia</A>, "screw terminals blocked so you can't get a wire in", "Microduck"],
+              [<A href="https://x.com/lukeweston/status/2096239564608413718">Luke Weston</A>, "the USB-C connector, the FFC connector, and signal integrity on the camera diff pairs", "Microduck"],
+              [<A href="https://x.com/alainsamjr/status/2096382254272352602">DeepPCB</A>, "9 of 32 vias in pads, five track widths under one empty net class, a split power plane", "Microduck"],
+              [<A href="https://x.com/Michaelskywal/status/2095869945053630962">Michael W.</A>, "USB D+/D- routed terribly, a GPIO expander added to dodge routing, \"the most awful buck converter layout I have ever seen\"", "his own AI-routed board"],
+              [<A href="https://x.com/kelin_online/status/2090299949426827474">kelin</A>, "a Shenzhen PM whose new clients are software engineers with vibe-designed boards that don't work", "the fab's view"],
+            ]}
+            note="all of these are also in the carousel at the top, in amber."
+          />
 
           <P>
             That&apos;s only what shows up in a screenshot, too. Most of these boards would probably work on a bench, which is all a demo needs. Start thinking about ESD, EMC, SI and PI, or about building ten thousand of them, and they fall apart. The buck converters are the worst offenders: sprawling hot loops, giant switch nodes, and inductors on the far side of the board from the IC. I&apos;m surprised some of them turn on.
