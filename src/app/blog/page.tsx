@@ -6,6 +6,13 @@ export const metadata: Metadata = { title: "blog" };
 
 const posts = [
   {
+    slug: "vibe-hardware",
+    title:
+      "It reads the netlist, it can't route the board, and nobody grades the physics",
+    date: "2026-10-04",
+    note: "Vibe hardware, from an EE who designs boards with AI every day: harness and context, what it's actually good at, why it can't route a board, and the benchmark EE still needs.",
+  },
+  {
     slug: "china-professional",
     title: "A million actions a day",
     date: "2026-09-13",
