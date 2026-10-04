@@ -15,7 +15,7 @@ const IMAGE_DIR = "/images/blog/vibe-hardware/";
 
 function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mt-10 mb-3 text-lg font-bold text-green glow">
+    <h2 className="mt-12 mb-3 text-lg font-bold text-green glow">
       <span className="text-green-dim">##</span> {children}
     </h2>
   );
@@ -41,8 +41,85 @@ function Pull({ children }: { children: ReactNode }) {
   );
 }
 
-const box =
-  "rounded border border-line bg-black/20 px-2.5 py-1 text-text whitespace-nowrap";
+// Bulleted list in the terminal style.
+function UL({ children }: { children: ReactNode }) {
+  return <ul className="mb-5 space-y-2 text-sm leading-relaxed text-text">{children}</ul>;
+}
+
+function LI({ children }: { children: ReactNode }) {
+  return (
+    <li className="flex gap-2">
+      <span className="flex-none text-green">▸</span>
+      <span>{children}</span>
+    </li>
+  );
+}
+
+function OL({ items }: { items: ReactNode[] }) {
+  return (
+    <ol className="mb-5 space-y-2 text-sm leading-relaxed text-text">
+      {items.map((it, i) => (
+        <li key={i} className="flex gap-2">
+          <span className="w-5 flex-none text-green">{i + 1}.</span>
+          <span>{it}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// A table framed as a terminal window. Scrolls sideways inside its own frame
+// on narrow screens rather than pushing the page wider.
+function Table({
+  title,
+  head,
+  rows,
+  note,
+}: {
+  title: string;
+  head: string[];
+  rows: ReactNode[][];
+  note?: ReactNode;
+}) {
+  return (
+    <figure className="term my-6 overflow-hidden">
+      <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
+        ▸ {title}
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[34rem] text-left text-xs leading-relaxed">
+          <thead>
+            <tr className="border-b border-line text-green-dim">
+              {head.map((h) => (
+                <th key={h} className="px-3 py-2 font-normal">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-line">
+            {rows.map((r, i) => (
+              <tr key={i} className="align-top">
+                {r.map((c, j) => (
+                  <td key={j} className={`px-3 py-2 ${j === 0 ? "text-green" : "text-text"}`}>
+                    {c}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {note && (
+        <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
+          <span className="text-green-dim">{"//"}</span> {note}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+const box = "rounded border border-line bg-black/20 px-2.5 py-1 text-text";
 
 // ------------------------------------------------------------------ //
 //  The feed                                                          //
@@ -230,8 +307,59 @@ const TWEETS: CarouselTweet[] = [
 ];
 
 // ------------------------------------------------------------------ //
-//  Diagrams                                                          //
+//  Boxes and diagrams                                                //
 // ------------------------------------------------------------------ //
+
+function TLDR() {
+  return (
+    <div className="term my-6 p-4 text-sm leading-relaxed">
+      <div className="mb-3 text-xs text-text-dim">
+        <span className="text-amber glow-amber">[ tl;dr ]</span> the whole
+        argument
+      </div>
+      <ul className="space-y-2 text-text">
+        <li className="flex gap-2">
+          <span className="flex-none text-green">1.</span>
+          <span>
+            <span className="text-green">Harness and context decide almost everything.</span>{" "}
+            Everyone gets the same model. What you hand it is yours.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="flex-none text-green">2.</span>
+          <span>
+            <span className="text-green">Keep it close to text.</span> KiCad over
+            binary formats, CLIs over MCP, a CLAUDE.md that reads like a header
+            file, and never a raw datasheet PDF.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="flex-none text-green">3.</span>
+          <span>
+            <span className="text-green">It&apos;s superb at translation.</span>{" "}
+            Flex pinouts, Gerber diffs, DFM triage: anything that moves
+            information between tools that never talked.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="flex-none text-amber">4.</span>
+          <span>
+            <span className="text-amber">It&apos;s bad at layout.</span> On real
+            industrial boards the best model routes 12.6% of nets cleanly.
+            Humans route 93.6%.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="flex-none text-amber">5.</span>
+          <span>
+            <span className="text-amber">Half of &ldquo;taste&rdquo; is physics nobody grades.</span>{" "}
+            EE needs a layout benchmark with field solvers in the loop.
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+}
 
 function InfoBox() {
   return (
@@ -242,111 +370,98 @@ function InfoBox() {
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
         <dt className="text-green-dim">who</dt>
         <dd className="text-text">
-          a systems EE who designs production hardware at a big company, ex
-          Tesla, and uses an agent every working day
+          a systems EE at a big hardware company, ex Tesla, using an agent
+          every working day
         </dd>
         <dt className="text-green-dim">covers</dt>
-        <dd className="text-text">schematic, layout, and everything around them</dd>
+        <dd className="text-text">schematic, layout, and the work around them</dd>
         <dt className="text-green-dim">skips</dt>
         <dd className="text-text">firmware, which has been covered to death</dd>
         <dt className="text-green-dim">tools</dt>
-        <dd className="text-text">
-          Claude Code, KiCad at home, my employer&apos;s tools at work
-        </dd>
+        <dd className="text-text">Claude Code, KiCad at home, my employer&apos;s tools at work</dd>
         <dt className="text-green-dim">shelf life</dt>
-        <dd className="text-amber glow-amber">
-          written October 2026. parts of it will be wrong by Christmas
-        </dd>
+        <dd className="text-amber glow-amber">written October 2026. parts will be wrong by Christmas</dd>
       </dl>
     </div>
   );
 }
 
 function HeaderFile() {
-  const line = (k: string, v: string, c: string) => (
-    <div className="whitespace-pre-wrap break-words">
-      <span className="text-cyan">{k}</span>
-      <span className="text-text">{v}</span>
-      <span className="text-green-dim"> {"//"} {c}</span>
-    </div>
-  );
+  const rows: [string, string, string][] = [
+    ["parts", "kb/parts/index.md", "one line per part; open the one you need"],
+    ["datasheets", "kb/datasheets/<mpn>.md", "OCR'd markdown, never the PDF"],
+    ["system", "kb/system/interconnect.md", "what this board plugs into"],
+    ["tools", "parts · tracker · gerber-diff", "run --help to learn each one"],
+    ["rule", "cite the datasheet page for every pin claim", "the CSA lesson, below"],
+  ];
   return (
     <figure className="term my-6 overflow-hidden">
       <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
         ▸ cat CLAUDE.md · declarations, not definitions
       </div>
-      <div className="space-y-1 p-4 text-xs leading-relaxed">
-        <div className="text-green-dim">{"// always in context. about forty lines."}</div>
-        {line("parts:      ", "kb/parts/index.md", "one line per part. open the one you need")}
-        {line("datasheets: ", "kb/datasheets/<mpn>.md", "OCR'd markdown. never the PDF")}
-        {line("system:     ", "kb/system/interconnect.md", "what this board plugs into")}
-        {line("tools:      ", "parts --help · tracker --help · gerber-diff --help", "learn on demand")}
-        {line("rules:      ", "cite the datasheet page for every pin claim", "")}
-      </div>
-      <div className="border-t border-line p-4 text-xs">
-        <div className="mb-2 text-green-dim">{"// on disk. loaded only when a question needs it."}</div>
-        <div className="flex flex-wrap gap-2">
-          <span className={box}>200 datasheets</span>
-          <span className={box}>system interconnect</span>
-          <span className={box}>DFM guidelines</span>
-          <span className={box}>past issues</span>
-          <span className={box}>design calcs</span>
-        </div>
+      <div className="space-y-2 p-4 text-xs leading-relaxed">
+        <div className="text-green-dim">{"// always loaded. about forty lines. each one points somewhere."}</div>
+        {rows.map(([k, v, c]) => (
+          <div key={k} className="grid gap-x-3 sm:grid-cols-[6rem_1fr]">
+            <span className="text-cyan">{k}:</span>
+            <span>
+              <span className="text-text">{v}</span>{" "}
+              <span className="text-green-dim">{"//"} {c}</span>
+            </span>
+          </div>
+        ))}
       </div>
       <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> a pointer costs one
-        line of context. an <span className="text-text">@import</span> is an{" "}
-        <span className="text-text">#include</span>: the whole file, every
-        session.
+        <span className="text-green-dim">{"//"}</span> the files on the right
+        stay on disk until a question needs them. a pointer costs one line.
       </figcaption>
     </figure>
   );
 }
 
 function VisionPipeline() {
-  const arrow = <span className="text-green-dim">→</span>;
+  const step = (n: string, children: ReactNode, sub?: string) => (
+    <div className="flex items-start gap-3">
+      <span className="w-5 flex-none pt-1 text-green-dim">{n}</span>
+      <div>
+        <div className={box}>{children}</div>
+        {sub && <div className="mt-1 text-text-dim">{sub}</div>}
+      </div>
+    </div>
+  );
+  const down = <div className="pl-8 text-green-dim">↓</div>;
   return (
     <figure className="term my-6 overflow-hidden">
       <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
-        ▸ ./datasheet-to-tokens.sh
+        ▸ ./datasheet-to-tokens.sh · top to bottom
       </div>
-      <div className="space-y-3 p-4 text-xs">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
-          <span className={box}>datasheet.pdf</span>
-          {arrow}
-          <span className={box}>
-            Unlimited-OCR <span className="text-text-dim">· local, MLX</span>
-          </span>
-        </div>
-        <div className="space-y-2 border-l border-line-bright pl-4">
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
-            <span className="text-green-dim">body text</span>
-            {arrow}
-            <span className={box}>markdown</span>
+      <div className="space-y-2 p-4 text-xs">
+        {step("1", "datasheet.pdf")}
+        {down}
+        {step("2", "Unlimited-OCR on my laptop (MLX)", "reads every page; flags what it can't handle")}
+        {down}
+        <div className="grid gap-3 pl-8 sm:grid-cols-2">
+          <div className="rounded border border-line-bright p-3">
+            <div className="mb-1 text-green">body text</div>
+            <div className="text-text">written straight out as markdown</div>
           </div>
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
-            <span className="text-amber">tables + figures it doesn&apos;t trust</span>
-            {arrow}
-            <span className={box}>render to image</span>
-            {arrow}
-            <span className={box}>
-              claude -p <span className="text-text-dim">· headless</span>
-            </span>
-            {arrow}
-            <span className={box}>markdown</span>
+          <div className="rounded border border-amber/60 p-3">
+            <div className="mb-1 text-amber">tables + figures it flagged</div>
+            <div className="text-text">
+              cropped to an image, sent to a headless{" "}
+              <span className="text-cyan">claude -p</span>, written back as
+              markdown
+            </div>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
-          <span className="text-green-dim">⤷ merge</span>
-          {arrow}
-          <span className={box}>kb/datasheets/&lt;mpn&gt;.md</span>
-          {arrow}
-          <span className={box}>one line in the index</span>
-        </div>
+        {down}
+        {step("3", "kb/datasheets/<mpn>.md", "merged, greppable, a fraction of the tokens")}
+        {down}
+        {step("4", "one new line in the index", "so the model knows it exists")}
       </div>
       <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> the cheap local model
-        does the bulk. the expensive one only sees the pages that need eyes.
+        <span className="text-green-dim">{"//"}</span> the free local model
+        does the bulk. the expensive one only sees the parts that need eyes.
       </figcaption>
     </figure>
   );
@@ -356,6 +471,7 @@ const SPATIAL: {
   task: string;
   source: string;
   href: string;
+  baseline: string;
   human: number;
   model: number;
   who: string;
@@ -364,50 +480,55 @@ const SPATIAL: {
 }[] = [
   {
     task: "abstract grid puzzles",
-    source: "ARC-AGI-3 · Sep 2026",
+    source: "ARC-AGI-3",
     href: "https://arcprize.org/leaderboard",
+    baseline: "solvable",
     human: 100,
     model: 99.9,
-    who: "GPT-6 Astra",
+    who: "GPT-6 Astra · Sep 2026",
     can: true,
+    note: "100% means every game beaten as efficiently as a human",
   },
   {
     task: "2D mental rotation",
-    source: "SpatialViz · Dec 2025",
+    source: "SpatialViz",
     href: "https://arxiv.org/abs/2507.07610",
+    baseline: "human",
     human: 90.0,
     model: 91.3,
-    who: "GPT-5",
+    who: "GPT-5 · Dec 2025",
     can: true,
   },
   {
     task: "3D mental rotation",
-    source: "SpatialViz · Dec 2025",
+    source: "SpatialViz",
     href: "https://arxiv.org/abs/2507.07610",
+    baseline: "human",
     human: 79.2,
     model: 33.8,
-    who: "GPT-5-mini",
+    who: "GPT-5-mini · Dec 2025",
     can: false,
     note: "chance is 25%",
   },
   {
     task: "multi-view spatial reasoning",
-    source: "MMSI-Bench · 2026",
+    source: "MMSI-Bench",
     href: "https://arxiv.org/abs/2505.23764",
+    baseline: "human",
     human: 97.2,
     model: 45.2,
-    who: "Gemini 3 Pro",
+    who: "Gemini 3 Pro · 2026, third-party eval",
     can: false,
   },
   {
     task: "routing real boards, nets DRC-clean",
-    source: "OmniRouting · Aug 2026",
+    source: "OmniRouting",
     href: "https://arxiv.org/abs/2608.04434",
+    baseline: "human",
     human: 93.6,
     model: 12.6,
-    who: "best model, no tools",
+    who: "best model, no tools · Aug 2026",
     can: false,
-    note: "28.0% with tools. a classic router: 56.2%",
   },
 ];
 
@@ -415,39 +536,32 @@ function SpatialBars() {
   return (
     <figure className="term my-6 overflow-hidden">
       <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
-        ▸ spatial.log · humans vs the best model on each test
+        ▸ spatial.log · best model on each test vs the human baseline
       </div>
-      <div className="space-y-4 p-4 text-xs">
+      <div className="space-y-5 p-4 text-xs">
         {SPATIAL.map((r) => (
           <div key={r.task}>
-            <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-3">
+            <div className="mb-1.5 flex flex-wrap items-baseline justify-between gap-x-3">
               <span className="text-text">
-                {r.task}{" "}
                 <span className={r.can ? "text-green" : "text-amber glow-amber"}>
                   [{r.can ? "can" : "can't"}]
-                </span>
+                </span>{" "}
+                {r.task}
               </span>
               <A href={r.href}>{r.source} ↗</A>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-12 flex-none text-text-dim">human</span>
-              <div className="h-2.5 flex-1 bg-line/40">
-                <div className="h-full bg-text-dim" style={{ width: `${r.human}%` }} />
+            {[
+              [r.baseline, r.human, "bg-text-dim", "text-text-dim"],
+              ["model", r.model, r.can ? "bg-green" : "bg-amber", r.can ? "text-green" : "text-amber"],
+            ].map(([label, v, bar, txt]) => (
+              <div key={label as string} className="mt-1 flex items-center gap-2">
+                <span className="w-16 flex-none text-text-dim">{label}</span>
+                <div className="h-2.5 flex-1 bg-line/40">
+                  <div className={`h-full ${bar}`} style={{ width: `${v}%` }} />
+                </div>
+                <span className={`w-12 flex-none text-right ${txt}`}>{v}%</span>
               </div>
-              <span className="w-12 flex-none text-right text-text-dim">{r.human}%</span>
-            </div>
-            <div className="mt-1 flex items-center gap-2">
-              <span className="w-12 flex-none text-text-dim">model</span>
-              <div className="h-2.5 flex-1 bg-line/40">
-                <div
-                  className={r.can ? "h-full bg-green" : "h-full bg-amber"}
-                  style={{ width: `${r.model}%` }}
-                />
-              </div>
-              <span className={`w-12 flex-none text-right ${r.can ? "text-green" : "text-amber"}`}>
-                {r.model}%
-              </span>
-            </div>
+            ))}
             <div className="mt-1 text-text-dim">
               {r.who}
               {r.note ? ` · ${r.note}` : ""}
@@ -456,10 +570,10 @@ function SpatialBars() {
         ))}
       </div>
       <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> discrete puzzles and
-        flat rotations are solved. continuous 3D geometry and routing are not.
-        newer models aren&apos;t on most of these yet, so read each bar with its
-        date.
+        <span className="text-green-dim">{"//"}</span> each row is a different
+        test, model, and date; there are no 2026 numbers for most of them yet.
+        the pattern is what matters: flat and discrete is solved, 3D and
+        routing are not.
       </figcaption>
     </figure>
   );
@@ -467,75 +581,62 @@ function SpatialBars() {
 
 function PatchMath() {
   return (
-    <div className="term my-6 p-4 text-xs leading-relaxed">
-      <div className="mb-2 text-text-dim">
-        <span className="text-amber glow-amber">[ math ]</span> what one
-        visual token sees
-      </div>
-      <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
-        <span className="text-green-dim">image</span>
-        <span className="text-text">100 mm board, shown edge to edge at 2576 px</span>
-        <span className="text-green-dim">patch</span>
-        <span className="text-text">
-          28 × 28 px (<A href="https://platform.claude.com/docs/en/build-with-claude/vision">Claude&apos;s vision docs</A>)
-        </span>
-        <span className="text-green-dim">so</span>
-        <span className="text-text">one token ≈ 1.1 × 1.1 mm of board</span>
-        <span className="text-green-dim">inside it</span>
-        <span className="text-amber">
-          a 0.1 mm trace, its clearance, and a 0.4 mm-pitch BGA ball
-        </span>
-      </div>
-    </div>
+    <Table
+      title="what one visual token sees"
+      head={["step", "value"]}
+      rows={[
+        ["the image", "a 100 mm board, shown edge to edge at 2576 px"],
+        [
+          "one patch",
+          <>
+            28 × 28 px (
+            <A href="https://platform.claude.com/docs/en/build-with-claude/vision">Claude&apos;s vision docs</A>)
+          </>,
+        ],
+        ["so one token covers", "about 1.1 × 1.1 mm of board"],
+        [
+          "inside that square",
+          <span key="x" className="text-amber">
+            a 0.1 mm trace, its clearance, and a whole 0.4 mm-pitch BGA ball
+          </span>,
+        ],
+      ]}
+    />
   );
 }
 
-const LADDER: {
-  rung: string;
-  status: "graded" | "partly" | "nobody";
-  who: string;
-}[] = [
-  { rung: "works at ten thousand units", status: "nobody", who: "only reality grades this" },
-  { rung: "EMC: radiated emissions", status: "nobody", who: "openEMS can, slowly" },
-  { rung: "SI: impedance and crosstalk on critical nets", status: "nobody", who: "openEMS, gerber2ems" },
-  { rung: "PI: PDN impedance, DC IR drop", status: "nobody", who: "Elmer, ngspice (lumped)" },
-  { rung: "copper balance, DFM", status: "nobody", who: "an area ratio. trivial to compute" },
-  { rung: "circuit behavior in SPICE, at tolerance corners", status: "partly", who: "EEBench, schematic only" },
-  { rung: "DRC / ERC clean", status: "graded", who: "OmniRouting, PCBWorld, every demo" },
-  { rung: "connectivity: every net routed", status: "graded", who: "OmniRouting, PCBWorld, every demo" },
+const LADDER: { check: string; status: "yes" | "partly" | "no"; tools: string }[] = [
+  { check: "every net connected", status: "yes", tools: "OmniRouting, PCBWorld, every demo" },
+  { check: "DRC / ERC clean", status: "yes", tools: "OmniRouting, PCBWorld, every demo" },
+  { check: "circuit works in SPICE at tolerance corners", status: "partly", tools: "EEBench, schematic only, no layout" },
+  { check: "copper balance per layer", status: "no", tools: "a script on kicad-cli output" },
+  { check: "PDN impedance, DC IR drop", status: "no", tools: "Elmer, ngspice (lumped)" },
+  { check: "impedance and crosstalk on critical nets", status: "no", tools: "openEMS, gerber2ems" },
+  { check: "radiated emissions", status: "no", tools: "openEMS, slowly" },
+  { check: "works at ten thousand units", status: "no", tools: "only reality grades this" },
 ];
 
 function VerifyLadder() {
   return (
-    <figure className="term my-6 overflow-hidden">
-      <div className="border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim">
-        ▸ what gets graded · read bottom to top
-      </div>
-      <div className="divide-y divide-line text-xs">
-        {LADDER.map((r) => (
-          <div key={r.rung} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-2">
-            <span
-              className={`w-16 flex-none ${
-                r.status === "graded"
-                  ? "text-green"
-                  : r.status === "partly"
-                    ? "text-cyan"
-                    : "text-amber glow-amber"
-              }`}
-            >
-              [{r.status === "graded" ? "graded" : r.status === "partly" ? "partly" : "nobody"}]
-            </span>
-            <span className="min-w-0 flex-1 text-text">{r.rung}</span>
-            <span className="text-text-dim">{r.who}</span>
-          </div>
-        ))}
-      </div>
-      <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> the demos are optimized
-        for the bottom two rungs because those are the only ones anyone
-        checks.
-      </figcaption>
-    </figure>
+    <Table
+      title="what AI benchmarks grade today, easiest first"
+      head={["check", "graded by any AI benchmark?", "open tools that could grade it"]}
+      rows={LADDER.map((r) => [
+        r.check,
+        <span
+          key="s"
+          className={
+            r.status === "yes" ? "text-green" : r.status === "partly" ? "text-cyan" : "text-amber glow-amber"
+          }
+        >
+          {r.status}
+        </span>,
+        <span key="t" className="text-text-dim">
+          {r.tools}
+        </span>,
+      ])}
+      note="fab DRC and commercial SI/PI tools check several of these for humans. the point is that nobody scores a model on them."
+    />
   );
 }
 
@@ -596,16 +697,16 @@ const USES: {
 function UseTable() {
   const tag = (v: "great" | "good" | "meh") =>
     v === "great" ? (
-      <span className="text-green">[great]</span>
+      <span className="text-green">great</span>
     ) : v === "good" ? (
-      <span className="text-cyan">[good]</span>
+      <span className="text-cyan">good</span>
     ) : (
-      <span className="text-amber">[meh]</span>
+      <span className="text-amber">meh</span>
     );
   return (
-    <details className="term my-6 overflow-hidden">
+    <details open className="term my-6 overflow-hidden">
       <summary className="cursor-pointer list-none border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim transition hover:text-text [&::-webkit-details-marker]:hidden">
-        ▸ cat everything-i-use-it-for.md · {USES.reduce((n, g) => n + g.rows.length, 0)} uses, click to expand
+        ▸ cat everything-i-use-it-for.md · {USES.reduce((n, g) => n + g.rows.length, 0)} uses · click to collapse
       </summary>
       <div className="space-y-5 p-4 text-xs leading-relaxed">
         {USES.map((g) => (
@@ -615,7 +716,7 @@ function UseTable() {
             </div>
             <div className="divide-y divide-line border-y border-line">
               {g.rows.map((r) => (
-                <div key={r.task} className="grid gap-x-3 py-1.5 sm:grid-cols-[11rem_1fr_auto]">
+                <div key={r.task} className="grid gap-x-3 py-1.5 sm:grid-cols-[11rem_1fr_3rem]">
                   <span className="text-text">{r.task}</span>
                   <span className="text-text-dim">{r.how}</span>
                   <span className="sm:text-right">{tag(r.verdict)}</span>
@@ -626,8 +727,8 @@ function UseTable() {
         ))}
       </div>
       <div className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> steal anything. the
-        verdicts are mine, as of this month.
+        <span className="text-green-dim">{"//"}</span> steal anything. the verdicts
+        are mine, as of this month.
       </div>
     </details>
   );
@@ -714,7 +815,7 @@ function Sources() {
   return (
     <details className="term my-6 overflow-hidden">
       <summary className="cursor-pointer list-none border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim transition hover:text-text [&::-webkit-details-marker]:hidden">
-        ▸ cat sources.md · every link in this post, click to expand
+        ▸ cat sources.md · every link in this post · click to expand
       </summary>
       <div className="space-y-4 p-4 text-xs leading-relaxed">
         {SOURCES.map((g) => (
@@ -754,61 +855,55 @@ export default function VibeHardwarePost() {
         <article>
           <div className="term my-6 px-4 py-3 text-xs leading-relaxed text-text-dim">
             <span className="text-amber glow-amber">[ note ]</span> written in
-            a personal capacity. Work examples are kept generic on purpose:
-            no products, no internal systems by name. Nothing here is my
+            a personal capacity. Work examples are kept generic on purpose: no
+            products, no internal systems by name. Nothing here is my
             employer&apos;s view.
           </div>
 
           <P>
-            On September 3rd OpenAI launched GPT-6 Astra, and one of the
-            launch demos was fifteen seconds of the model doing PCB layout in
-            KiCad: placing parts, routing copper, &ldquo;turning an electronic
-            schematic into a manufacturable PCB.&rdquo; Within a week my feed
-            was wall to wall circuit boards. Flight controllers, a robot body,
-            a star tracker the model ordered from JLCPCB itself. Someone gave
-            it a credit card and asked for a DJ controller. The name for all
-            of it is vibe hardware.
+            On September 3rd OpenAI launched GPT-6 Astra. One of the launch
+            demos was fifteen seconds of the model doing PCB layout in KiCad.
+            Within a week my feed was wall to wall circuit boards, and the name
+            for all of it is vibe hardware.
           </P>
 
           <TweetCarousel dir={IMAGE_DIR} tweets={TWEETS} title="vibe-hardware" />
 
           <P>
-            I design production hardware for a living, at a big company, and I
-            use AI to do it every working day. So I have an opinion on this,
-            and it isn&apos;t the one the feed suggests. The demos point the
-            model at layout, which is the part of the job it&apos;s worst at.
-            The real gains are in the text around the board, where it&apos;s
-            quietly excellent. The engineers getting the most out of it are
-            the ones who know which is which, and the parts it&apos;s bad at
-            are less about taste than people think. Some of them are physics
-            that nobody has wired into the loop yet.
+            I design production hardware at a big company, and I use AI to do
+            it every working day. I have an opinion on this, and it isn&apos;t
+            the one the feed suggests.
           </P>
 
+          <TLDR />
           <InfoBox />
 
           <H2>1. Know what your model is good at</H2>
 
+          <P>Two terms do most of the work in this post:</P>
+
+          <UL>
+            <LI>
+              <span className="text-green">Harness:</span> everything wrapped
+              around the model. The tools it can call, the files it can read,
+              the instructions it starts with, the loop it runs in.
+            </LI>
+            <LI>
+              <span className="text-green">Context:</span> what&apos;s in front
+              of it when it answers. Which schematic, which datasheet, which
+              slice of the system. (
+              <A href="https://x.com/tobi/status/1935533422589399127">Tobi Lütke</A>{" "}
+              and{" "}
+              <A href="https://x.com/karpathy/status/1937902205765607626">Andrej Karpathy</A>{" "}
+              made &ldquo;context engineering&rdquo; the name for this last
+              year.)
+            </LI>
+          </UL>
+
           <P>
-            Two terms do most of the work in this post. The{" "}
-            <span className="text-green">harness</span> is everything wrapped
-            around the model: the tools it can call, the files it can read,
-            the instructions it starts with, the loop it runs in.{" "}
-            <span className="text-green">Context</span> is what&apos;s
-            actually in front of it when it answers: which schematic, which
-            datasheet, which slice of the system. (
-            <A href="https://x.com/tobi/status/1935533422589399127">
-              Tobi Lütke
-            </A>{" "}
-            and{" "}
-            <A href="https://x.com/karpathy/status/1937902205765607626">
-              Andrej Karpathy
-            </A>{" "}
-            popularized &ldquo;context engineering&rdquo; last year, and it
-            stuck because it describes the job better than
-            &ldquo;prompting&rdquo; ever did.) Everyone gets the same model.
-            The harness and the context are yours, and they account for
-            almost all of the difference between a great result and a
-            frustrating one.
+            Everyone gets the same model. The harness and the context are
+            yours, and they account for nearly all of the difference between a
+            great result and a frustrating one.
           </P>
 
           <P>
@@ -816,9 +911,8 @@ export default function VibeHardwarePost() {
             <A href="https://www.anthropic.com/research/claude-shaped-science">
               Claude-shaped science
             </A>
-            , a guest post on Anthropic&apos;s blog by Matthew Schwartz, a
-            Harvard physicist who spent months trying to make Claude do
-            physics the way he does physics. It didn&apos;t work. What worked
+            , by Matthew Schwartz, a Harvard physicist who spent months trying
+            to make Claude do physics his way. It didn&apos;t work. What worked
             was turning it around:
           </P>
 
@@ -828,299 +922,277 @@ export default function VibeHardwarePost() {
           </Pull>
 
           <P>
-            He went looking for problems that suited it, built a harness
-            called{" "}
+            He found the problems that suited it, built a harness called{" "}
             <A href="https://github.com/BootLoops-ai/bootloops">BootLoops</A>{" "}
-            to steer it toward them, and came out the other side with
-            thirty-six manuscripts. That is the whole skill in electrical
-            engineering too. A model in 2026 is superhuman at some parts of
-            board design and worse than an intern at others, and your job is
-            to know where that line is and keep it on the right side. The
-            catch is that the line moves every few months, so whatever you
-            learn about it has a short shelf life.
+            to steer it there, and got thirty-six manuscripts out. That&apos;s
+            the whole skill in EE too: know where the model is superhuman and
+            where it&apos;s worse than an intern, and keep it on the right side
+            of that line. The line moves every few months.
           </P>
 
-          <H2>2. Harness: get the model as close to the files as you can</H2>
+          <H2>2. Harness: get the model close to the files</H2>
 
           <P>
             Models are best at text. Everything else is a translation layer
-            that costs you accuracy and tokens. If I were starting a hardware
-            company tomorrow, I would not pick an ECAD tool that stores its
-            designs as binaries. I&apos;d pick KiCad: open source and text all
-            the way down, so the agent can read the schematic, the netlist,
-            and the board directly, and if you need a feature, patch the tool
-            itself. I&apos;ve built it from source and added my own things.{" "}
-            <A href="https://x.com/i2cjak">i2cjak</A> is much further along:{" "}
-            <A href="https://github.com/i2cjak/Backplane">Backplane</A> draws
-            every change an agent makes to a KiCad board live, next to the
-            conversation, and there&apos;s a KiCad fork with a sketch router
-            behind it.
+            that costs accuracy and tokens. Three rules follow:
           </P>
 
+          <Table
+            title="three harness rules"
+            head={["rule", "why", "evidence"]}
+            rows={[
+              [
+                "Store designs as text",
+                "The agent reads the schematic, netlist, and board directly, and can patch the tool itself.",
+                <>
+                  KiCad; i2cjak&apos;s{" "}
+                  <A href="https://github.com/i2cjak/Backplane">Backplane</A>{" "}
+                  shows every agent edit to a board live
+                </>,
+              ],
+              [
+                "Prefer CLIs to MCP",
+                "Every MCP server loads its tool definitions into context on every turn.",
+                <>
+                  Playwright MCP:{" "}
+                  <A href="https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/">13.7k tokens</A>{" "}
+                  before you&apos;ve done anything. MCP costs{" "}
+                  <A href="https://www.scalekit.com/blog/mcp-vs-cli-use">4–32×</A>{" "}
+                  more tokens
+                </>,
+              ],
+              [
+                "Write CLAUDE.md like a header file",
+                "Declarations stay in context; definitions stay on disk until something calls them.",
+                <>
+                  Anthropic&apos;s{" "}
+                  <A href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">progressive disclosure</A>
+                  ; HumanLayer&apos;s{" "}
+                  <A href="https://www.humanlayer.dev/blog/writing-a-good-claude-md">&ldquo;prefer pointers to copies&rdquo;</A>
+                </>,
+              ],
+            ]}
+          />
+
           <P>
-            The honest counterexample is{" "}
+            If I were starting a hardware company tomorrow, I wouldn&apos;t pick
+            an ECAD tool that stores designs as binaries. The counterexample is{" "}
             <A href="https://podcast.altium.com/e/altium-file-parsing-ai-design-reviews-pcb-viz-tools/">
               Eli Hughes
             </A>
-            , who does the same thing in Altium. He wrote open-source parsers
-            that crack the binary files open and feed the netlists to Claude
-            and Codex for design reviews. So binary isn&apos;t impossible.
-            Someone just has to build the bridge before the model can cross
-            it, and with KiCad the bridge is already there.
+            , who wrote open-source parsers to crack Altium files open for
+            Claude and Codex. So binary isn&apos;t impossible. Someone just has
+            to build the bridge first, and in KiCad it&apos;s already built.
           </P>
 
           <P>
-            At the other extreme is{" "}
+            The other extreme is{" "}
             <A href="https://github.com/atopile/atopile">atopile</A>, which
-            describes the whole circuit as code. When I was at Tesla there was
-            a real push to use it, because we wanted to move as fast as
-            humanly possible. My problem with it was, and still is, that
-            there&apos;s no schematic. You read code to find out how a buffer
-            is hooked up. Models love it, which is the point, but electronics
-            engineers want a schematic, and I don&apos;t think that changes
-            because the machine would prefer otherwise.
+            describes the whole circuit as code. At Tesla there was a real push
+            to use it. My problem with it then and now: there&apos;s no
+            schematic. Models love that. Electronics engineers want a
+            schematic.
           </P>
 
           <P>
-            Second rule: prefer a command-line tool to an MCP server. MCP is
-            how most tools advertise themselves to agents now, and it has
-            gotten much better, but every server you connect loads its tool
-            definitions into context on every turn. Mario Zechner{" "}
-            <A href="https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/">
-              measured
-            </A>{" "}
-            Playwright&apos;s MCP at 13.7k tokens before you&apos;ve done
-            anything; Scalekit{" "}
-            <A href="https://www.scalekit.com/blog/mcp-vs-cli-use">
-              benchmarked
-            </A>{" "}
-            the same tasks both ways and found MCP cost 4 to 32 times more.
-            Anthropic&apos;s own{" "}
-            <A href="https://code.claude.com/docs/en/best-practices">
-              best-practices docs
-            </A>{" "}
-            say it plainly: &ldquo;CLI tools are the most context-efficient
-            way to interact with external services.&rdquo; At work, a lot of
-            my harness is small CLIs the agent wrote for our internal web
-            tools: the parts database, the issue tracker, the place suppliers
-            post their DFM comments. I describe what I want out of the tool
-            and the agent builds the command. I don&apos;t know how most of
-            them work inside, and I don&apos;t need to.
+            On CLIs: at work, a lot of my harness is small command-line tools
+            the agent wrote for our internal web tools. The parts database, the
+            issue tracker, the place suppliers post DFM comments. I describe
+            what I want; it builds the command. Anthropic&apos;s{" "}
+            <A href="https://code.claude.com/docs/en/best-practices">own docs</A>{" "}
+            agree: &ldquo;CLI tools are the most context-efficient way to
+            interact with external services.&rdquo;
           </P>
 
-          <P>
-            The third rule is the one I&apos;d most like people to steal:
-            write your system prompt like a header file. In embedded C, a
-            header declares what exists and where it lives; the definitions
-            stay in their own files and only get pulled in when something
-            calls them. My CLAUDE.md works the same way. It&apos;s a short
-            list of which tools exist, where the datasheets live, where the
-            system docs are, and a line on when to reach for each. The model
-            reads the list on every turn and opens a file only when the
-            question needs it.
-          </P>
+          <P>And here&apos;s the header file. Mine looks roughly like this:</P>
 
           <HeaderFile />
 
           <P>
-            Anthropic&apos;s docs make the same argument in different words
-            (&ldquo;For each line, ask: would removing this cause Claude to
-            make mistakes? If not, cut it&rdquo;), their{" "}
-            <A href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">
-              post on Agent Skills
-            </A>{" "}
-            calls it progressive disclosure, and HumanLayer&apos;s{" "}
-            <A href="https://www.humanlayer.dev/blog/writing-a-good-claude-md">
-              guide
-            </A>{" "}
-            has the best three-word version: &ldquo;Prefer pointers to
-            copies.&rdquo; One gotcha. Claude Code&apos;s{" "}
-            <span className="text-text">@path</span> import syntax{" "}
-            <A href="https://code.claude.com/docs/en/memory">
-              loads the whole file at launch
-            </A>
+            One gotcha: Claude Code&apos;s{" "}
+            <span className="text-cyan">@path</span> import{" "}
+            <A href="https://code.claude.com/docs/en/memory">loads the whole file at launch</A>
             . That&apos;s an #include, not a pointer. A plain sentence saying
-            where the file is works better.
+            where the file lives works better.
           </P>
 
           <H2>3. Context: the model is an expert in a box</H2>
 
           <P>
-            Here is the mistake I see most, and I see it from good engineers.
-            They paste a question about their circuit into a chat window, get
-            a wrong answer, and decide the model is dumb. Try this instead.
-            Imagine you&apos;re a very good EE, and someone locks you in a
-            box, slides a schematic for a project you&apos;ve never seen under
-            the door, and asks whether the current-sense amp is hooked up
-            right. No system diagram, no datasheet, no idea what the board
-            plugs into. You&apos;d guess. You&apos;d guess well, because
-            you&apos;re good, and some fraction of the time you&apos;d be
-            confidently wrong. That&apos;s the model, every time you ask it
-            something cold. Anthropic&apos;s{" "}
-            <A href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">
-              prompting guide
-            </A>{" "}
-            has a politer version: &ldquo;a brilliant but new employee who
-            lacks context.&rdquo; The intelligence is in the weights. The
-            context is your job.
+            The mistake I see most, from good engineers: paste a circuit
+            question into a chat window, get a wrong answer, decide the model
+            is dumb.
+          </P>
+
+          <P>
+            Try this instead. You&apos;re a very good EE. Someone locks you in a
+            box, slides a schematic you&apos;ve never seen under the door, and
+            asks if the current-sense amp is hooked up right. No datasheet, no
+            system diagram. You&apos;d guess, you&apos;d mostly be right, and
+            sometimes you&apos;d be confidently wrong. That&apos;s the model,
+            every time you ask it something cold.
           </P>
 
           <P>
             I did exactly this to myself this week. I was designing a
-            current-sense amplifier circuit and hadn&apos;t put the part&apos;s
-            datasheet in my knowledge base yet. The model told me, with total
-            confidence, that the ground pin could go to a negative rail. It
-            can&apos;t. Nothing about the model changed between that answer
-            and the right one. The datasheet did.
+            current-sense amplifier circuit without the part&apos;s datasheet
+            in my knowledge base, and the model told me, with total confidence,
+            that the ground pin could go to a negative rail. It can&apos;t. The
+            model didn&apos;t change between that answer and the right one. The
+            datasheet did.
           </P>
 
-          <P>
-            Boards don&apos;t live alone either. At Tesla, on the front
-            controller, my board was one node in a car, and the most useful
-            context I ever gave a model was the system around it: every
-            connector, every harness, every module on the other end. Tesla
-            had an in-house tool where each vehicle&apos;s connections were
-            defined in software, so I could export the whole system view and
-            hand it over. Most places don&apos;t have that. Then it&apos;s
-            legwork: go find your systems engineer and get the picture out of
-            their head and onto disk. Systems love context.
-          </P>
+          <P>For a board, &ldquo;context&rdquo; means:</P>
+
+          <UL>
+            <LI>
+              <span className="text-green">Every datasheet on the sheet</span>,
+              as text. More on that below.
+            </LI>
+            <LI>
+              <span className="text-green">The system around the board.</span>{" "}
+              Every connector, harness, and module on the other end. At Tesla I
+              could export that from an in-house tool. Most places, it lives in
+              your systems engineer&apos;s head, so go get it.
+            </LI>
+            <LI>
+              <span className="text-green">History.</span> Past issues, design
+              rules, the last three revisions.
+            </LI>
+            <LI>
+              <span className="text-green">An index on top</span>, so it only
+              opens what it needs. I use a version of Karpathy&apos;s{" "}
+              <A href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki</A>
+              . It works; it&apos;s also a chore to keep current.
+            </LI>
+          </UL>
 
           <P>
-            None of that fits in a context window, and you shouldn&apos;t try
-            to make it. What you build instead is a knowledge base with an
-            index on top. I use a version of Karpathy&apos;s{" "}
-            <A href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">
-              LLM wiki
-            </A>
-            : raw sources in one folder, a markdown wiki the model maintains
-            in another, and an index it reads first before drilling down.
-            It&apos;s the header-file idea one level lower. It works, and
-            it&apos;s a chore to keep current; the retrieval tools that
-            promise to automate the upkeep mostly cost money and are early.
+            My biggest pet peeve is the raw datasheet PDF dropped into a chat.
+            Three things go wrong:
           </P>
 
-          <P>
-            Which brings me to my biggest pet peeve. People drop a 200-page
-            datasheet PDF into the chat and ask for a design. Two things go
-            wrong. First, a PDF isn&apos;t really text. It stores instructions
-            for drawing glyphs, and the reading order, the tables, and
-            sometimes the characters themselves have to be reconstructed
-            (LlamaIndex has a{" "}
-            <A href="https://www.llamaindex.ai/blog/why-reading-pdfs-is-hard">
-              good explainer
-            </A>{" "}
-            on why). Second, when the model does read it properly, it&apos;s
-            expensive: Claude{" "}
-            <A href="https://platform.claude.com/docs/en/build-with-claude/pdf-support">
-              sees each page
-            </A>{" "}
-            as an image plus the extracted text, 1,500 to 3,000 tokens a page,
-            so one datasheet can eat a big slice of your context before
-            you&apos;ve asked anything. Agents that shell out to a text
-            extractor are worse. They&apos;re grepping a document that was
-            never meant to be grepped.
-          </P>
+          <UL>
+            <LI>
+              <span className="text-amber">It isn&apos;t really text.</span> A
+              PDF stores instructions for drawing glyphs. Reading order and
+              tables have to be reconstructed (
+              <A href="https://www.llamaindex.ai/blog/why-reading-pdfs-is-hard">LlamaIndex explains why</A>
+              ).
+            </LI>
+            <LI>
+              <span className="text-amber">It&apos;s expensive.</span> Claude{" "}
+              <A href="https://platform.claude.com/docs/en/build-with-claude/pdf-support">sees each page</A>{" "}
+              as an image plus text, 1,500 to 3,000 tokens a page. One
+              datasheet can eat your context before you&apos;ve asked anything.
+            </LI>
+            <LI>
+              <span className="text-amber">Agents grep it.</span> The ones that
+              shell out to a text extractor are searching a document that was
+              never meant to be searched.
+            </LI>
+          </UL>
 
           <P>
-            So I pre-digest every datasheet. Baidu&apos;s{" "}
+            So I pre-digest every datasheet, with Baidu&apos;s{" "}
             <A href="https://github.com/baidu/Unlimited-OCR">Unlimited-OCR</A>{" "}
-            runs locally on my laptop through{" "}
-            <A href="https://huggingface.co/mlx-community/Unlimited-OCR-4bit">
-              MLX
-            </A>{" "}
-            and converts the body text. When it hits a table or a figure it
-            isn&apos;t confident about, that region goes to a headless Claude
-            session, which looks at it as an image and writes it back as
-            markdown. Out the other end comes a datasheet that&apos;s a
-            fraction of the tokens and greppable for real. Ari Mahpour at
-            Altium{" "}
+            running locally through{" "}
+            <A href="https://huggingface.co/mlx-community/Unlimited-OCR-4bit">MLX</A>{" "}
+            and Claude for the hard parts. Ari Mahpour at Altium{" "}
             <A href="https://resources.altium.com/p/building-local-llm-datasheet-extractor-ic-driver-development">
               built something similar
             </A>
-            , which made me feel less crazy.
+            .
           </P>
 
           <VisionPipeline />
 
           <P>
-            This won&apos;t last. Datasheets are written for people, and their
-            main reader is becoming a model. Microchip already{" "}
-            <A href="https://www.nasdaq.com/press-release/microchip-technology-unveils-model-context-protocol-mcp-server-power-ai-driven">
-              runs a public MCP server
-            </A>{" "}
-            for its catalog, TI has a{" "}
-            <A href="https://www.ti.com/developer-api/product-information-api-suite/getting-started.html">
-              JSON product API
-            </A>{" "}
-            for approved customers, and startups like{" "}
-            <A href="https://datasheets.md/">datasheets.md</A> are
-            re-extracting the PDFs into structured data. As of August,{" "}
-            <A href="https://veecle.ai/blog/hardware-mcp-servers-2026">
-              ST, Infineon, and Renesas had no official server
-            </A>
-            , and there&apos;s no vendor-neutral standard for a whole
-            datasheet, graphs and all. I&apos;d bet heavily on one arriving.
-            Machine-readable datasheets were the backup idea on my{" "}
+            This won&apos;t be necessary forever. Datasheets are written for
+            people, and their main reader is becoming a model. Where the
+            vendors are, as of this fall:
+          </P>
+
+          <Table
+            title="machine-readable datasheets, october 2026"
+            head={["who", "what exists"]}
+            rows={[
+              [
+                "Microchip",
+                <A key="m" href="https://www.nasdaq.com/press-release/microchip-technology-unveils-model-context-protocol-mcp-server-power-ai-driven">
+                  a free, public MCP server for its catalog
+                </A>,
+              ],
+              [
+                "TI",
+                <A key="t" href="https://www.ti.com/developer-api/product-information-api-suite/getting-started.html">
+                  a JSON product API, approved customers only
+                </A>,
+              ],
+              [
+                "ST, Infineon, Renesas",
+                <A key="s" href="https://veecle.ai/blog/hardware-mcp-servers-2026">
+                  no official server as of August
+                </A>,
+              ],
+              ["datasheets.md", <A key="d" href="https://datasheets.md/">a startup re-extracting the PDFs</A>],
+              ["a standard", "none for a whole datasheet, graphs and all"],
+            ]}
+          />
+
+          <P>
+            I&apos;d bet heavily on that last row changing. Machine-readable
+            datasheets were the backup idea on my{" "}
             <Link href="/blog/yc-interview" className="tlink">
               YC application
             </Link>
-            , and I still think every agent that touches hardware is going to
-            need them.
+            .
           </P>
 
           <H2>4. What it&apos;s actually good at: translation</H2>
 
           <P>
-            Once the harness and the context are in place, the thing that
-            surprised me most isn&apos;t any single task. It&apos;s that the
-            model is a universal adapter. Hardware engineering is full of
-            files that were never designed to talk to each other: the
-            schematic, the board, the mechanical model, the flex outline, the
-            supplier&apos;s DFM report, the test spreadsheet. A huge part of
-            my day used to be carrying information by hand from one to the
-            next. The model can carry it, and it doesn&apos;t get bored.
+            With the harness and context in place, the surprise isn&apos;t any
+            one task. It&apos;s that the model is a universal adapter. Hardware
+            is full of files that were never meant to talk to each other, and I
+            used to spend a lot of my day carrying information between them by
+            hand.
           </P>
 
           <P>
-            The best example is a dumb test flex I designed recently. One of
-            our boards has a 36-signal board-to-board connector, and we wanted
-            a flex that breaks every signal out to 2.54 mm headers so we could
-            probe it on the bench. I asked the agent to copy the pinout from
-            the existing system flex and plan the breakout, with one
-            complication: the reference flex has a bend, and this one had to
-            come straight out. I told it the stackup was four-layer FCCL and
-            let it go. It assigned every net, planned the fanout, estimated
-            the traces, drew the outline in Matplotlib, and exported it as
-            IDX for the mechanical side. Drawing a board outline turns out to
-            be the same problem as drawing an SVG, which these models are
-            extremely good at. I checked every pin by hand and changed
-            nothing. It isn&apos;t fabbed yet, so the bench gets the last
-            word, but an afternoon of work took one prompt.
+            The best example is a test flex I designed recently. A board has a
+            36-signal board-to-board connector, and we wanted every signal
+            broken out to 2.54 mm headers for bench probing. The reference flex
+            has a bend; this one had to come out straight. I gave the agent the
+            reference pinout and the four-layer FCCL stackup.
           </P>
 
           <P>
-            The same trick runs down the whole chain. Flex designs fail in
-            boring ways: pin 1 on the board lands on pin 36 at the far
-            connector because someone mirrored a footprint, or a bend flips
-            the orientation. I have the model build an interconnect table from
-            board to flex to connector to the other board, then check it in
-            3D, bends included. It diffs two Gerber revisions by overlaying
-            them, which beats me flicking between windows because it has
-            every coordinate. It makes pictures for mechanical engineers: the
-            layout, grayed out except the one thing I need them to look at.
-            And when a supplier sends back round three of DFM comments, it
-            pulls them from the tracker, checks each one against the design
-            files and our guidelines, and tells me which are real. Most
-            aren&apos;t. A few need a human.
+            It assigned every net, planned the fanout, drew the outline in
+            Matplotlib, and exported IDX for the mechanical side. (A board
+            outline is the same problem as an SVG, which these models are
+            great at.) I checked every pin by hand and changed nothing. It
+            isn&apos;t fabbed yet, but an afternoon became a prompt.
           </P>
 
+          <Table
+            title="translations I run every week"
+            head={["from", "to", "what it catches"]}
+            rows={[
+              ["reference flex pinout", "new flex breakout + IDX outline", "an afternoon of manual pin mapping"],
+              ["board → flex → connector → board", "interconnect table, checked in 3D", "mirrored footprints, flips through a bend, pin 1 landing on pin 36"],
+              ["Gerber rev A + rev B", "an overlay diff", "what actually moved, without flicking between windows"],
+              ["the layout", "a picture for the mechanical engineer", "everything grayed out except the one thing they need"],
+              ["supplier DFM comments", "a triage list against our guidelines", "which comments are real. most aren't"],
+              ["schematic", "an Excel quick-start calculator", "the design math, in a format every engineer can poke at"],
+            ]}
+          />
+
           <P>
-            The gap in that list is simulation. Even with text netlists, I
-            haven&apos;t had good results getting it to build and run LTspice
-            models, though I also haven&apos;t put real harness work into it.
-            The full list is below, sorted by where it sits in the job. Steal
-            whatever&apos;s useful.
+            The gap is simulation. Even with text netlists, I haven&apos;t had
+            good results getting it to build and run LTspice models, though I
+            haven&apos;t put real harness work into it. Here&apos;s everything
+            else, sorted by where it sits in the job:
           </P>
 
           <UseTable />
@@ -1128,254 +1200,252 @@ export default function VibeHardwarePost() {
           <H2>5. It can rotate a shape. It can&apos;t route a board.</H2>
 
           <P>
-            Which brings us back to the feed. The thing everyone is excited
-            about is layout, and layout is where the models are weakest.
+            Back to the feed. Everyone is excited about layout, and layout is
+            where the models are weakest.
           </P>
 
           <P>
-            I used to say LLMs aren&apos;t shape rotators, and that turns out
-            to be too blunt. They&apos;ve gotten very good at some spatial
-            problems. GPT-6 Astra scores 99.9% on{" "}
-            <A href="https://arcprize.org/leaderboard">ARC-AGI-3</A>, the
-            puzzle benchmark that was supposed to be hard for them, and on 2D
-            mental rotation GPT-5 already beat the human panel. What they
-            still can&apos;t do is continuous geometry in three dimensions, or
-            hundreds of constraints over a large area at once. That is a
+            &ldquo;LLMs aren&apos;t shape rotators&rdquo; turns out to be too
+            blunt. They&apos;ve gotten very good at flat, discrete spatial
+            problems. What they still can&apos;t do is continuous geometry in
+            3D, or hundreds of constraints over a large area at once. That is a
             description of a circuit board.
           </P>
 
           <SpatialBars />
 
           <P>
-            The PCB numbers are brutal.{" "}
-            <A href="https://arxiv.org/abs/2608.04434">OmniRouting</A> took
-            1,681 real industrial boards, each with a placement engineers had
-            already proven routable, and asked models to finish the job.
-            Humans got 93.6% of nets connected and DRC-clean. The best model
-            on its own got 12.6%, and 28% with every tool they could hand it.
-            A classic algorithmic router got 56%.{" "}
-            <A href="https://arxiv.org/abs/2607.05915">PCBWorld</A> found the
-            same shape: a GPT-5.4 agent cleanly routed 65% of small real
-            boards and none of the medium ones, while a tiny RL policy trained
-            only against a DRC checker beat it on both. My favorite detail is
-            from the OmniRouting paper: the models routed ground as ordinary
-            traces instead of pours.
+            The board-specific numbers are worse.{" "}
+            <A href="https://arxiv.org/abs/2608.04434">OmniRouting</A> gave
+            routers 1,681 real industrial boards with placements engineers had
+            already proven routable:
           </P>
 
+          <Table
+            title="OmniRouting, Aug 2026: share of nets connected and DRC-clean"
+            head={["who routed it", "nets clean"]}
+            rows={[
+              ["human engineers", "93.6%"],
+              ["a classic algorithmic router (PcbRouter)", "56.2%"],
+              ["best model, with every tool", "28.0%"],
+              [<span key="b" className="text-amber">best model, on its own</span>, <span key="v" className="text-amber">12.6%</span>],
+            ]}
+            note="the models also routed ground as ordinary traces instead of pours."
+          />
+
           <P>
-            Part of the reason is mechanical. Claude looks at images in
-            28-pixel patches, and the arithmetic is not kind to a circuit
-            board:
+            <A href="https://arxiv.org/abs/2607.05915">PCBWorld</A> found the
+            same shape: a GPT-5.4 agent cleanly routed 65% of small real boards
+            and none of the medium ones. A tiny RL policy trained only against
+            a DRC checker beat it on both.
           </P>
+
+          <P>Two reasons, as far as I can tell:</P>
+
+          <UL>
+            <LI>
+              <span className="text-green">It can&apos;t see the copper.</span>{" "}
+              Images arrive as 28-pixel patches. The arithmetic is below.
+            </LI>
+            <LI>
+              <span className="text-green">It has no picture to update.</span>{" "}
+              The board exists to the model as a list of coordinates, and
+              nothing redraws a mental map when one moves. The{" "}
+              <A href="https://arxiv.org/abs/2604.09594">Spatial Competence Benchmark</A>{" "}
+              calls the result &ldquo;locally plausible geometry that breaks
+              global constraints.&rdquo; Every segment looks fine. The board is
+              shorted.
+            </LI>
+          </UL>
 
           <PatchMath />
 
+          <P>Here&apos;s what experienced EEs piled on in the feed:</P>
+
+          <UL>
+            <LI>connectors you can&apos;t physically reach (i2cjak)</LI>
+            <LI>screw terminals you can&apos;t get a wire into (blind_via)</LI>
+            <LI>USB and camera differential pairs wandering across the board (Luke Weston, Michael W.)</LI>
+            <LI>9 of 32 vias in pads, and five track widths under one empty net class, so DRC had nothing to check them against (DeepPCB)</LI>
+            <LI>&ldquo;the most awful buck converter layout I have ever seen&rdquo; (Michael W.)</LI>
+          </UL>
+
           <P>
-            The model gets a summary of each square millimetre, not the copper
-            in it. The rest of the reason is that the board only exists to the
-            model as a long list of coordinates, and nothing updates a mental
-            picture when one of them moves. The{" "}
-            <A href="https://arxiv.org/abs/2604.09594">
-              Spatial Competence Benchmark
-            </A>{" "}
-            authors have the perfect phrase for what comes out:
-            &ldquo;locally plausible geometry that breaks global
-            constraints.&rdquo; Every segment looks fine. The board is
-            shorted.
+            And that&apos;s only what shows up in a screenshot. Most of these
+            boards would work on a bench. Think about ESD, EMC, SI and PI, or
+            building ten thousand, and they fall apart. The bucks are the worst:
+            sprawling hot loops, giant switch nodes, inductors on the far side
+            of the board.
           </P>
 
           <P>
-            On the boards in the feed, it shows up as everything experienced
-            EEs immediately piled on: connectors you can&apos;t reach, screw
-            terminals you can&apos;t get a wire into, USB pairs wandering
-            across the board, nine vias in pads on a 27-net board that
-            didn&apos;t need any. It&apos;s worse in the parts nobody
-            screenshots. Most of these boards would work on a bench. Think
-            about ESD, EMC, SI and PI, or building ten thousand of them, and
-            they fall apart, the buck converters especially: switch nodes the
-            size of a postage stamp, input loops wrapped around half the
-            board, inductors on the far side from the IC. I&apos;m surprised
-            some of them turn on. Michael W. had the kindest framing: he made
-            all the same mistakes early in his career, and had mentors who
-            made him rip the board up three or four times. Nobody makes the
-            model rip anything up.
+            What I&apos;d do instead is let the model drive the tool that was
+            built for geometry:
           </P>
 
+          <OL
+            items={[
+              "The model reads the stackup, the datasheets, and the fab's capability sheet.",
+              "It writes the net classes, widths, clearances, and layer rules. Nobody likes doing this, which is why autorouters get a bad name.",
+              "The autorouter does the geometry. Given good constraints it will escape a BGA with dogbones on the layers you pick (there's an old EEVblog video on exactly this).",
+              "The model checks DRC and diffs the result; a human routes or reviews the critical nets.",
+            ]}
+          />
+
           <P>
-            What I&apos;d do instead is let the model drive the tools built
-            for this. Autorouters are sophisticated. Given the right
-            constraints they&apos;ll escape a BGA on the layers you want with
-            dogbone fanouts; there&apos;s an old EEVblog video that walks
-            through setting one up. They fail when nobody sets the
-            constraints, because nobody likes setting constraints, and
-            that&apos;s exactly the part a model is good at: read the stackup,
-            the datasheets, and the fab&apos;s capability sheet, write the net
-            classes, widths, and rules, then hand the geometry to the
-            algorithm. JLCPCB&apos;s{" "}
-            <A href="https://jlcpcb.com/blog/gpt-6-astra-pcb-design-in-kicad">
-              review of an Astra board
-            </A>{" "}
-            suggests the model has already figured this out: it hand-routed
-            the critical power and switching nets and gave the rest to
-            Freerouting. The router underneath still decides how good the
-            result is, and the{" "}
-            <A href="https://www.quilter.ai/blog/llm-pcb-layout-gpt-6-astra">
-              demo
-            </A>{" "}
-            says nothing about whether the board works. I haven&apos;t run
-            this loop end to end myself. It&apos;s the next thing I&apos;m
-            trying.
+            JLCPCB&apos;s{" "}
+            <A href="https://jlcpcb.com/blog/gpt-6-astra-pcb-design-in-kicad">review of an Astra board</A>{" "}
+            suggests the model already does a version of this: it hand-routed
+            the power and switching nets and gave the rest to Freerouting. I
+            haven&apos;t run the loop end to end myself yet. It&apos;s next.
           </P>
 
           <H2>6. Taste is scar tissue</H2>
 
           <P>
-            The usual answer to all this is that the models lack taste. I
-            think that&apos;s half right, so let me start with the half that
-            is.
+            The usual answer to all this is that models lack taste. That&apos;s
+            half right, so start with the half that is.
           </P>
 
           <P>
-            Here&apos;s where taste comes from. A board fails EMC, and you go
-            to the chamber, and you spend days learning about component
-            orientation, loop area, and the geometry of fields until you find
-            it. After that you look for that extreme on every board you see.
-            You learn to read copper balance because a fab once explained what
-            an unbalanced stackup does in reflow, and now you can glance at a
-            layout and tell whether the designer was thinking about how much
-            copper the acid would take off each layer. None of it came from
-            school. All of it came from doing it wrong once. Here&apos;s the
-            same board done both ways, and the six places I look in the first
-            thirty seconds:
+            Taste comes from doing it wrong once. A board fails EMC, you spend
+            days in the chamber learning about orientation, loop area, and
+            field geometry, and after that you check every board for that
+            extreme. A fab explains what an unbalanced stackup does in reflow,
+            and now you can glance at a layout and tell whether the designer
+            thought about how much copper the acid takes off each layer.
+          </P>
+
+          <P>
+            Here&apos;s the same board both ways, and the six places I look in
+            the first thirty seconds. Flip the toggle.
           </P>
 
           <BoardTaste />
 
           <P>
             A newbie can look at a board from a top-tier company and see that
-            it&apos;s good. They just can&apos;t tell you why. The model is in
-            the opposite position. It has the vocabulary: the loop-area rules,
-            the EMC textbooks, every app note on buck layout ever written are
-            almost certainly in the weights. What it doesn&apos;t have is the
-            analogies, the reflex that says this looks like the board that
-            failed in the chamber. It designs from first principles every
-            time, because it&apos;s still in the box.
+            it&apos;s good, but can&apos;t say why. The model is the opposite.
+            It has the words: the loop-area rules, the EMC textbooks, every buck
+            layout app note. It doesn&apos;t have the analogies, the reflex
+            that says this looks like the board that failed in the chamber. It
+            designs from first principles every time, because it&apos;s still
+            in the box.
           </P>
 
-          <H2>7. Half of taste is physics nobody is grading</H2>
+          <H2>7. Half of taste is physics nobody grades</H2>
 
           <P>
             Now the half I don&apos;t buy. Look at those six callouts again.
             Most of them aren&apos;t taste. They&apos;re physics with a number
-            attached. An input loop is an inductance you can extract. A switch
-            node is an antenna you can simulate. Copper balance is an area
-            ratio per layer. PDN impedance is a curve, and a return path is a
-            field solve. We call it taste because nobody can run a field
-            solver in their head, so we compress years of results into a
-            glance.
+            attached:
           </P>
 
+          <Table
+            title="what an EE glances at vs what it actually is"
+            head={["the glance", "the physics", "what measures it"]}
+            rows={[
+              ["① ESD placement", "inductance of the clamp path", "partly rules, partly extraction"],
+              ["② buck input loop", "hot-loop inductance", "parasitic extraction"],
+              ["③ switch node size", "radiating copper area at the switching edge", "EM solver"],
+              ["④ decoupling placement", "PDN impedance vs frequency", "PDN analysis"],
+              ["⑤ slot in the ground", "return-path discontinuity", "SI field solve"],
+              ["⑥ copper balance", "copper area ratio per layer", "a twenty-line script"],
+            ]}
+            note="we call it taste because nobody can run a field solver in their head, so we compress years of results into a glance."
+          />
+
           <P>
-            Models get good at whatever can be checked automatically. That is
+            Models get good at whatever can be checked automatically. That&apos;s
             why they got good at code first: you can run the tests. Here&apos;s
-            what EE benchmarks check today:
+            what gets checked in EE today:
           </P>
 
           <VerifyLadder />
 
           <P>
-            <A href="https://eebench.org/">EEBench</A>, from the atopile team,
-            is the best EE benchmark there is. It uses real parts, runs ngspice
-            at tolerance corners, scores BOM cost, and has no LLM judge.
-            Claude Opus 5.5 leads at 75%. But its{" "}
+            <A href="https://eebench.org/">EEBench</A>, from the atopile team, is
+            the best EE benchmark there is: real parts, ngspice at tolerance
+            corners, BOM cost, no LLM judge. Claude Opus 5.5 leads at 75%. But
+            its{" "}
             <A href="https://eebench.org/methodology.html">methodology</A>{" "}
-            puts layout explicitly out of scope. OmniRouting and PCBWorld
-            grade layout, but only on connectivity and DRC. Nobody grades
-            layout on physics. I couldn&apos;t find a single published example
-            of a language model laying out a board against a PDN or
-            field-solver reward. So the Astra demo was optimized for exactly
-            what it showed, a board that connects, because that&apos;s the
-            only thing anyone checks. If I had to guess at its training
-            environment, it was some version of: place, route, does
-            connectivity hold.
+            puts layout out of scope, and the routing benchmarks only check
+            connectivity and DRC.
           </P>
 
           <P>
-            I can&apos;t see the labs standing up field solvers and power
-            integrity analysis inside their RL environments on their own.
-            It&apos;s slow, the commercial tools are license-gated, and EE is
-            a small market next to code. The models would also need to get
-            much better at physics, and at driving those tools, before the
-            scores meant much.{" "}
+            I couldn&apos;t find one published example of a language model doing
+            layout against a PDN or field-solver reward. So the Astra demo was
+            optimized for what it showed, a board that connects, because
+            that&apos;s all anyone grades.
+          </P>
+
+          <P>
+            I can&apos;t see the labs building this on their own. Solvers are
+            slow, the commercial ones are license-gated, and EE is a small
+            market next to code. Models also need to get better at physics
+            first:{" "}
             <A href="https://arxiv.org/abs/2603.18102">HWE-Bench</A>, which
-            asks for board-level schematics from scratch and checks them in
-            simulation, tops out at 8%. That&apos;s the model alone in the
-            box, with no harness and no context, which is the point of section
-            three.
+            checks from-scratch schematics in simulation, tops out at 8%.
           </P>
 
+          <P>So here&apos;s my ask. Every piece of a real layout benchmark already exists, open source and headless:</P>
+
+          <Table
+            title="a layout benchmark that grades the physics"
+            head={["score the layout on", "with", "open + headless"]}
+            rows={[
+              ["DRC, connectivity", <A key="k" href="https://www.kicad.org/blog/2026/03/Version-10.0.0-Released/">KiCad 10, kicad-cli</A>, "yes"],
+              ["copper balance", "kicad-cli exports + a script", "yes"],
+              ["PDN impedance, DC IR drop", <><A key="e" href="https://github.com/ElmerCSC/elmerfem">Elmer</A>, ngspice</>, "yes"],
+              ["impedance, crosstalk, return paths", <><A key="o" href="https://github.com/thliebig/openEMS">openEMS</A>, <A key="g" href="https://github.com/antmicro/gerber2ems">gerber2ems</A></>, "yes"],
+              ["radiated emissions", "openEMS", "yes, but slow"],
+            ]}
+            note="atopile already showed that if you build the environment, labs will train on it."
+          />
+
           <P>
-            So here&apos;s my ask. The pieces for a real layout benchmark
-            already exist, and they&apos;re open:{" "}
-            <A href="https://www.kicad.org/blog/2026/03/Version-10.0.0-Released/">
-              KiCad 10
-            </A>{" "}
-            and kicad-cli, ngspice,{" "}
-            <A href="https://github.com/thliebig/openEMS">openEMS</A> for
-            full-wave EM, Antmicro&apos;s{" "}
-            <A href="https://github.com/antmicro/gerber2ems">gerber2ems</A>{" "}
-            for SI on real traces, and{" "}
-            <A href="https://github.com/ElmerCSC/elmerfem">Elmer</A> for DC IR
-            drop and thermal. All of it runs headless. Someone should wire
-            them into a benchmark that scores a layout on PDN impedance, IR
-            drop, return-path continuity, impedance on the critical nets, and
-            copper balance, on top of DRC. atopile has already shown that if
-            you build the environment, the labs will train on it. Build the
-            one that measures the part we actually ship. If you&apos;re
-            building it, I&apos;d like to help.
+            Build the one that measures the part we actually ship. If
+            you&apos;re building it, I&apos;d like to help.
           </P>
 
           <H2>Two boxes</H2>
 
           <P>
-            Here&apos;s where I land, for now. Vibe hardware is real, and
-            it&apos;s going to be huge, mostly for people next to electrical
-            engineering: firmware, software, and mechanical engineers who need
-            a bench tool and no longer need to ask someone like me for one.
-            That&apos;s great. The serious end will look more like software
-            did. Anyone can build an app now, but very few people can run a
-            platform for millions of users, and the ones who do use AI to go
-            faster, not to go away. The harnesses that win in production
-            hardware will be the ones that make very good engineers faster.
+            Vibe hardware is real, and it&apos;s going to be huge for people
+            next to EE: firmware, software, and mechanical engineers who need a
+            bench tool and no longer have to ask someone like me. The serious
+            end will look like software did. Anyone can build an app; few can
+            run a platform, and the ones who do use AI to go faster, not to go
+            away.
           </P>
 
           <P>
-            Maybe I&apos;m biased. I&apos;ve spent my whole adult life getting
-            good at this. But the difference from software is the verify loop.
-            Code fails in seconds. A board fails in the chamber, six weeks
-            after you sent it out. Until that loop is something a model can
-            run, it will learn the parts of the job that can be checked, and
-            those aren&apos;t the hard ones.
+            Maybe I&apos;m biased. I&apos;ve spent my adult life getting good at
+            this. But code fails in seconds, and a board fails in the chamber
+            six weeks after you sent it out. Until a model can run that loop, it
+            learns the parts of the job that can be checked, and those
+            aren&apos;t the hard ones.
           </P>
 
           <P>
             There are two boxes in this post. The first is the one we put the
-            model in every time we ask it something cold, and that one&apos;s
-            easy to open: hand it the datasheet, the system, the pointers. The
-            second is the one it was trained in, where the only question
-            anyone grades is whether the board connects. That box has to be
-            opened from the outside, with a field solver. Until someone does,
-            I&apos;ll keep doing the layout, and let it do everything else.
+            model in when we ask it something cold, and it&apos;s easy to open:
+            hand it the datasheet, the system, the pointers. The second is the
+            one it was trained in, where the only thing graded is whether the
+            board connects. That one has to be opened from the outside, with a
+            field solver. Until then, I&apos;ll do the layout and let it do
+            everything else.
           </P>
 
           <Sources />
-        </article>
 
-        <div className="mt-10 text-sm">
-          <Link href="/blog" className="tlink">
-            ← cd ~/blog
-          </Link>
-        </div>
+          <div className="mt-10 text-sm">
+            <Link href="/blog" className="tlink">
+              ← cd ~/blog
+            </Link>
+          </div>
+        </article>
       </div>
     </div>
   );
