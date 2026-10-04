@@ -8,7 +8,7 @@ const posts = [
   {
     slug: "vibe-hardware",
     title:
-      "It reads the netlist, it can't route the board, and nobody grades the physics",
+      "Vibe hardware is aimed at the wrong half of the job",
     date: "2026-10-04",
     note: "Vibe hardware, from an EE who designs boards with AI every day: harness and context, what it's actually good at, why it can't route a board, and the benchmark EE still needs.",
   },

@@ -7,7 +7,7 @@ import TweetCarousel, { type CarouselTweet } from "@/components/TweetCarousel";
 import BoardTaste from "@/components/BoardTaste";
 
 export const metadata: Metadata = {
-  title: "It reads the netlist, it can't route the board",
+  title: "Vibe hardware is aimed at the wrong half of the job",
   description:
     "Vibe hardware, from an EE who designs production boards with AI every day: harness and context engineering, what it's actually good at, why it can't route a board, and why EE needs a benchmark that grades the physics.",
 };
@@ -889,7 +889,7 @@ export default function VibeHardwarePost() {
         <SectionHeader
           path="~/blog"
           command="cat vibe-hardware.md"
-          title="It reads the netlist, it can't route the board, and nobody grades the physics"
+          title="Vibe hardware is aimed at the wrong half of the job"
         >
           Vibe hardware, from someone who designs boards with AI every day ·
           2026-10-04
