@@ -16,6 +16,7 @@ const DIM = "#6f9a80";
 const MASK = "#0b2216";
 const AMBER = "#ffc857";
 const CYAN = "#57e3ff";
+const BOTTOM = "#6f9be0";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const CALLOUTS: {
@@ -250,7 +251,7 @@ function Board({ mode }: { mode: Mode }) {
       <Chip x={72} y={58} w={52} h={50} label="U2" />
       {good ? (
         <>
-          <rect x={38} y={52} width={92} height={62} rx={6} fill={AMBER} opacity={0.14} stroke={AMBER} strokeDasharray="5 3" />
+          <rect x={38} y={52} width={92} height={62} rx={6} fill={AMBER} fillOpacity={0.22} stroke={AMBER} strokeWidth={2} strokeDasharray="5 3" />
           <Cap x={48} y={63} vertical big />
           <T x={46} y={128} t="Cin" />
           <rect x={124} y={72} width={18} height={20} fill={COPPER} />
@@ -264,13 +265,16 @@ function Board({ mode }: { mode: Mode }) {
           <polygon
             points="36,388 36,50 130,50 130,116 70,116 70,388"
             fill={AMBER}
-            opacity={0.12}
+            fillOpacity={0.16}
             stroke={AMBER}
+            strokeWidth={2}
             strokeDasharray="5 3"
           />
           <Cap x={44} y={330} vertical big />
-          <T x={44} y={326} t="Cin" />
-          <polyline points="53,330 53,140 80,108" fill="none" stroke={COPPER} strokeWidth={3} />
+          <T x={68} y={356} t="Cin" />
+          <polyline points="53,318 110,296 110,132 96,116" fill="none" stroke={BOTTOM} strokeWidth={3} />
+          <circle cx={53} cy={318} r={4} fill={PAD} stroke={MASK} strokeWidth={1.5} />
+          <circle cx={96} cy={116} r={4} fill={PAD} stroke={MASK} strokeWidth={1.5} />
           <rect x={124} y={70} width={248} height={24} fill={COPPER} />
           <rect x={372} y={46} width={72} height={72} rx={6} fill="#3a3530" stroke="#6b6157" />
           <T x={408} y={87} t="L1" anchor="middle" />
@@ -300,7 +304,6 @@ function Board({ mode }: { mode: Mode }) {
         const bad = !good && (k === 2 || k === 3);
         return (
           <g key={k}>
-            <rect x={520} y={y + 10} width={120} height={16} fill="#173d28" opacity={0.6} />
             <rect x={520} y={y} width={120} height={8} fill="#24382c" />
             <rect x={520} y={y} width={(120 * v) / 100} height={8} fill={bad ? AMBER : COPPER} />
             <T x={520} y={y - 3} t={`L${k + 1}  ${v}% copper`} c={bad ? AMBER : SILK} s={10} />
@@ -317,7 +320,9 @@ function Board({ mode }: { mode: Mode }) {
       <line x1={520} y1={340} x2={544} y2={340} stroke={CYAN} strokeWidth={2} strokeDasharray="6 4" />
       <T x={550} y={344} t="return current" c={DIM} s={10} />
       <rect x={520} y={354} width={24} height={10} fill={COPPER} />
-      <T x={550} y={363} t="copper" c={DIM} s={10} />
+      <T x={550} y={363} t="top copper" c={DIM} s={10} />
+      <line x1={520} y1={380} x2={544} y2={380} stroke={BOTTOM} strokeWidth={3} />
+      <T x={550} y={384} t="bottom copper" c={DIM} s={10} />
 
       {/* callouts */}
       {CALLOUTS.map((c) => (
@@ -383,7 +388,7 @@ export default function BoardTaste({ initial = "good" }: { initial?: Mode }) {
         <tbody className="divide-y divide-line">
           {CALLOUTS.map((c) => (
             <tr key={c.n} className="align-top">
-              <td className="w-8 py-2 pl-4">
+              <td className="w-11 py-2 pl-4 pr-2">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green text-[11px] font-bold text-bg">
                   {c.n}
                 </span>

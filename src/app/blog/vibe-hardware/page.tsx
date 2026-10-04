@@ -314,7 +314,7 @@ function TLDR() {
   return (
     <div className="term my-6 p-4 text-sm leading-relaxed">
       <div className="mb-3 text-xs text-text-dim">
-        <span className="text-amber glow-amber">[ tl;dr ]</span> the whole
+        <span className="text-amber glow-amber">[ tl;dr ]</span>{" "}the whole
         argument
       </div>
       <ul className="space-y-2 text-text">
@@ -328,7 +328,7 @@ function TLDR() {
         <li className="flex gap-2">
           <span className="flex-none text-green">2.</span>
           <span>
-            <span className="text-green">Keep it close to text.</span> KiCad over
+            <span className="text-green">Keep it close to text.</span>{" "}KiCad over
             binary formats, CLIs over MCP, a CLAUDE.md that reads like a header
             file, and never a raw datasheet PDF.
           </span>
@@ -344,7 +344,7 @@ function TLDR() {
         <li className="flex gap-2">
           <span className="flex-none text-amber">4.</span>
           <span>
-            <span className="text-amber">It&apos;s bad at layout.</span> On real
+            <span className="text-amber">It&apos;s bad at layout.</span>{" "}On real
             industrial boards the best model routes 12.6% of nets cleanly.
             Humans route 93.6%.
           </span>
@@ -365,7 +365,7 @@ function InfoBox() {
   return (
     <div className="term my-6 p-4 text-xs leading-relaxed">
       <div className="mb-2 text-text-dim">
-        <span className="text-amber glow-amber">[ info ]</span> scope
+        <span className="text-amber glow-amber">[ info ]</span>{" "}scope
       </div>
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
         <dt className="text-green-dim">who</dt>
@@ -412,7 +412,7 @@ function HeaderFile() {
         ))}
       </div>
       <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> the files on the right
+        <span className="text-green-dim">{"//"}</span>{" "}the files on the right
         stay on disk until a question needs them. a pointer costs one line.
       </figcaption>
     </figure>
@@ -460,7 +460,7 @@ function VisionPipeline() {
         {step("4", "one new line in the index", "so the model knows it exists")}
       </div>
       <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> the free local model
+        <span className="text-green-dim">{"//"}</span>{" "}the free local model
         does the bulk. the expensive one only sees the parts that need eyes.
       </figcaption>
     </figure>
@@ -570,7 +570,7 @@ function SpatialBars() {
         ))}
       </div>
       <figcaption className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> each row is a different
+        <span className="text-green-dim">{"//"}</span>{" "}each row is a different
         test, model, and date; there are no 2026 numbers for most of them yet.
         the pattern is what matters: flat and discrete is solved, 3D and
         routing are not.
@@ -605,37 +605,32 @@ function PatchMath() {
   );
 }
 
-const LADDER: { check: string; status: "yes" | "partly" | "no"; tools: string }[] = [
-  { check: "every net connected", status: "yes", tools: "OmniRouting, PCBWorld, every demo" },
-  { check: "DRC / ERC clean", status: "yes", tools: "OmniRouting, PCBWorld, every demo" },
-  { check: "circuit works in SPICE at tolerance corners", status: "partly", tools: "EEBench, schematic only, no layout" },
-  { check: "copper balance per layer", status: "no", tools: "a script on kicad-cli output" },
-  { check: "PDN impedance, DC IR drop", status: "no", tools: "Elmer, ngspice (lumped)" },
-  { check: "impedance and crosstalk on critical nets", status: "no", tools: "openEMS, gerber2ems" },
-  { check: "radiated emissions", status: "no", tools: "openEMS, slowly" },
-  { check: "works at ten thousand units", status: "no", tools: "only reality grades this" },
+const LADDER: { check: string; graded: string; tool: string }[] = [
+  { check: "every net connected", graded: "OmniRouting, PCBWorld, every demo", tool: "kicad-cli" },
+  { check: "DRC / ERC clean", graded: "OmniRouting, PCBWorld, every demo", tool: "kicad-cli" },
+  { check: "circuit works in SPICE at tolerance corners", graded: "EEBench (schematic only)", tool: "ngspice" },
+  { check: "copper balance per layer", graded: "nobody", tool: "kicad-cli exports + a script" },
+  { check: "PDN impedance, DC IR drop", graded: "nobody", tool: "Elmer, ngspice" },
+  { check: "impedance, crosstalk, return paths", graded: "nobody", tool: "openEMS, gerber2ems" },
+  { check: "radiated emissions", graded: "nobody", tool: "openEMS (slow)" },
+  { check: "works at ten thousand units", graded: "nobody", tool: "none. only reality grades this" },
 ];
 
 function VerifyLadder() {
   return (
     <Table
       title="what AI benchmarks grade today, easiest first"
-      head={["check", "graded by any AI benchmark?", "open tools that could grade it"]}
+      head={["check", "graded by", "open, headless tool that could grade it"]}
       rows={LADDER.map((r) => [
         r.check,
-        <span
-          key="s"
-          className={
-            r.status === "yes" ? "text-green" : r.status === "partly" ? "text-cyan" : "text-amber glow-amber"
-          }
-        >
-          {r.status}
+        <span key="g" className={r.graded === "nobody" ? "text-amber glow-amber" : "text-text"}>
+          {r.graded}
         </span>,
         <span key="t" className="text-text-dim">
-          {r.tools}
+          {r.tool}
         </span>,
       ])}
-      note="fab DRC and commercial SI/PI tools check several of these for humans. the point is that nobody scores a model on them."
+      note="fab DRC and commercial SI/PI tools check several of these for human designers. nobody scores a model on them."
     />
   );
 }
@@ -727,7 +722,7 @@ function UseTable() {
         ))}
       </div>
       <div className="border-t border-line px-3 py-2 text-xs text-text-dim">
-        <span className="text-green-dim">{"//"}</span> steal anything. the verdicts
+        <span className="text-green-dim">{"//"}</span>{" "}steal anything. the verdicts
         are mine, as of this month.
       </div>
     </details>
@@ -854,7 +849,7 @@ export default function VibeHardwarePost() {
 
         <article>
           <div className="term my-6 px-4 py-3 text-xs leading-relaxed text-text-dim">
-            <span className="text-amber glow-amber">[ note ]</span> written in
+            <span className="text-amber glow-amber">[ note ]</span>{" "}written in
             a personal capacity. Work examples are kept generic on purpose: no
             products, no internal systems by name. Nothing here is my
             employer&apos;s view.
@@ -884,12 +879,12 @@ export default function VibeHardwarePost() {
 
           <UL>
             <LI>
-              <span className="text-green">Harness:</span> everything wrapped
+              <span className="text-green">Harness:</span>{" "}everything wrapped
               around the model. The tools it can call, the files it can read,
               the instructions it starts with, the loop it runs in.
             </LI>
             <LI>
-              <span className="text-green">Context:</span> what&apos;s in front
+              <span className="text-green">Context:</span>{" "}what&apos;s in front
               of it when it answers. Which schematic, which datasheet, which
               slice of the system. (
               <A href="https://x.com/tobi/status/1935533422589399127">Tobi Lütke</A>{" "}
@@ -1010,7 +1005,7 @@ export default function VibeHardwarePost() {
 
           <P>
             One gotcha: Claude Code&apos;s{" "}
-            <span className="text-cyan">@path</span> import{" "}
+            <span className="text-cyan">@path</span>{" "}import{" "}
             <A href="https://code.claude.com/docs/en/memory">loads the whole file at launch</A>
             . That&apos;s an #include, not a pointer. A plain sentence saying
             where the file lives works better.
@@ -1056,7 +1051,7 @@ export default function VibeHardwarePost() {
               your systems engineer&apos;s head, so go get it.
             </LI>
             <LI>
-              <span className="text-green">History.</span> Past issues, design
+              <span className="text-green">History.</span>{" "}Past issues, design
               rules, the last three revisions.
             </LI>
             <LI>
@@ -1074,20 +1069,20 @@ export default function VibeHardwarePost() {
 
           <UL>
             <LI>
-              <span className="text-amber">It isn&apos;t really text.</span> A
+              <span className="text-amber">It isn&apos;t really text.</span>{" "}A
               PDF stores instructions for drawing glyphs. Reading order and
               tables have to be reconstructed (
               <A href="https://www.llamaindex.ai/blog/why-reading-pdfs-is-hard">LlamaIndex explains why</A>
               ).
             </LI>
             <LI>
-              <span className="text-amber">It&apos;s expensive.</span> Claude{" "}
+              <span className="text-amber">It&apos;s expensive.</span>{" "}Claude{" "}
               <A href="https://platform.claude.com/docs/en/build-with-claude/pdf-support">sees each page</A>{" "}
               as an image plus text, 1,500 to 3,000 tokens a page. One
               datasheet can eat your context before you&apos;ve asked anything.
             </LI>
             <LI>
-              <span className="text-amber">Agents grep it.</span> The ones that
+              <span className="text-amber">Agents grep it.</span>{" "}The ones that
               shell out to a text extractor are searching a document that was
               never meant to be searched.
             </LI>
@@ -1216,7 +1211,7 @@ export default function VibeHardwarePost() {
 
           <P>
             The board-specific numbers are worse.{" "}
-            <A href="https://arxiv.org/abs/2608.04434">OmniRouting</A> gave
+            <A href="https://arxiv.org/abs/2608.04434">OmniRouting</A>{" "}gave
             routers 1,681 real industrial boards with placements engineers had
             already proven routable:
           </P>
@@ -1234,7 +1229,7 @@ export default function VibeHardwarePost() {
           />
 
           <P>
-            <A href="https://arxiv.org/abs/2607.05915">PCBWorld</A> found the
+            <A href="https://arxiv.org/abs/2607.05915">PCBWorld</A>{" "}found the
             same shape: a GPT-5.4 agent cleanly routed 65% of small real boards
             and none of the medium ones. A tiny RL policy trained only against
             a DRC checker beat it on both.
@@ -1389,20 +1384,14 @@ export default function VibeHardwarePost() {
             checks from-scratch schematics in simulation, tops out at 8%.
           </P>
 
-          <P>So here&apos;s my ask. Every piece of a real layout benchmark already exists, open source and headless:</P>
-
-          <Table
-            title="a layout benchmark that grades the physics"
-            head={["score the layout on", "with", "open + headless"]}
-            rows={[
-              ["DRC, connectivity", <A key="k" href="https://www.kicad.org/blog/2026/03/Version-10.0.0-Released/">KiCad 10, kicad-cli</A>, "yes"],
-              ["copper balance", "kicad-cli exports + a script", "yes"],
-              ["PDN impedance, DC IR drop", <><A key="e" href="https://github.com/ElmerCSC/elmerfem">Elmer</A>, ngspice</>, "yes"],
-              ["impedance, crosstalk, return paths", <><A key="o" href="https://github.com/thliebig/openEMS">openEMS</A>, <A key="g" href="https://github.com/antmicro/gerber2ems">gerber2ems</A></>, "yes"],
-              ["radiated emissions", "openEMS", "yes, but slow"],
-            ]}
-            note="atopile already showed that if you build the environment, labs will train on it."
-          />
+          <P>
+            So here&apos;s my ask. Look at the right-hand column of that
+            table: every &ldquo;nobody&rdquo; row already has an open-source
+            tool that runs headless. Someone should wire them into one
+            benchmark that scores a layout on copper balance, PDN impedance, IR
+            drop, and return paths, on top of DRC. atopile already showed that
+            if you build the environment, labs will train on it.
+          </P>
 
           <P>
             Build the one that measures the part we actually ship. If
