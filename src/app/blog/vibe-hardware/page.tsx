@@ -699,9 +699,22 @@ function UseTable() {
       <span className="text-amber">meh</span>
     );
   return (
-    <details open className="term my-6 overflow-hidden">
-      <summary className="cursor-pointer list-none border-b border-line bg-black/25 px-3 py-1.5 text-xs text-text-dim transition hover:text-text [&::-webkit-details-marker]:hidden">
-        ▸ cat everything-i-use-it-for.md · {USES.reduce((n, g) => n + g.rows.length, 0)} uses · click to collapse
+    <details className="group term my-6 overflow-hidden border-green-dim transition hover:box-glow">
+      <summary className="flex cursor-pointer list-none items-center gap-3 bg-black/25 px-4 py-3 transition hover:bg-black/40 group-open:border-b group-open:border-line [&::-webkit-details-marker]:hidden">
+        <span className="text-lg text-green transition-transform group-open:rotate-90">▸</span>
+        <span className="flex-1">
+          <span className="block text-sm font-bold text-green glow">
+            Everything I use it for
+          </span>
+          <span className="block text-xs text-text-dim">
+            {USES.reduce((n, g) => n + g.rows.length, 0)} uses across office
+            work, parts, schematic, layout, and manufacturing, each rated
+          </span>
+        </span>
+        <span className="flex-none rounded border border-green px-2.5 py-1 text-xs text-green">
+          <span className="group-open:hidden">expand</span>
+          <span className="hidden group-open:inline">collapse</span>
+        </span>
       </summary>
       <div className="space-y-5 p-4 text-xs leading-relaxed">
         {USES.map((g) => (
